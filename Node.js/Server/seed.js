@@ -16,7 +16,7 @@ const createUsersSql = `
 CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY,
   name text NOT NULL,
-  username text NOT NULL,
+  username text NOT NULL
 )
 `;
 
@@ -76,7 +76,8 @@ function insertQuestions() {
 }
 **/
 
-async function insertQuestions () {
+async function insertQuestions() {
+  console.log("test");
   const q1 = `INSERT INTO questions (quiz_code, content) VALUES ('1', 'This is question 1');`
   const q1Options = id => `
     INSERT INTO options(question_id, code, content, is_correct)
@@ -116,6 +117,7 @@ db.authenticate()
     db.query(createOptionsSql),
     db.query(createResponsesSql)
   ]))
+  .then(() => console.log('Tables created'))
   .then(() => insertQuestions())
   .then(() => db.query('SELECT * FROM questions', { type: Sequelize.QueryTypes.SELECT }))
   .then(print)

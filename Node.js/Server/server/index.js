@@ -46,7 +46,11 @@ server = http.createServer(async (req, res) => {
 
     // ex: /hello => hello, /hello/123 => /hello
     const splitPath = url.path.split('/');
-    const viewName = splitPath.length > 1 ? splitPath[1] : 'index';
+    console.log(url.pathname);
+    console.log(splitPath.length);
+    console.log(splitPath[0]);
+    console.log(splitPath[1]);
+    const viewName = url.pathname != "/" ? splitPath[1] : 'index';
 
     const view = await renderView(viewName, await dataResolver(viewName));
 
@@ -65,5 +69,3 @@ server = http.createServer(async (req, res) => {
 });
 
 module.exports = server;
-
-
