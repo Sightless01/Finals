@@ -74,5 +74,3 @@ echo '</table>';
  echo "</br>";
 
 $db->close();
-echo '</table>';
-?>
