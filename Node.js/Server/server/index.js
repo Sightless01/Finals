@@ -25,9 +25,9 @@ const renderView = async (name, data) => {
 }
 
 const dataResolver = async (name) => {
-  if (name === 'questions') {
+  if (name === 'admins') {
     return {
-      questions: await db.query('SELECT * FROM questions', { type: Sequelize.QueryTypes.SELECT })
+      admin: await db.query('SELECT * FROM admin', { type: Sequelize.QueryTypes.SELECT })
     };
   }
 
