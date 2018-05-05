@@ -1,12 +1,12 @@
 body {
     background-image: url(images/login.jpg);
 }
-.container {
+div.container {
     background: #ffffff;
     margin: auto;
     width: 30%;
     margin-top: 15%;
-    border-radius: 5px;    
+    border-radius: 5px;
 }
 
 button.login {
@@ -21,11 +21,11 @@ div.form-group {
 }
 
 input.form-control {
-    
+
 }
 
 #InputPassword {
-    
+
 }
 
 #margin {
