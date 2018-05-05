@@ -63,9 +63,11 @@ server = http.createServer(async (req, res) => {
       if(viewName === 'register') {
         req.on('end', () => {
           let formData = qs.parse(reqBody);
-          console.log(formData.username);
-          console.log(formData.password);
-          console.log(formData.repass);
+          var username = formData.username;
+          var password = formData.password;
+
+          const insert = `INSERT INTO admin (username, password) VALUES ('${username}', '${password}');`;
+          db.query(insert, { type: Sequelize.QueryTypes.INSERT });
         })
       }
     }
