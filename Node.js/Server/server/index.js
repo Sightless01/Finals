@@ -7,9 +7,10 @@ const Sequelize = require('sequelize');
 const http = require('http');
 const path = require('path');
 const fs = require('fs');
+const qs = require('querystring');
+const bodyParser = require('body-parser');
 const { promisify } = require('util');
 const { parse: urlParse }  = require('url');
-
 const db = require('../db');
 
 const readFile = promisify(fs.readFile);
@@ -29,10 +30,10 @@ const dataResolver = async (name) => {
     return {
       admin: await db.query('SELECT * FROM admin', { type: Sequelize.QueryTypes.SELECT })
     };
+  } else {
+    return {};
   }
 
-  // Return empty object by default
-  return {};
 };
 
 server = http.createServer(async (req, res) => {
@@ -42,17 +43,33 @@ server = http.createServer(async (req, res) => {
 
   try {
     const url = urlParse(req.url);
-
-    // ex: /hello => hello, /hello/123 => /hello
     const splitPath = url.path.split('/');
     const viewName = url.pathname != "/" ? splitPath[1] : 'index';
 
-    const view = await renderView(viewName, await dataResolver(viewName));
+    // ex: /hello => hello, /hello/123 => /hello
+    if(req.method === "GET") {
 
-    // Send response
-    res.writeHead(200, headers);
+      const view = await renderView(viewName, await dataResolver(viewName));
 
-    res.write(view);
+      // Send response
+      res.writeHead(200, headers);
+
+      res.write(view);
+    } else if(req.method === "POST") {
+      var reqBody = '';
+      req.on('data', data => {
+        reqBody+=data;
+      });
+      if(viewName === 'register') {
+        req.on('end', () => {
+          let formData = qs.parse(reqBody);
+          console.log(formData.username);
+          console.log(formData.password);
+          console.log(formData.repass);
+        })
+      }
+    }
+
 
   } catch (err) {
     res.writeHead(500, headers);

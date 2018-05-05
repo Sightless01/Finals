@@ -1,0 +1,32 @@
+<form action="register" method="POST">
+  <div class="form-group">
+    <label for="InputName">Name</label>
+    <input type="name" class="form-control" id="InputName" placeholder="Name" name="username">
+  </div>
+
+  <div class="form-group">
+    <input type="radio" name="gender" value="male"> Male<br>
+    <input type="radio" name="gender" value="female"> Female<br>
+  </div>
+
+  <div class="form-group">
+    <label for="InputName">Birthdate</label>
+    <input type="date" id="myDate" value="" name="birthday">
+  </div>
+
+  <div class="form-group">
+    <label for="InputEmail" id="margin">Email address</label>
+    <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+  </div>
+  <div class="form-group">
+    <label for="InputPassword">Password</label>
+    <input type="password" class="form-control" id="InputPassword" placeholder="Password" name="password">
+  </div>
+
+  <div class="form-group">
+    <label for="InputPassword">Retype Password</label>
+    <input type="retype-password" class="form-control" id="InputRetype-Password" placeholder="Retype Password" name="repass">
+  </div>
+
+  <button type="submit" class="btn register">Register</button>
+</form>
