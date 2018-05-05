@@ -1,0 +1,33 @@
+body {
+    background-image: url(images/login.jpg);
+}
+.container {
+    background: #ffffff;
+    margin: auto;
+    width: 30%;
+    margin-top: 15%;
+    border-radius: 5px;    
+}
+
+button.login {
+    background-color: #004d4d;
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+div.form-group {
+    margin-top: 5%;
+}
+
+input.form-control {
+    
+}
+
+#InputPassword {
+    
+}
+
+#margin {
+    margin-top: 20px;
+}
