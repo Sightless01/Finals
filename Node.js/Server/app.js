@@ -39,6 +39,6 @@ app.post('/', (req, res) => {
 });
 
 const port = process.env.PORT || 5001;
-app.listen(port, () => {
+app.listen(port, '192.168.1.40', () => {
   console.log('Server started @ http://localhost:' + port);
 });
