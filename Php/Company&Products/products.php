@@ -1,7 +1,7 @@
 <?php
 class DBphp extends SQLite3{
 function __construct(){
-		$this->open('products.db');
+		$this->open('database.db');
 		
 	}
 }
