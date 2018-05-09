@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('course_website', null, null, {
+const sequelize = new Sequelize('../../database', null, null, {
   dialect: 'sqlite',
   operatorsAliases: false,
-  storage: './course-website.sqlite'
+  storage: '../../database.db'
 });
 
 module.exports = sequelize;
