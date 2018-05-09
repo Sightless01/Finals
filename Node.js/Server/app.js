@@ -12,7 +12,7 @@ app.set('view engine', 'handlebars');
 
 app.use('/static', express.static('public'));
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   res.render('index');
@@ -30,9 +30,8 @@ app.get('/registration', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-  let formData = qs.parse(reqBody);
-  var username = formData.username;
-  var password = formData.password;
+  var username = req.query.username;
+  var password = req.query.password;
 
   const insert = `INSERT INTO admin (username, password) VALUES ('${username}', '${password}');`;
   db.query(insert, { type: Sequelize.QueryTypes.INSERT });
