@@ -1,0 +1,37 @@
+>company
+	comp_id
+	name
+	username
+	email
+	contact
+	status
+	block
+	comp_address
+	pw
+	
+>products
+	prod_id
+	name
+	description
+	frontview
+	sideview
+	backview
+	comp_id
+
+>admin
+	admin_id
+	username
+	password
+
+>Client
+	name
+	username
+	email
+	contact
+	status
+	block
+
+>Service_provider
+	id
+	name
+	products
