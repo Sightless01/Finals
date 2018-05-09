@@ -29,6 +29,16 @@ app.get('/registration', (req, res) => {
   res.render('registration');
 });
 
+app.get('/test', (req, res) => {
+  db.query('SELECT * from company', { type: Sequelize.QueryTypes.SELECT })
+    .then(companies => {
+      console.log(companies);
+      res.render('test', { companies });
+    })
+});
+
+
+
 app.post('/', (req, res) => {
   var username = req.query.username;
   var password = req.query.password;
@@ -38,6 +48,6 @@ app.post('/', (req, res) => {
 });
 
 const port = process.env.PORT || 5001;
-app.listen(port, '192.168.1.40', () => {
+app.listen(port, () => {
   console.log('Server started @ http://localhost:' + port);
 });

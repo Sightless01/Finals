@@ -8,6 +8,14 @@ div.container {
   border-radius: 5px;
 }
 
+div.container.registration {
+
+}
+
+div.container.login {
+  
+}
+
 button.login {
   background-color: #004d4d;
   width: 100%;
