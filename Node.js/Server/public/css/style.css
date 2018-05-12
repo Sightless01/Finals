@@ -8,12 +8,16 @@ div.container {
   border-radius: 5px;
 }
 
-div.container.registration {
+div.colors {
+  background: #ffffff;
+}
 
+div.container.registration {
+  width: 40%;
 }
 
 div.container.login {
-  
+
 }
 
 button.login {

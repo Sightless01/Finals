@@ -1,4 +1,10 @@
-test
 {{#each companies }}
-  <div>{{ username }}. {{pw}}</div>
+  <form method="POST">
+    <div class="colors">
+      {{ username }}
+      <input type="submit" name="acceptbtn" value="accept">
+      <input type="submit" name="rejectbtn" value="reject">
+    </div>
+  </form>
+  <hr>
 {{/each }}
