@@ -81,7 +81,11 @@ error_reporting(0);
 <?php
 if($_POST['submit'])
 {
-	$pro = $_POST['prod_id'];
+	$db = new SQLite3('data.db');
+	$result = $db->query("SELECT * FROM products");
+	$rows = count ($result);
+	$rownum = ++$rows;
+	$pro =$rownum;
 	$cn = $_POST['companyname'];
 	$de = $_POST['description'];
 	
