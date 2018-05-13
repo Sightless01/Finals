@@ -38,15 +38,10 @@ app.get('/test', (req, res) => {
     })
 });
 
-
-
-app.post('/', (req, res) => {
-  var username = req.query.username;
-  var password = req.query.password;
-
-  const insert = `INSERT INTO admin (username, password) VALUES ('${username}', '${password}');`;
-  db.query(insert, { type: Sequelize.QueryTypes.INSERT });
-});
+app.post('/register', (req, res) => {
+  console.log(req.body.CoCname);
+  res.render('registration');
+})
 
 const port = process.env.PORT || 5001;
 app.listen(port, () => {

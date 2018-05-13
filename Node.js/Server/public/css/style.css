@@ -13,7 +13,9 @@ div.colors {
 }
 
 div.container.registration {
-  width: 40%;
+  width: 60%;
+  padding: 3%;
+  margin-bottom: 5%;
 }
 
 div.container.login {
