@@ -20,14 +20,6 @@ error_reporting(0);
 <h2> Insert Product Info</h2><br>
 <div id="container">
 	<form action="" method="post" enctype="multipart/form-data">
-	<div class="row">
-      <div class="col-20">
-      	prod_id:
-      </div>
-      <div class="col-75">
-      	<input type="text" name="prod_id" value="" /><br><br>
-      </div>
-    </div>
     <div class="row">
       <div class="col-20">
       	company name:
