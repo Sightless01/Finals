@@ -23,40 +23,11 @@ echo "----------------------------------------------------","</br>";
 echo "CLIENT","</br>";
 $query1="SELECT * FROM Client;";
 $result=$db->query($query1);
-<<<<<<< HEAD
- echo "<table><tr><td>client_id</td><td>name</td><td>username</td><td>email</td><td>contact</td><td>status</td>><td>block</td></tr>";
-=======
  echo "<table><tr><td>client_id</td><td>name</td><td>address</td><td>contact</td><td>email</td><td>username</td><td>password</td><td>status</td><td>block</td></tr>";
->>>>>>> ricamelle
 while ($row = $result->fetchArray()){
  
 echo '<tr><td>'.$row ['client_id'] . '</td>
 <td>'.$row['name'] .'</td>
-<<<<<<< HEAD
-<td>'.$row['username'] .'</td>
-<td>'.$row['email'] .'</td>
-<td>'.$row['contact'] .'</td>
-<td>'.$row['status'] .'</td>
-<td>'.$row['block'] .'</td>
-</tr>';
-}
-echo '</table>';
-echo  "----------------------------------------------------","</br>"; 
-
-echo "SERVICE PROVIDER","</br>";
-$query1="SELECT * FROM Service_provider;";
-$result=$db->query($query1);
-echo "<table><tr><td>id </td><td>name</td><td>products</td></tr>";
-while ($row = $result->fetchArray()){
- 
-echo '<tr><td>'.$row ['id'] . '</td>
-<td>'.$row['name'] .'</td>
-<td>'.$row['products'] .'</td>
-</tr>';
-}
-echo '</table>';
-echo "</br>";
-=======
 <td>'.$row['address'] .'</td>
 <td>'.$row['contact'] .'</td>
 <td>'.$row['email'] .'</td>
@@ -67,7 +38,6 @@ echo "</br>";
 </tr>';
 }
 echo '</table>';
->>>>>>> ricamelle
 
 $db->close();
 
