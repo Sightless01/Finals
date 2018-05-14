@@ -14,6 +14,7 @@ app.set('view engine', 'handlebars');
 app.use('/static', express.static('public'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.render('index');
@@ -27,20 +28,48 @@ app.get('/admins', (req, res) => {
 });
 
 app.get('/registration', (req, res) => {
-  res.render('registration');
+  const redirect = req.query.redirect;
+
+  res.render('registration', { redirect });
 });
 
 app.get('/test', (req, res) => {
-  db.query('SELECT * from company', { type: Sequelize.QueryTypes.SELECT })
+  db.query('SELECT * from company where status == 0', { type: Sequelize.QueryTypes.SELECT })
     .then(companies => {
-      console.log(companies);
-      res.render('test', { companies });
+      db.query('SELECT * from client where status == 0', { type: Sequelize.QueryTypes.SELECT })
+        .then(clients => {
+          res.render('user_management', { companies, clients });
+        })
     })
 });
 
 app.post('/register', (req, res) => {
-  console.log(req.body.CoCname);
-  res.render('registration');
+  let name = req.body.fname;
+  let username = req.body.uname;
+  let uType = req.body.utype;
+  let email = req.body.eaddress;
+  let address = req.body.paddress;
+  let cnum = req.body.contactnum;
+  let pass = req.body.password;
+
+  let errors = [];
+  console.log(req.body);
+  console.log(name);
+  console.log(username);
+  errors.push({
+    error: "username already in use"
+  })
+
+  if(errors) {
+
+  } else {
+    res.redirect(req.body.redirect);
+  }
+  //res.render('registration');
+});
+
+app.post('/test', (req, res) => {
+  console.log(req.body);
 })
 
 const port = process.env.PORT || 5001;

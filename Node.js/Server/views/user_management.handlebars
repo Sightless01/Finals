@@ -1,0 +1,20 @@
+<form method="POST" action="test">
+  <h1>Proprietor</h1>
+  {{#each companies }}
+      <div class="colors">
+        {{ username }}
+        <input type="radio" name="btn[p{{comp_id}}]" value="accept">
+        <input type="radio" name="btn[p{{comp_id}}]" value="reject">
+      </div>
+  {{/each }}
+  <h1>Renter</h1>
+  {{#each clients }}
+      <div class="colors">
+        {{ username }}
+        <input type="radio" name="btn[r{{client_id}}]" value="accept">
+        <input type="radio" name="btn[r{{client_id}}]" value="reject">
+      </div>
+  {{/each }}
+  <button>submit</button>
+</form>
+<hr>

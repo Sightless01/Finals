@@ -4,7 +4,7 @@ function validateForm() {
     alert("Name must be filled out");
     return false;
   }
-}
+};
 
 function checkPass() {
 
@@ -27,4 +27,51 @@ function checkPass() {
     message.style.color = badColor;
     message.innerHTML = "Passwords Do Not Match!"
   }
+}
+
+function register() {
+  let errors = [];
+  let errorRep = "";
+  let fname = document.getElementById("fname").value;
+  fname == "" ? errors.push({ "error" : "Empty name" }) : "";
+  let uType = document.getElementById("uType").checked ? "company" : "client";
+  let uname = document.getElementById("uname").value;
+  uname == "" ? errors.push({ "error" : "Empty username" }) : "";
+  let eaddress = document.getElementById("eaddress").value;
+  eaddress.includes("@") ? "" : errors.push({ "error" : "invalid Email" });
+  let paddress = document.getElementById("paddress").value;
+  paddress == "" ? errors.push({ "error" : "Empty address" }) : "";
+  let contactnum = document.getElementById("contactnum").value;
+  contactnum == "" ? errors.push({ "error" : "Empty contact number" }) : "";
+  let password = document.getElementById("password").value;
+  password == "" ? errors.push({ "error" : "Empty password" }) : "";
+  if(errors.length != 0) {
+    console.log(errors);
+    errors.forEach(error => {
+      console.log(error);
+      errorRep += (error.error + "\n");
+    });
+    alert(errorRep);
+  } else {
+    console.log("test");
+    let data = {};
+    data.fname = fname;
+    data.utype = uType;
+    data.uname = uname;
+    data.eaddress = eaddress;
+    data.paddress = paddress;
+    data.contactnum = contactnum;
+    data.password = password;
+    $.ajax({
+      type: 'post',
+      datatype: 'json',
+      data: JSON.stringify(data),
+      contentType: 'application/json',
+      url: 'http://localhost:5001/register',
+      success: function(data) {
+         alert("success");
+       } //node.js server is running
+    });
+  }
+
 }

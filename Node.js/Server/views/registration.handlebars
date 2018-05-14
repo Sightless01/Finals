@@ -1,36 +1,34 @@
 <div class="container registration">
-  <form id = "contact-form" method="POST" action="/register">
+  <form id = "contact-form">
     <div class="form-group">
       <label for="name">Name</label>
-      <input type="name" class="form-control" name="CoCname" placeholder="Name">
+      <input type="name" class="form-control" name="fname" id="fname" placeholder="Name">
     </div>
 
     <div class="form-group">
-      <input type="radio" name="userType" value="company"> Company<br>
-      <input type="radio" name="userType" value="customer"> Client<br>
+      <input type="radio" name="userType" id="uType" value="company"> Proprietor<br>
+      <input type="radio" name="userType" value="client"> Renter<br>
     </div>
-
 
     <div class="form-group">
       <label for="Username">Username</label>
-      <input type="name" class="form-control" name="username" placeholder="Username">
+      <input type="name" class="form-control" name="uname" id="uname" placeholder="Username">
     </div>
 
     <div class="form-group">
       <label for="email">Email address</label>
-      <input type="email" class="form-control" name="emailaddress" aria-describedby="emailHelp" placeholder="Enter email">
+      <input type="email" class="form-control" name="eaddress" id="eaddress" aria-describedby="emailHelp" placeholder="Enter email">
     </div>
 
     <div class="form-group">
       <label for="address">Address</label>
-      <input type="address" class="form-control" name="PHaddress"  placeholder="Address">
+      <input type="address" class="form-control" name="paddress" id="paddress"  placeholder="Address">
     </div>
 
     <div class="form-group">
       <label for="contactnumber">Contact Number</label>
-      <input type="contact" class="form-control" name="contactnum"  placeholder="Contact Number">
+      <input type="contact" class="form-control" name="contactnum" id="contactnum"  placeholder="Contact Number">
     </div>
-
 
     <div class="form-group">
       <label for="password">Password</label>
@@ -43,6 +41,8 @@
       <span id="confirmMessage" class="confirmMessage"></span>
     </div>
 
-    <button type="submit" class="btn register">Register</button>
+    <input type="hidden" name="redirect" value="{{redirect}}">
+
+    <button class="btn register" onClick="register();return false;" id="subButton">Register</button>
   </form>
 </div>
