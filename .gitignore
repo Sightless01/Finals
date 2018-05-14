@@ -1,3 +1,5 @@
 Node.js/Server/node_modules/
 Node.js/Server/*.sqlite
+*.sqlite
+*.db
 
