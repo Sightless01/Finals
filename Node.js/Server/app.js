@@ -43,6 +43,16 @@ app.get('/test', (req, res) => {
     })
 });
 
+app.get('/block', (req, res) => {
+  db.query('SELECT * from company where block == 0', { type: Sequelize.QueryTypes.SELECT })
+    .then(companies => {
+      db.query('SELECT * from client where block == 0', { type: Sequelize.QueryTypes.SELECT })
+        .then(clients => {
+          res.render('blocking', { companies, clients });
+        })
+    })
+});
+
 app.post('/register', (req, res) => {
   let name = req.body.fname;
   let username = req.body.uname;
@@ -53,12 +63,16 @@ app.post('/register', (req, res) => {
   let pass = req.body.password;
 
   let errors = [];
-  console.log(req.body);
-  console.log(name);
-  console.log(username);
+  db.query('SELECT * from ? where username == ?', {
+    replacements: [ uType, username ],
+    type: Sequelize.QueryTypes.SELECT
+  })
+    .then(results => {
+      console.log(results);
+    })
   errors.push({
     error: "username already in use"
-  })
+  });
 
   if(errors) {
 

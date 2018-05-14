@@ -1,0 +1,18 @@
+<form method="POST" action="block">
+  <h1>Proprietor</h1>
+  {{#each companies }}
+      <div class="colors">
+        {{ username }}
+        <input type="checkbox" name="btn[p{{comp_id}}]" value="block">
+      </div>
+  {{/each }}
+  <h1>Renter</h1>
+  {{#each clients }}
+      <div class="colors">
+        {{ username }}
+        <input type="checkbox" name="btn[r{{client_id}}]" value="block">
+      </div>
+  {{/each }}
+  <button>submit</button>
+</form>
+<hr>
