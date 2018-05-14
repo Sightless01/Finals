@@ -38,7 +38,24 @@ echo '<tr><td>'.$row ['client_id'] . '</td>
 </tr>';
 }
 echo '</table>';
+echo "----------------------------------------------------","</br>";
 
+echo "TRANSACTION","</br>";
+$query1="SELECT * FROM transact;";
+$result=$db->query($query1);
+ echo "<table><tr><td>trans_id</td><td>date_booked</td><td>date_paid</td><td>date_returned</td><td>comp_id</td><td>client_id</td></tr>";
+while ($row = $result->fetchArray()){
+ 
+echo '<tr><td>'.$row ['trans_id'] . '</td>
+<td>'.$row['date_booked'] .'</td>
+<td>'.$row['date_paid'] .'</td>
+<td>'.$row['date_returned'] .'</td>
+<td>'.$row['comp_id'] .'</td>
+<td>'.$row['client_id'] .'</td>
+
+</tr>';
+}
+echo '</table>';
 $db->close();
 
 ?>

@@ -33,3 +33,12 @@
 	password
 	status
 	block
+
+>transact
+	trans_id
+	date_booked
+	date_paid
+	date_returned
+	comp_id
+	client_id
+	
