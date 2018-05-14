@@ -24,14 +24,12 @@
 	password
 
 >Client
+	client_id
 	name
-	username
-	email
+	address
 	contact
+	email
+	username
+	password
 	status
 	block
-
->Service_provider
-	id
-	name
-	products
