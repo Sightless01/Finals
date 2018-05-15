@@ -4,16 +4,19 @@
   {{#each companies }}
       <div class="block">
         {{ username }}
-        <input type="checkbox" name="btn[p{{comp_id}}]" value="block">
+        <input type="checkbox" name="btn[p{{comp_id}}]" class="unblockbtn" value="block">
       </div>
+      <hr>
   {{/each }}
   <h1>Renter</h1>
   {{#each clients }}
       <div class="block">
         {{ username }}
-        <input type="checkbox" name="btn[r{{client_id}}]" value="block">
+        <input type="checkbox" name="btn[r{{client_id}}]" class="unblockbtn"value="block">
       </div>
+      <hr>
   {{/each }}
-  <button>submit</button>
+  <div class="idname">
+  <button>Block</button>
+</div>
 </form>
-<hr>

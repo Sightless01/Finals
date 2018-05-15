@@ -1,18 +1,21 @@
 <form method="POST" action="block">
-  <h1 class="h-block">Proprietor</h1>
+  <h1>Proprietor</h1>
   {{#each companies }}
       <div class="unblock">
         {{ username }}
-        <input type="checkbox" name="btn[p{{comp_id}}]" value="block">
+        <input type="checkbox" name="btn[p{{comp_id}}]"class="unblockbtn" value="block">
       </div>
+      <hr>
   {{/each }}
   <h1>Renter</h1>
   {{#each clients }}
       <div class="unblock">
         {{ username }}
-        <input type="checkbox" name="btn[r{{client_id}}]" value="unblock">
+        <input type="checkbox"name="btn[r{{client_id}}]" value="unblock">
       </div>
+      <hr>
   {{/each }}
-  <button>submit</button>
+  <div class="idname">
+  <button>Unblock</button>
+</div>
 </form>
-<hr>

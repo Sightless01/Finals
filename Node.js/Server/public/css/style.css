@@ -32,7 +32,7 @@ div#margin {
 /*manageUser*/
 
 header.page-heading {
-	background: #2f2f2f;
+	  background: #2f2f2f;
     border-top: 6px solid #d4d4d4;
     border-bottom: 6px solid #d4d4d4;
     position: relative;
@@ -41,22 +41,22 @@ header.page-heading {
 
 div.row {
 	margin-left: -15px;
-    margin-right: -15px;
+  margin-right: -15px;
 }
 
 div.contain {
 	margin-right: auto;
-    margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 div.col-md-12 {
 	position: relative;
-    min-height: 1px;
+  min-height: 1px;
 	padding-top: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
 	color: white;
 	font-family: none;
 }
@@ -70,10 +70,10 @@ div.col-md-12 {
 nav.breadcrumb1{
 	color: white;
 	font-size: 15px;
-    margin-top: 10px;
+  margin-top: 10px;
 	margin-bottom: 15px;
-    margin-left: 40%;
-    margin-right: 30%;
+  margin-left: 40%;
+  margin-right: 30%;
 	font-family: none;
 }
 
@@ -82,12 +82,12 @@ div.bodyNav {
 }
 
 a.body {
-    color: #999999;
+  color: #999999;
 	font-size: 15px;
-    text-decoration: none;
+  text-decoration: none;
 	display: inline-block;
 	text-align: center;
-    padding: 10px;
+  padding: 10px;
 	background-color: #307D7E;
 }
 
@@ -111,8 +111,8 @@ a:hover {
 }
 
 .spacing {
-    margin-left: 15px;
-    padding: 10px;
+  margin-left: 15px;
+  padding: 10px;
 	color: white;
 }
 
@@ -121,7 +121,7 @@ div.footerContainer {
     position: relative;
     border-bottom: 6px solid #d4d4d4;
     height: 200px;
-	font-family: none;
+	  font-family: none;
 }
 
 div.footerRow {
@@ -132,7 +132,7 @@ div.footerRow {
 .col {
     position: relative;
     min-height: 1px;
-	color: white;
+	  color: white;
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
@@ -171,6 +171,8 @@ div.container-form {
 
 hr {
 	background-color: #307D7E;
+  margin-left: 25%;
+  margin-right: 30%;
 }
 
 .col-md-6{
@@ -199,8 +201,24 @@ h1{
   margin-left: 40%;
 }
 
+div.container-form hr{
+  margin-left: 0;
+  margin-right: 0%;
+}
+
 
 /*unblock*/
 div.unblock{
   margin-left: 25%;
+}
+
+div.idname{
+  margin-left: 45%;
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+
+.unblockbtn{
+  float: right;
+  margin-right: 40%;
 }
