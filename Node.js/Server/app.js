@@ -53,6 +53,20 @@ app.get('/block', (req, res) => {
     })
 });
 
+app.get('/manageUser', (req, res) => {
+  db.query('SELECT * from company', { type: Sequelize.QueryTypes.SELECT })
+    .then(companies => {
+      res.render('manageUser', { companies });
+    })
+});
+
+app.get('/unblock', (req, res) => {
+  db.query('SELECT * from company', { type: Sequelize.QueryTypes.SELECT })
+    .then(companies => {
+      res.render('unblock', { companies });
+    })
+});
+
 app.post('/register', (req, res) => {
   let name = req.body.fname;
   let username = req.body.uname;
@@ -83,6 +97,10 @@ app.post('/register', (req, res) => {
 });
 
 app.post('/test', (req, res) => {
+  console.log(req.body);
+})
+
+app.post('/manageUser', (req, res) => {
   console.log(req.body);
 })
 
