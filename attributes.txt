@@ -1,29 +1,9 @@
->company
-	comp_id
-	name
-	username
-	email
-	contact
-	status
-	block
-	comp_address
-	pw
-	
->products
-	prod_id
-	name
-	description
-	frontview
-	sideview
-	backview
-	comp_id
-
 >admin
 	admin_id
 	username
 	password
 
->Client
+>client
 	client_id
 	name
 	address
@@ -34,7 +14,29 @@
 	status
 	block
 
->transact
+>company
+	comp_id
+	name
+	address
+	contact
+	email
+	username
+	password
+	status
+	block
+	
+>products
+	prod_id
+	name
+	description
+	price
+	frontview
+	sideview
+	backview
+	availability
+	comp_id
+
+>transaction
 	trans_id
 	date_booked
 	date_paid
