@@ -62,14 +62,27 @@ function register() {
     data.paddress = paddress;
     data.contactnum = contactnum;
     data.password = password;
+    data.redirect = $("#redirect").val();
     $.ajax({
       type: 'post',
       datatype: 'json',
       data: JSON.stringify(data),
       contentType: 'application/json',
       url: 'http://localhost:5001/register',
+      statusCode: {
+        400: msg => {
+          let response = "Error!\n";
+          responseJSON = JSON.parse(msg.responseText);
+          responseJSON.forEach(res => {
+            response += (res.error + "\n");
+          })
+          alert(response);
+        }
+      },
       success: function(data) {
-         alert("success");
+        console.log(data);
+        responseJSON = JSON.parse(data);
+        alert("success!\n" + "to go back to your website: " + responseJSON.redirect);
        } //node.js server is running
     });
   }

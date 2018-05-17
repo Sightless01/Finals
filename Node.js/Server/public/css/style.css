@@ -1,25 +1,15 @@
-body {
-  background-image: url(images/login.jpg);
+body{
+    background-image: url(images/login.jpg);
 }
+
+div.container{
+    background-image: url(images/login.jpg);
+}
+
 div.container {
-  background: #ffffff;
   margin: auto;
   margin-top: 5%;
   border-radius: 5px;
-}
-
-div.colors {
-  background: #ffffff;
-}
-
-div.container.registration {
-  width: 60%;
-  padding: 3%;
-  margin-bottom: 5%;
-}
-
-div.container.login {
-
 }
 
 button.login {
@@ -40,14 +30,225 @@ div.form-group {
   margin-top: 5%;
 }
 
-input.form-control {
-
-}
-
-#InputPassword {
-
-}
 
 div#margin {
   margin-top: 20px;
+}
+
+/*manageUser*/
+
+header.page-heading {
+	  background: #2f2f2f;
+    border-top: 6px solid #d4d4d4;
+    border-bottom: 6px solid #d4d4d4;
+    position: relative;
+    text-align: center;
+}
+
+div.row {
+	margin-left: -15px;
+  margin-right: -15px;
+}
+
+div.contain {
+	margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+div.col-md-12 {
+	position: relative;
+  min-height: 1px;
+	padding-top: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+	color: white;
+	font-family: none;
+}
+
+#breadcrumb {
+	color: white;
+	font-size: 15px;
+	margin-bottom: 10px;
+}
+
+nav.breadcrumb1{
+	color: white;
+	font-size: 15px;
+  margin-top: 10px;
+	margin-bottom: 15px;
+  margin-left: 40%;
+  margin-right: 30%;
+	font-family: none;
+}
+
+div.bodyNav {
+    background: #307D7E;
+}
+
+a.body {
+  color: #999999;
+	font-size: 15px;
+  text-decoration: none;
+	display: inline-block;
+	text-align: center;
+  padding: 10px;
+	background-color: #307D7E;
+}
+
+div {
+    display: block;
+}
+
+a {
+	color: white;
+	font-size: 12px;
+	text-decoration: none;
+	display: inline-block;
+	text-align: center;
+	position: relative;
+}
+
+a:hover {
+	text-decoration: none;
+	color: white;
+	background-color: #307D7E;
+}
+
+.spacing {
+  margin-left: 15px;
+  padding: 10px;
+	color: white;
+}
+
+div.footerContainer {
+    background: #2f2f2f;
+    position: relative;
+    border-bottom: 4px solid #d4d4d4;
+    height: 8rem;
+	  font-family: none;
+}
+
+div.footerRow {
+    text-align: center;
+    color: white;
+}
+
+.col {
+    position: relative;
+    min-height: 1px;
+	  color: white;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#font {
+    margin:auto;
+    color: darkorange;
+}
+
+div.bodyContent {
+    margin:auto;
+}
+
+/*website's body*/
+div.container-form {
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 2%;
+}
+
+.btnForm {
+	float: right;
+	background-color: #307D7E;
+	color: white;
+}
+
+#row {
+	background-color: darkgray;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 2%;
+}
+
+hr {
+	background-color: #307D7E;
+  margin-left: 25%;
+  margin-right: 30%;
+}
+
+div.col-md-6{
+	float: left;
+	font-size: 15px;
+	font-weight: bold;
+	color: black;
+}
+
+div.row{
+  font-weight: bold;
+  padding-bottom: 1%;
+  padding-bottom: 2%;
+}
+
+
+/*block*/
+
+div.block{
+  margin-left: 25%;
+}
+h1{
+  margin-left: 40%;
+}
+
+div.container-form hr{
+  margin-left: 0;
+  margin-right: 0%;
+}
+
+
+/*unblock*/
+div.unblock{
+  margin-left: 25%;
+}
+
+div.idname{
+  margin-left: 45%;
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+
+.unblockbtn{
+  float: right;
+  margin-right: 40%;
+}
+
+#tableContainer {
+	margin-top: 2%;
+	margin-left: 10%;
+	margin-right: 10%;
+	background-color: darkslategray;
+	color: white;
+}
+
+scope.col{
+	margin: 0;
+}
+
+div.colors{
+  margin-left:25%;
+}
+
+
+
+.managebtn{
+  float: right;
+  margin-right:35%;
+}
+
+.transaction{
+  margin-left: 0%;
 }
