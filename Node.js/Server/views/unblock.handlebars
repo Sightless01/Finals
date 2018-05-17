@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <form method="POST" action="block">
   <h1>Proprietor</h1>
   {{#each companies }}
@@ -19,3 +20,34 @@
   <button>Unblock</button>
 </div>
 </form>
+=======
+<div class="container">
+  <form method="POST" action="unblock">
+    <h1>Proprietor</h1>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-5">Name</div>
+      <div class="col-md-3">Unblock</div>
+      <div class="col-md-1"></div>
+    </div>
+    {{#each companies }}
+        <div class="unblock">
+          {{ username }}
+          <input type="checkbox" name="btn[p{{comp_id}}]"class="unblockbtn" value="block">
+        </div>
+        <hr>
+    {{/each }}
+    <h1>Renter</h1>
+    {{#each clients }}
+        <div class="unblock">
+          {{ username }}
+          <input type="checkbox"name="btn[r{{client_id}}]" value="unblock">
+        </div>
+        <hr>
+    {{/each }}
+    <div class="idname">
+      <button>Unblock</button>
+    </div>
+  </form>
+</div>
+>>>>>>> test

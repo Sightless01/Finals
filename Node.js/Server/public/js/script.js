@@ -42,7 +42,7 @@ function register() {
   let paddress = document.getElementById("paddress").value;
   paddress == "" ? errors.push({ "error" : "Empty address" }) : "";
   let contactnum = document.getElementById("contactnum").value;
-  contactnum == "" ? errors.push({ "error" : "Empty contact number" }) : "";
+  isNaN(contactnum) ? errors.push({ "error" : "Is not a valid number" }) : "";
   let password = document.getElementById("password").value;
   password == "" ? errors.push({ "error" : "Empty password" }) : "";
   if(errors.length != 0) {
@@ -62,14 +62,27 @@ function register() {
     data.paddress = paddress;
     data.contactnum = contactnum;
     data.password = password;
+    data.redirect = $("#redirect").val();
     $.ajax({
       type: 'post',
       datatype: 'json',
       data: JSON.stringify(data),
       contentType: 'application/json',
       url: 'http://localhost:5001/register',
+      statusCode: {
+        400: msg => {
+          let response = "Error!\n";
+          responseJSON = JSON.parse(msg.responseText);
+          responseJSON.forEach(res => {
+            response += (res.error + "\n");
+          })
+          alert(response);
+        }
+      },
       success: function(data) {
-         alert("success");
+        console.log(data);
+        responseJSON = JSON.parse(data);
+        alert("success!\n" + "to go back to your website: " + responseJSON.redirect);
        } //node.js server is running
     });
   }
