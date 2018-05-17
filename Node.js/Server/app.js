@@ -1,4 +1,3 @@
-const Sequelize = require('sequelize');
 const bodyParser = require('body-parser');
 const db = require('./db');
 const express = require('express');
@@ -10,22 +9,35 @@ const app = express();
 
 app.engine('handlebars', ehb({ defaultLayout: 'default' }));
 app.set('view engine', 'handlebars');
-
 app.use('/static', express.static('public'));
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(session({ secret: 'webtechLAB', resave: false, saveUninitialized: false }));
 
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', { layout: 'login-temp' });
 });
 
-app.get('/admins', (req, res) => {
-  db.query('SELECT * FROM admin', { type: Sequelize.QueryTypes.SELECT })
-    .then(admins => {
-      res.render('admins', { admins });
-    });
-});
+app.post('/login', (req, res) => {
+  let username = req.body.username;
+  let password = req.body.password;
+  db.query('SELECT username, password FROM admin WHERE username = ?',
+    [ username ],
+    (err, result) => {
+      if(result.length != 0) {
+        console.log(result[0].password);
+        console.log(result[0].username);
+        console.log(result);
+        if(result[0].password == password) {
+          req.session.user = result[0].username;
+          res.redirect('manage_user');
+        }
+      } else {
+        let error = "error";
+        res.render('index', { layout: 'login-temp' , error });
+      }
+    })
+})
 
 app.get('/registration', (req, res) => {
   let redirect = req.query.redirect;
@@ -34,60 +46,110 @@ app.get('/registration', (req, res) => {
 });
 
 app.get('/manage_user', (req, res) => {
-  db.query(`SELECT * from company where status = 0`, {
-    type: Sequelize.QueryTypes.SELECT
-  })
-    .then(companies => {
-      db.query("SELECT * from client where status = 0", { type: Sequelize.QueryTypes.SELECT })
-        .then(clients => {
-          console.log(companies);
-          console.log(clients);
-          res.render('manageUser', { companies, clients });
-        })
+  if(req.session.user) {
+    db.query(`SELECT * from company where status = 0`,
+      (err, companies) => {
+      db.query("SELECT * from client where status = 0",
+      (err, clients) => {
+        res.render('manageUser', { companies, clients });
+      })
     })
+  } else {
+    res.redirect('/');
+  }
 });
 
 app.post('/block', (req, res) => {
-  console.log(req.body);
-  console.log();
+  let block = req.body.btn;
+  for(key in block) {
+    let uType = key.charAt(0) == 'p' ? 'company' : 'client';
+    let id = key.replace(key.charAt(0), "");
+    if(uType == 'company') {
+      db.query("UPDATE company SET block = 1 WHERE comp_id = ?",
+        [ parseInt(id, 10) ],
+        (err, results) => {
+          console.log(err);
+        })
+    } else {
+      db.query("UPDATE client SET block = 1 WHERE client_id = ?",
+        [ parseInt(id, 10) ],
+        (err, results) => {
+          console.log(err);
+        })
+    }
+  }
+  res.redirect('/block');
 });
 
-app.get('/block', (req, res) => {
-  db.query("SELECT * from company where block = 0", { type: Sequelize.QueryTypes.SELECT })
-    .then(companies => {
-      db.query("SELECT * from client where block = 0", { type: Sequelize.QueryTypes.SELECT })
-        .then(clients => {
-          res.render('blocking', { companies, clients });
+app.post('/unblock', (req, res) => {
+  let block = req.body.btn;
+  for(key in block) {
+    let uType = key.charAt(0) == 'p' ? 'company' : 'client';
+    let id = key.replace(key.charAt(0), "");
+    if(uType == 'company') {
+      db.query("UPDATE company SET block = 0 WHERE comp_id = ?",
+        [ parseInt(id, 10) ],
+        (err, results) => {
+          console.log(err);
         })
+    } else {
+      db.query("UPDATE client SET block = 0 WHERE client_id = ?",
+        [ parseInt(id, 10) ],
+        (err, results) => {
+          console.log(err);
+        })
+    }
+  }
+  res.redirect('/unblock');
+})
+
+app.get('/block', (req, res) => {
+  if(req.session.user) {
+    db.query("SELECT * from company where block = 0",
+    (err, companies) => {
+      db.query("SELECT * from client where block = 0",
+      (err, clients) => {
+        res.render('block', { companies, clients });
+      })
     })
+  } else {
+    res.redirect('/');
+  }
 });
 
 app.get('/unblock', (req, res) => {
-  db.query("SELECT * from company where block = 1", { type: Sequelize.QueryTypes.SELECT })
-    .then(companies => {
-      db.query("SELECT * from client where block = 1", { type: Sequelize.QueryTypes.SELECT })
-        .then(clients => {
-          res.render('unblock', { companies, clients });
-        })
+  if(req.session.user) {
+    db.query("SELECT * from company where block = 0",
+    (err, companies) => {
+      db.query("SELECT * from client where block = 0",
+      (err, clients) => {
+        res.render('block', { companies, clients });
+      })
     })
+  } else {
+    res.redirect('/');
+  }
 });
 
 app.get('/transaction', (req, res) => {
-  db.query("SELECT name, COUNT(trans_id) as count from company join transact on company.comp_id = transact.comp_id GROUP by name", {
-    type: Sequelize.QueryTypes.SELECT
-  })
-  .then((result) => {
-    let transactArr = [];
-    for(let i = 0; i < result.length; i++) {
-      transactArr.push({
-        "name": result[i].name,
-        "count": result[i].count,
-        "total": parseInt(result[i].count) * 10
-      });
-    }
-    console.log(transactArr);
-    res.render('transaction', { transactArr });
-  })
+  if(req.session.user) {
+    db.query("SELECT name, COUNT(trans_id) as count from company join transaction on company.comp_id = transaction.comp_id GROUP by name",
+    (err, result) => {
+      let transactArr = [];
+      console.log(result);
+      for(let i = 0; i < result.length; i++) {
+        transactArr.push({
+          "name": result[i].name,
+          "count": result[i].count,
+          "total": parseInt(result[i].count) * 10
+        });
+      }
+      console.log(transactArr);
+      res.render('transaction', { transactArr });
+    })
+  } else {
+    res.redirect('/');
+  }
 });
 
 app.post('/register', (req, res) => {
@@ -101,150 +163,115 @@ app.post('/register', (req, res) => {
   let redirect = {
     "redirect" : req.body.redirect
   };
+  let errors = [];
   if(uType == 'company') {
-    db.query("SELECT * from company where username = ?", {
-      replacements: [ username ],
-      type: Sequelize.QueryTypes.SELECT
-    })
-      .then(results => {
-        console.log(results);
+    db.query("SELECT * from company where username = ?",
+      [ username ],
+      (err, results) => {
         if(results.length != 0) {
           errors.push({
             "error": "username already in use!"
           });
         }
-      })
-      .then(() => {
-        db.query("SELECT * from company where email = ?", {
-          replacements: [ email ],
-          type: Sequelize.QueryTypes.SELECT
-        })
-          .then(results => {
-            if(results.length != 0) {
-              errors.push({
-                "error": "email address is already in use!"
-              });
-            }
-          })
-          .then(() => {
-            if(errors.length != 0) {
-              let msg = ("Error!\n");
-              errors.forEach(error => {
-                msg += (error.error + "\n");
-              })
-              console.log("wut");
-              console.log(form);
-              console.log(msg);
-              res.writeHead(400, { 'Content-Type': 'application/json' });
-              res.end(JSON.stringify(errors));
-            } else {
-              db.query("INSERT INTO company (name, address, username, contact, email, password) VALUES (?, ?, ?, ?, ?, ?)", {
-                replacements: [ name, address, username, cnum, email, password],
-                type: Sequelize.QueryTypes.INSERT
-              })
-              res.send(JSON.stringify(redirect));
-            }
-          });
-      })
-  } else {
-    db.query("SELECT * from client where username = ?", {
-      replacements: [ username ],
-      type: Sequelize.QueryTypes.SELECT
-    })
-      .then(results => {
-        console.log(results);
+    });
+    db.query("SELECT * from company where email = ?",
+      [ email ],
+      (err, results) => {
         if(results.length != 0) {
           errors.push({
-            "error": "username already in use!"
+            "error": "email address is already in use!"
           });
         }
-      })
-      .then(() => {
-        db.query("SELECT * from client where email = ?", {
-          replacements: [ email ],
-          type: Sequelize.QueryTypes.SELECT
+    })
+    if(errors.length != 0) {
+      let msg = ("Error!\n");
+      errors.forEach(error => {
+        msg += (error.error + "\n");
+      });
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(errors));
+    } else {
+      db.query("INSERT INTO company (name, address, username, contact, email, password) VALUES (?, ?, ?, ?, ?, ?)",
+        [ name, address, username, cnum, email, password],
+        (err, results) => {
+          console.log(err);
         })
-          .then(results => {
-            if(results.length != 0) {
-              errors.push({
-                "error": "email address is already in use!"
-              });
-            }
-          })
-          .then(() => {
-            if(errors.length != 0) {
-              let msg = ("Error!\n");
-              errors.forEach(error => {
-                msg += (error.error + "\n");
-              })
-              console.log("wut");
-              console.log(form);
-              console.log(msg);
-              res.writeHead(400, { 'Content-Type': 'application/json' });
-              res.end(JSON.stringify(errors));
-            } else {
-              db.query("INSERT INTO client (name, address, username, contact, email, password) VALUES (?, ?, ?, ?, ?, ?)", {
-                replacements: [ name, address, username, cnum, email, password],
-                type: Sequelize.QueryTypes.INSERT
-              })
-              res.send(JSON.stringify(redirect));
-            }
-          });
-      })
+        res.send(JSON.stringify(redirect));
     }
+  } else {
+    db.query("SELECT * from client where username = ?",
+      [ username ],
+      (err, results) => {
+        if(results.length != 0) {
+          errors.push({
+            "error": "username already in use!"
+          });
+        }
+    });
+    db.query("SELECT * from client where email = ?",
+      [ email ],
+      (err, results) => {
+        if(results.length != 0) {
+          errors.push({
+            "error": "email address is already in use!"
+          });
+        }
+    })
+    if(errors.length != 0) {
+      let msg = ("Error!\n");
+      errors.forEach(error => {
+        msg += (error.error + "\n");
+      });
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(errors));
+    } else {
+      db.query("INSERT INTO client (name, address, username, contact, email, password) VALUES (?, ?, ?, ?, ?, ?)",
+        [ name, address, username, cnum, email, password],
+        (err, results) => {
+          console.log(err);
+        })
+        res.send(JSON.stringify(redirect));
+    }
+  }
 });
 
-app.post('/test', (req, res) => {
-  console.log(req.body);
+app.post('/manage', (req, res) => {
   let manage = req.body.btn;
   for(key in manage) {
     let response = manage[key];
     let uType = key.charAt(0) == 'p' ? `company` : `client`;
-    let idType = uType == `company` ? `comp_id` : `client_id`;
     let id = key.replace(key.charAt(0), "");
-    console.log(uType, id, response);
     if(uType == 'company') {
       if(manage[key] == 'accept') {
-        db.query("UPDATE company SET status = 1 WHERE ? = ?", {
-          replacements: [ idType, parseInt(id, 10) ],
-          type: Sequelize.QueryTypes.UPDATE,
-          raw: true
-        })
-        .then(results => {
-          console.log(results);
+        db.query("UPDATE company SET status = 1 WHERE comp_id = ?",
+        [ parseInt(id, 10) ],
+        (err, results) => {
+          console.log(err);
         })
       } else {
-        db.query("DELETE from company where ? = ?", {
-          replacements: [ idType, parseInt(id, 10) ],
-          type: Sequelize.QueryTypes.DELETE,
-          raw: true
-        })
-        .then(results => {
-          console.log(results);
-        })
+        db.query("DELETE from company where comp_id = ?",
+          [ parseInt(id, 10) ],
+          (err, results) => {
+            console.log(err);
+          })
       }
     } else {
       if(manage[key] == 'accept') {
-        db.query("UPDATE client SET status = 1 WHERE ? = ?", {
-          replacements: [ idType, parseInt(id, 10) ],
-          type: Sequelize.QueryTypes.UPDATE,
-          raw: true
-        })
-        .then(results => {
-          console.log(results);
+        db.query("UPDATE client SET status = 1 WHERE client_id = ?",
+        [ parseInt(id, 10) ],
+        (err, results) => {
+          console.log(err);
         })
       } else {
-        db.query("DELETE from client where ? = ?", {
-          replacements: [ idType, parseInt(id, 10) ],
-          type: Sequelize.QueryTypes.DELETE,
-          raw: true
-        })
-        .then(results => {
-          console.log(results);
-        })
+        db.query("DELETE from client where client_id = ?",
+          [ parseInt(id, 10) ],
+          (err, results) => {
+            console.log(err);
+          })
       }
     }
   };
+  res.redirect('/manage_user');
 })
 
 const port = process.env.PORT || 5001;

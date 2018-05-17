@@ -42,7 +42,7 @@ function register() {
   let paddress = document.getElementById("paddress").value;
   paddress == "" ? errors.push({ "error" : "Empty address" }) : "";
   let contactnum = document.getElementById("contactnum").value;
-  contactnum == "" ? errors.push({ "error" : "Empty contact number" }) : "";
+  isNaN(contactnum) ? errors.push({ "error" : "Is not a valid number" }) : "";
   let password = document.getElementById("password").value;
   password == "" ? errors.push({ "error" : "Empty password" }) : "";
   if(errors.length != 0) {
