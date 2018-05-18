@@ -24,7 +24,8 @@ app.post('/login', (req, res) => {
   db.query('SELECT username, password FROM admin WHERE username = ?',
     [ username ],
     (err, result) => {
-      console.log(result.length != 0);
+      console.log(err);
+      console.log(result);
       if(result.length != 0) {
         console.log(result[0].password);
         console.log(result[0].username);
@@ -32,9 +33,12 @@ app.post('/login', (req, res) => {
         if(result[0].password == password) {
           req.session.user = result[0].username;
           res.redirect('manage_user');
+        } else {
+          let error = "invalid password";
+          res.render('index', { layout: 'login-temp' , error });
         }
       } else {
-        let error = "error";
+        let error = "invalid username";
         res.render('index', { layout: 'login-temp' , error });
       }
     })
