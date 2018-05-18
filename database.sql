@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+CREATE DATABASE  IF NOT EXISTS `database` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `database`;
+>>>>>>> ricamelle
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: database
@@ -170,4 +175,8 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+<<<<<<< HEAD
 -- Dump completed on 2018-05-17  5:56:05
+=======
+-- Dump completed on 2018-05-18 16:00:09
+>>>>>>> ricamelle
