@@ -8,7 +8,7 @@
 		</div>
 
 <div class ="container-manage">
-		<form method="POST" action="test">
+		<form method="POST" action="manage">
 
 	  <h1>Proprietor</h1>
 		<div class="container">
@@ -19,15 +19,20 @@
 								<div class="col-md-3">Accept/Reject</div>
 								<div class="col-md-1"></div>
 						</div>
-	  {{#each companies }}
-	      <div class="colors">
-		        {{ username }}
-							<div class="managebtn">
-					        <input type="radio" name="btn[p{{comp_id}}]" value="accept">
+					  {{#each companies }}
+							<div class="row">
+								<div class="col col-md-10">
+				        	<p>{{ username }}</p>
+								</div>
+								<div class="col col-lg-2 col-md-1 col-xs-6">
+									<input type="radio" name="btn[p{{comp_id}}]" value="accept">
+								</div>
+								<div class="col col-lg-2 col-md-1 col-xs-6">
 									<input type="radio" name="btn[p{{comp_id}}]" value="reject">
+								</div>
+
 							</div>
-				</div>
-	  {{/each }}
+					  {{/each }}
 
 	  <h1>Renter</h1>
 	  {{#each clients }}

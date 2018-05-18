@@ -24,6 +24,7 @@ app.post('/login', (req, res) => {
   db.query('SELECT username, password FROM admin WHERE username = ?',
     [ username ],
     (err, result) => {
+      console.log(result.length != 0);
       if(result.length != 0) {
         console.log(result[0].password);
         console.log(result[0].username);
@@ -119,11 +120,11 @@ app.get('/block', (req, res) => {
 
 app.get('/unblock', (req, res) => {
   if(req.session.user) {
-    db.query("SELECT * from company where block = 0",
+    db.query("SELECT * from company where block = 1",
     (err, companies) => {
-      db.query("SELECT * from client where block = 0",
+      db.query("SELECT * from client where block = 1",
       (err, clients) => {
-        res.render('block', { companies, clients });
+        res.render('unblock', { companies, clients });
       })
     })
   } else {

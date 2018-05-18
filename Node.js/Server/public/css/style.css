@@ -5,6 +5,10 @@ div.container {
   border-radius: 5px;
 }
 
+div.col.col-md-10 p {
+  color: pink;
+}
+
 button.login {
   background-color: #004d4d;
   width: 100%;
