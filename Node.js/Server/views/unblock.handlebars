@@ -1,11 +1,12 @@
 <div class="container">
   <form method="POST" action="unblock">
-    <h1>Proprietor</h1>
+    <div class="heading">
+  	  <h1>Proprietor</h1>
+  	</div>
     <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-5">Name</div>
-      <div class="col-md-3">Unblock</div>
-      <div class="col-md-1"></div>
+      <div class="col col-3"></div>
+      <div class="col col-5">Name</div>
+      <div class="col col-4">Unblock</div>
     </div>
     {{#each companies }}
         <div class="unblock">
@@ -14,11 +15,13 @@
         </div>
         <hr>
     {{/each }}
-    <h1>Renter</h1>
+    <div class="heading">
+  	  <h1>Renter</h1>
+  	</div>
     {{#each clients }}
         <div class="unblock">
           {{ username }}
-          <input type="checkbox"name="btn[r{{client_id}}]" value="unblock">
+          <input type="checkbox"name="btn[r{{client_id}}]" class="unblockbtn" value="unblock">
         </div>
         <hr>
     {{/each }}

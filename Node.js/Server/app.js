@@ -153,6 +153,11 @@ app.get('/transaction', (req, res) => {
   }
 });
 
+app.get('/signout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+})
+
 app.get('/manageUser', (req, res) => {
   db.query('SELECT * from company', { type: Sequelize.QueryTypes.SELECT })
     .then(companies => {

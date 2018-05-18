@@ -2,7 +2,7 @@
 	<body class="bodyDiv">
         <div class="col-md-12">
 		    <nav class="breadcrumb1">
-		        <a href="/manageUser" class="body">USER REQUEST</a>
+		        <a href="/manage_user" class="body">USER REQUEST</a>
 		        <a href="/block" class="body">BLOCK LIST</a>
 		    </nav>
 		</div>
@@ -10,18 +10,20 @@
 <div class ="container-manage">
 		<form method="POST" action="manage">
 
+	<div class="heading">
 	  <h1>Proprietor</h1>
+	</div>
 		<div class="container">
 				<form method="POST" action="block">
 						<div class="row">
-								<div class="col-md-3"></div>
-								<div class="col-md-5">Name</div>
-								<div class="col-md-3">Accept/Reject</div>
-								<div class="col-md-1"></div>
+								<div class="col col-md-4 col-xs-6">Name</div>
+								<div class="col col-md-4 col-xs-6"></div>
+								<div class="col col-md-2 col-xs-6">Accept</div>
+								<div class="col col-md-2 col-xs-6">Reject</div>
 						</div>
 					  {{#each companies }}
 							<div class="row">
-								<div class="col col-md-10">
+								<div class="col col-md-8">
 				        	<p>{{ username }}</p>
 								</div>
 								<div class="col col-lg-2 col-md-1 col-xs-6">
@@ -30,21 +32,28 @@
 								<div class="col col-lg-2 col-md-1 col-xs-6">
 									<input type="radio" name="btn[p{{comp_id}}]" value="reject">
 								</div>
-
 							</div>
 					  {{/each }}
 
-	  <h1>Renter</h1>
+	  <div class="heading">
+			<h1>Renter</h1>
+		</div>
 	  {{#each clients }}
-	      <div class="colors">
-	        	{{ username }}
-						<div class="managebtn">
+	      <div class="row">
+					<div class="col col-md-8">
+	        	<p>{{ username }}<p>
+					</div>
+						<div class="col col-lg-2 col-md-1 col-xs-6">
 				        <input type="radio" name="btn[r{{client_id}}]" value="accept">
+						</div>
+						<div class="col col-lg-2 col-md-1 col-xs-6">
 				        <input type="radio" name="btn[r{{client_id}}]" value="reject">
 						</div>
+					</div>
 	  {{/each }}
 		<div class="idname">
 				<button>Submit</button>
 		</div>
 	</form>
+</div>
 </div>

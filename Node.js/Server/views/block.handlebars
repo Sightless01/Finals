@@ -1,11 +1,12 @@
 <div class="container">
   <form method="POST" action="block">
-    <h1 class="h-block">Proprietor</h1>
+    <div class="heading">
+  	  <h1>Proprietor</h1>
+  	</div>
     <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-5">Name</div>
-      <div class="col-md-3">Block</div>
-      <div class="col-md-1"></div>
+      <div class="col col-3"></div>
+      <div class="col col-5">Name</div>
+      <div class="col col-4">Block</div>
     </div>
     {{#each companies }}
         <div class="block">
@@ -14,7 +15,9 @@
         </div>
         <hr>
     {{/each }}
-    <h1>Renter</h1>
+    <div class="heading">
+  	  <h1>Renter</h1>
+  	</div>
     {{#each clients }}
         <div class="block">
           {{ username }}
