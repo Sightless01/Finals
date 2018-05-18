@@ -1,57 +1,59 @@
 
-	<body class="bodyDiv">
-        <div class="col-md-12">
-		    <nav class="breadcrumb1">
-		        <a href="/manage_user" class="body">USER REQUEST</a>
+<body class="bodyDiv">
+	<div class="col-md-12">
+		<nav class="breadcrumb1">
+			<a href="/manage_user" class="body">USER REQUEST</a>
 		        <a href="/block" class="body">BLOCK LIST</a>
 		    </nav>
-		</div>
-
-<div class ="container-manage">
-		<form method="POST" action="manage">
-
-	<div class="heading">
-	  <h1>Proprietor</h1>
 	</div>
-		<div class="container">
-				<form method="POST" action="block">
 
-					  {{#each companies }}
-							<div class="row">
-								<div class="col col-md-8">
-									<h5> Name </h5>
-				        	<p>{{ username }}</p>
-								</div>
-								<div class="col col-lg-1 col-md-2 col-xs-6">
-									<h5>Accept</h5>
-									<input type="radio" name="btn[p{{comp_id}}]" value="accept">
-								</div>
-								<div class="col col-lg-1 col-md-2 col-xs-6">
-									<h5>Reject</h5>
-									<input type="radio" name="btn[p{{comp_id}}]" value="reject">
-								</div>
-							</div>
-					  {{/each }}
-
-	  <div class="heading">
-			<h1>Renter</h1>
-		</div>
-	  {{#each clients }}
-	      <div class="row">
-					<div class="col col-md-8">
-	        	<p>{{ username }}<p>
+		
+			<div class="container-manage">
+				<form method="POST" action="manage">
+					<div class="heading"><h2>Proprietor</h2></div>
+					<div class="row">
+						  <div class="col col-lg-6 col-md-2 col-sm-4">Name</div>
+						  <div class="col col-lg-1 col-md-2 col-sm-4">Accept</div>
+						  <div class="col col-lg-1 col-md-2 col-sm-4">Reject</div>
 					</div>
-						<div class="col col-lg-2 col-md-1 col-xs-6">
-				        <input type="radio" name="btn[r{{client_id}}]" value="accept">
+					<div class="row">
+						<div class="col col-lg-6 col-md-2 col-sm-4">
+							{{#each companies }}
+								<div class="col col-lg-6 col-md-2 col-sm-4">{{ username }}</div>
+							{{/each }}
 						</div>
-						<div class="col col-lg-2 col-md-1 col-xs-6">
-				        <input type="radio" name="btn[r{{client_id}}]" value="reject">
+						<div class="col col-lg-1 col-md-2 col-sm-4">
+							{{#each companies }}
+								<div class="col col-lg-6 col-md-2 col-sm-4"><input type="radio" name="btn[p{{comp_id}}]" value="accept"></div>
+							{{/each }}
+						</div>
+						<div class="col col-lg-1 col-md-2 col-sm-4">
+							{{#each companies }}
+								<div class="col col-lg-6 col-md-2 col-sm-4"><input type="radio" name="btn[p{{comp_id}}]" value="reject"></div>
+							{{/each }}
+						</div>
+						
+						
+					</div>
+					<div class="heading"><h2>Renter</h2></div>
+					<div class="row">
+						<div class="col col-lg-6 col-md-2 col-sm-4">
+							{{#each clients }}
+								<div class="col col-lg-6 col-md-2 col-sm-4">{{ username }}</div>
+							{{/each }}
+						</div>
+						<div class="col col-lg-1 col-md-2 col-sm-4">
+							{{#each companies }}
+								<div class="col col-lg-6 col-md-2 col-sm-4"><input type="radio" name="btn[r{{client_id}}]" value="accept"></div>
+							{{/each }}
+						</div>
+						<div class="col col-lg-1 col-md-2 col-sm-4">
+							{{#each companies }}
+								<div class="col col-lg-6 col-md-2 col-sm-4"><input type="radio" name="btn[r{{client_id}}]" value="reject"></div>
+							{{/each }}
 						</div>
 					</div>
-	  {{/each }}
-		<div class="idname">
-				<button>Submit</button>
-		</div>
-	</form>
-</div>
-</div>
+					<div class="button-manage"><button>submit</button></div>
+				</form>
+			</div>
+</body>
