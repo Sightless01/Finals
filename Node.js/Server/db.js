@@ -5,7 +5,8 @@ const connection = mysql.createConnection({
   password: '',
   host: 'localhost',
   port: 3306,
-  database: 'webtech'
+  database: 'webtech',
+  connectionLimit: 400
 });
 
 module.exports = connection;

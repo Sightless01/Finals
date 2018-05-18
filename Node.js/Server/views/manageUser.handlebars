@@ -7,34 +7,28 @@
 		    </nav>
 	</div>
 
-		
+
 			<div class="container-manage">
 				<form method="POST" action="manage">
 					<div class="heading"><h2>Proprietor</h2></div>
 					<div class="row">
-						  <div class="col col-lg-6 col-md-2 col-sm-4">Name</div>
-						  <div class="col col-lg-1 col-md-2 col-sm-4">Accept</div>
-						  <div class="col col-lg-1 col-md-2 col-sm-4">Reject</div>
+						  <div class="col col-lg-8 col-md-8 col-sm-8">Name</div>
+						  <div class="col col-lg-2 col-md-2 col-sm-2">Accept</div>
+						  <div class="col col-lg-2 col-md-2 col-sm-2">Reject</div>
 					</div>
-					<div class="row">
-						<div class="col col-lg-6 col-md-2 col-sm-4">
-							{{#each companies }}
-								<div class="col col-lg-6 col-md-2 col-sm-4">{{ username }}</div>
-							{{/each }}
+					{{#each companies }}
+						<div class="row">
+							<div class="col col-lg-8 col-md-8 col-sm-8">
+								{{ username }}
+							</div>
+							<div class="col col-lg-2 col-md-2 col-sm-2">
+								<input type="radio" name="btn[p{{comp_id}}]" value="accept">
+							</div>
+							<div class="col col-lg-2 col-md-2 col-sm-2">
+								<input type="radio" name="btn[p{{comp_id}}]" value="reject">
+							</div>
 						</div>
-						<div class="col col-lg-1 col-md-2 col-sm-4">
-							{{#each companies }}
-								<div class="col col-lg-6 col-md-2 col-sm-4"><input type="radio" name="btn[p{{comp_id}}]" value="accept"></div>
-							{{/each }}
-						</div>
-						<div class="col col-lg-1 col-md-2 col-sm-4">
-							{{#each companies }}
-								<div class="col col-lg-6 col-md-2 col-sm-4"><input type="radio" name="btn[p{{comp_id}}]" value="reject"></div>
-							{{/each }}
-						</div>
-						
-						
-					</div>
+					{{/each }}
 					<div class="heading"><h2>Renter</h2></div>
 					<div class="row">
 						<div class="col col-lg-6 col-md-2 col-sm-4">
