@@ -1,3 +1,31 @@
-{{#each transactArr}}
-  {{name}}. {{count}}. {{total}}
-{{/each}}
+
+<div class="container">
+  <form method="POST" action="block">
+    <div class="row">
+      <div class="col col-4">Name</div>
+      <div class="col col-4">Number of transaction</div>
+      <div class="col col-4">Amount Due</div>
+    </div>
+	  
+    <div class="row">
+		<div id="col col-4">
+			{{#each transactArr}}
+				<div id="col col-6">{{name}}</div>	
+			{{/each}}
+		</div>
+		<div id="col col-4">
+			{{#each transactArr}}
+				<div id="col col-6">{{count}}</div>	
+			{{/each}}
+		</div>
+		<div id="col col-4">
+			{{#each transactArr}}
+				<div id="col col-6">{{total}}</div>	
+			{{/each}}
+		</div>
+	</div>
+	
+  </form>
+</div>
+
+
