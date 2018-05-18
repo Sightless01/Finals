@@ -15,21 +15,19 @@
 	</div>
 		<div class="container">
 				<form method="POST" action="block">
-						<div class="row">
-								<div class="col col-md-4 col-xs-6">Name</div>
-								<div class="col col-md-4 col-xs-6"></div>
-								<div class="col col-md-2 col-xs-6">Accept</div>
-								<div class="col col-md-2 col-xs-6">Reject</div>
-						</div>
+
 					  {{#each companies }}
 							<div class="row">
 								<div class="col col-md-8">
+									<h5> Name </h5>
 				        	<p>{{ username }}</p>
 								</div>
-								<div class="col col-lg-2 col-md-1 col-xs-6">
+								<div class="col col-lg-1 col-md-2 col-xs-6">
+									<h5>Accept</h5>
 									<input type="radio" name="btn[p{{comp_id}}]" value="accept">
 								</div>
-								<div class="col col-lg-2 col-md-1 col-xs-6">
+								<div class="col col-lg-1 col-md-2 col-xs-6">
+									<h5>Reject</h5>
 									<input type="radio" name="btn[p{{comp_id}}]" value="reject">
 								</div>
 							</div>
