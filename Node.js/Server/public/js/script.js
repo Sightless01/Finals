@@ -82,7 +82,8 @@ function register() {
       success: function(data) {
         console.log(data);
         responseJSON = JSON.parse(data);
-        alert("success!\n" + "to go back to your website: " + responseJSON.redirect);
+        alert("success!\n" + "Redirecting to: " + responseJSON.redirect);
+        window.location.href = responseJSON.redirect;
        } //node.js server is running
     });
   }
