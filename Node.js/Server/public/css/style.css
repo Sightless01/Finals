@@ -5,6 +5,7 @@ body, html {
 
 div.row {
   width: 100%;
+  margin-left:5%;
 }
 
 div.container {
@@ -62,12 +63,12 @@ div.col-md-12 {
 	color: white;
 	font-family: none;
   margin: 0;
+
+
 }
 
-#breadcrumb {
-	color: white;
-	font-size: 15px;
-	margin-bottom: 10px;
+nav.topnav a{
+  color: white;
 }
 
 nav.breadcrumb1{
@@ -195,4 +196,12 @@ div.col{
 
 div.heading{
   margin-left: 40%;
+}
+
+
+@media screen and (max-width: 680px) {
+  nav.topnav a:not(:nth-child(6)){
+    display:none;
+  }
+
 }

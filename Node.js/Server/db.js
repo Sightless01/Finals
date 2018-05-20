@@ -5,7 +5,7 @@ const connection = mysql.createConnection({
   password: '',
   host: 'localhost',
   port: 3306,
-  database: 'webtech',
+  database: 'database',
   connectionLimit: 400
 });
 

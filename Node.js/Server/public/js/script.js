@@ -6,6 +6,16 @@ function validateForm() {
   }
 };
 
+function dropdownMenu(){
+    var pat = document.getElementById("dropdownClick");
+    if(button.className === "topnav"){
+      button.className +=" responsive";
+    } else{
+      button.className = "topnav";
+    }
+}
+
+
 function checkPass() {
 
   var password = document.getElementById('password');
