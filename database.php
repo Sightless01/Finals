@@ -75,9 +75,9 @@ echo  '<tr><td>'.$row['comp_id'].'</td>
 } 
 echo '</table>';
 echo "----------------------------------------------------","</br>";
-echo "COMPANY","</br>";
+echo "TRANSACTION","</br>";
 $sql = "SELECT * FROM database.transaction";
-echo "<table><tr><td>trans_id</td><td>date_booke</td><td>date_paid</td><td>date_returned</td><td>comp_id</td><td>client_id</td></tr>";
+echo "<table><tr><td>trans_id</td><td>date_booke</td><td>date_paid</td><td>date_returned</td><td>comp_id</td><td>client_id</td><td>prod_id</td></tr>";
 $result = $con->query($sql);
 
 if ($result->num_rows > 0) {
@@ -90,6 +90,7 @@ echo  '<tr><td>'.$row['trans_id'].'</td>
 <td>'.$row['date_returned'].'</td>
 <td>'.$row['comp_id'] .'</td>
 <td>'.$row['client_id'].'</td>
+<td>'.$row['prod_id'].'</td>
 </tr>';
     }
 } 
