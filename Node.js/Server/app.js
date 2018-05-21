@@ -3,17 +3,13 @@ const db = require('./db');
 const express = require('express');
 const ehb = require('express-handlebars');
 const session = require('express-session');
-const popper = require('popper.js');
+const $ = require('jquery');
 
 const app = express();
 
 app.engine('handlebars', ehb({ defaultLayout: 'default' }));
 app.set('view engine', 'handlebars');
 app.use('/static', express.static('public'));
-app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
-app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
-app.use('/js', express.static(__dirname + '/node_modules/popper.js/dist'));
-app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({ secret: 'webtechLAB', resave: false, saveUninitialized: false }));
