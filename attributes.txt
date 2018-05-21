@@ -30,6 +30,8 @@
 	name
 	description
 	price
+	categories
+	event
 	frontview
 	sideview
 	backview
@@ -43,4 +45,5 @@
 	date_returned
 	comp_id
 	client_id
+	prod_id
 	
