@@ -6,16 +6,6 @@ function validateForm() {
   }
 };
 
-function dropdownMenu(){
-    var pat = document.getElementById("dropdownClick");
-    if(button.className === "topnav"){
-      button.className +=" responsive";
-    } else{
-      button.className = "topnav";
-    }
-}
-
-
 function checkPass() {
 
   var password = document.getElementById('password');
@@ -40,11 +30,28 @@ function checkPass() {
 }
 
 function register() {
+  (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
   let errors = [];
   let errorRep = "";
   let fname = document.getElementById("fname").value;
   fname == "" ? errors.push({ "error" : "Empty name" }) : "";
-  let uType = document.getElementById("uType").checked ? "company" : "client";
+  let uType = document.getElementById("company").checked ? "company" : "client";
   let uname = document.getElementById("uname").value;
   uname == "" ? errors.push({ "error" : "Empty username" }) : "";
   let eaddress = document.getElementById("eaddress").value;
@@ -97,5 +104,4 @@ function register() {
        } //node.js server is running
     });
   }
-
 }
