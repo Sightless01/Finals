@@ -3,13 +3,17 @@ const db = require('./db');
 const express = require('express');
 const ehb = require('express-handlebars');
 const session = require('express-session');
-const $ = require('jquery');
+const popper = require('popper.js');
 
 const app = express();
 
 app.engine('handlebars', ehb({ defaultLayout: 'default' }));
 app.set('view engine', 'handlebars');
 app.use('/static', express.static('public'));
+app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
+app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
+app.use('/js', express.static(__dirname + '/node_modules/popper.js/dist'));
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({ secret: 'webtechLAB', resave: false, saveUninitialized: false }));
@@ -110,9 +114,9 @@ app.post('/unblock', (req, res) => {
 
 app.get('/block', (req, res) => {
   if(req.session.user) {
-    db.query("SELECT * from company where block = 0",
+    db.query("SELECT * from company where block = 0 AND status = 1",
     (err, companies) => {
-      db.query("SELECT * from client where block = 0",
+      db.query("SELECT * from client where block = 0 AND status = 1",
       (err, clients) => {
         res.render('block', { companies, clients });
       })
@@ -124,9 +128,9 @@ app.get('/block', (req, res) => {
 
 app.get('/unblock', (req, res) => {
   if(req.session.user) {
-    db.query("SELECT * from company where block = 1",
+    db.query("SELECT * from company where block = 1 AND status = 1",
     (err, companies) => {
-      db.query("SELECT * from client where block = 1",
+      db.query("SELECT * from client where block = 1 AND status = 1",
       (err, clients) => {
         res.render('unblock', { companies, clients });
       })
@@ -138,7 +142,7 @@ app.get('/unblock', (req, res) => {
 
 app.get('/transaction', (req, res) => {
   if(req.session.user) {
-    db.query("SELECT name, COUNT(trans_id) as count from company join transaction on company.comp_id = transaction.comp_id GROUP by name",
+    db.query("SELECT name, COUNT(trans_id) as count from company join transaction on company.comp_id = transaction.comp_id WHERE status = 1 GROUP by name",
     (err, result) => {
       let transactArr = [];
       console.log(result);

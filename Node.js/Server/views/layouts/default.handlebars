@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <title>Web Technologies</title>
   </head>
   <body>
@@ -14,22 +14,31 @@
           <div class="col-md-12">
             <h2>RENT COSTUME</h2>
           </div>
-          <div class="col-md-12">
-            <nav class="topnav" id="dropdownClick">
-              <a href="/manage_user" class="spacing">MANAGE USER</a>
-              <a href="/transaction" class="spacing">TRANSACTION</a>
-              <a href="/block" class="spacing">BLOCK</a>
-              <a href="/unblock" class="spacing">UNBLOCK</a>
-              <a href="/signout" class="spacing">SIGN OUT</a>
-              <a href="" "onclick="dropdownMenu"" class="dropdownIcon">OPTION</a>
-            </nav>
-
-
-
-          </div>
         </div>
       </div>
     </header>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li><a href="/manage_user">MANAGE USER</a></li>
+              <li><a href="/transaction">TRANSACTION</a></li>
+              <li><a href="/block">BLOCK</a></li>
+              <li><a href="/unblock">UNBLOCK</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/signout">SIGN OUT</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
     {{{body}}}
     <footer>
         <div class="footerContainer">
@@ -41,7 +50,8 @@
         </div>
     </footer>
   </body>
-  <script src="/static/js/jquery-3.3.1.min.js"></script>
-  <script src="/static/js/bootstrap.min.js"></script>
   <script src="/static/js/script.js"></script>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/popper.min.js"></script>
 </html>
