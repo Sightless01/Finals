@@ -3,7 +3,6 @@ const db = require('./db');
 const express = require('express');
 const ehb = require('express-handlebars');
 const session = require('express-session');
-const $ = require('jquery');
 
 const app = express();
 
