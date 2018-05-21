@@ -45,7 +45,6 @@ app.post('/login', (req, res) => {
 
 app.get('/registration', (req, res) => {
   let redirect = req.query.redirect;
-
   res.render('registration', { redirect, layout: 'login-temp' });
 });
 
