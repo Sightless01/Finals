@@ -17,26 +17,20 @@
         </div>
       </div>
     </header>
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-              <li><a href="/manage_user">MANAGE USER</a></li>
-              <li><a href="/transaction">TRANSACTION</a></li>
-              <li><a href="/block">BLOCK</a></li>
-              <li><a href="/unblock">UNBLOCK</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="/signout">SIGN OUT</a></li>
-            </ul>
-          </div>
-        </div>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="/manage_user">MANAGE USER</a></li>
+          <li class="nav-item"><a class="nav-link" href="/transaction">TRANSACTION</a></li>
+          <li class="nav-item"><a class="nav-link" href="/block">BLOCK</a></li>
+          <li class="nav-item"><a class="nav-link" href="/unblock">UNBLOCK</a></li>
+        </ul>
+        <ul class="navbar-nav navbar-right">
+          <li class="nav-item"><a class="nav-link" href="/signout">SIGN OUT</a></li>
+        </ul>
       </div>
     </nav>
     {{{body}}}
@@ -51,6 +45,6 @@
     </footer>
   </body>
   <script src="/static/js/script.js"></script>
-  <script src="/static/js/jquery-3.3.1.min.js"></script>
+  <script src="/static/js/jquery-3.3.1.slim.min.js"></script>
   <script src="/static/js/bootstrap.min.js"></script>
 </html>
