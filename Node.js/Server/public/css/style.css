@@ -70,11 +70,11 @@ footer.footer {
   width: 100%;
 }
 
-div.col.footer p {
+footer.footer div.col.footer p {
   color: orange;
 }
 
-div.col p {
+footer.footer div.col p {
   text-align: center;
   color: #fff;
 }

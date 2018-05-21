@@ -43,18 +43,18 @@ app.post('/login', (req, res) => {
     })
 })
 
-app.get('/registration', (req, res) => {
-  let redirect = req.query.redirect;
-  res.render('registration', { redirect, layout: 'login-temp' });
-});
-
-app.get('/manage_user', (req, res) => {
+app.get('/block', (req, res) => {
   if(req.session.user) {
-    db.query(`SELECT * from company where status = 0`,
-      (err, companies) => {
-      db.query("SELECT * from client where status = 0",
+    db.query("SELECT * from company where block = 0 AND status = 1",
+    (err, companies) => {
+      db.query("SELECT * from client where block = 0 AND status = 1",
       (err, clients) => {
-        res.render('manageUser', { companies, clients });
+        if (companies.length != 0 || clients.length != 0) {
+          res.render('block', { companies, clients });
+        } else {
+          let text = "No one to Block";
+          res.render('empty', { text });
+        };
       })
     })
   } else {
@@ -84,6 +84,25 @@ app.post('/block', (req, res) => {
   res.redirect('/block');
 });
 
+app.get('/unblock', (req, res) => {
+  if(req.session.user) {
+    db.query("SELECT * from company where block = 1 AND status = 1",
+    (err, companies) => {
+      db.query("SELECT * from client where block = 1 AND status = 1",
+      (err, clients) => {
+        if (companies.length != 0 || clients.length != 0) {
+          res.render('unblock', { companies, clients });
+        } else {
+          let text = "No one to Unblock";
+          res.render('empty', { text });
+        };
+      })
+    })
+  } else {
+    res.redirect('/');
+  }
+});
+
 app.post('/unblock', (req, res) => {
   let block = req.body.btn;
   for(key in block) {
@@ -105,34 +124,6 @@ app.post('/unblock', (req, res) => {
   }
   res.redirect('/unblock');
 })
-
-app.get('/block', (req, res) => {
-  if(req.session.user) {
-    db.query("SELECT * from company where block = 0 AND status = 1",
-    (err, companies) => {
-      db.query("SELECT * from client where block = 0 AND status = 1",
-      (err, clients) => {
-        res.render('block', { companies, clients });
-      })
-    })
-  } else {
-    res.redirect('/');
-  }
-});
-
-app.get('/unblock', (req, res) => {
-  if(req.session.user) {
-    db.query("SELECT * from company where block = 1 AND status = 1",
-    (err, companies) => {
-      db.query("SELECT * from client where block = 1 AND status = 1",
-      (err, clients) => {
-        res.render('unblock', { companies, clients });
-      })
-    })
-  } else {
-    res.redirect('/');
-  }
-});
 
 app.get('/transaction', (req, res) => {
   if(req.session.user) {
@@ -158,20 +149,11 @@ app.get('/transaction', (req, res) => {
 app.get('/signout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
-})
-
-app.get('/manageUser', (req, res) => {
-  db.query('SELECT * from company', { type: Sequelize.QueryTypes.SELECT })
-    .then(companies => {
-      res.render('manageUser', { companies });
-    })
 });
 
-app.get('/unblock', (req, res) => {
-  db.query('SELECT * from company', { type: Sequelize.QueryTypes.SELECT })
-    .then(companies => {
-      res.render('unblock', { companies });
-    })
+app.get('/registration', (req, res) => {
+  let redirect = req.query.redirect;
+  res.render('registration', { redirect, layout: 'login-temp' });
 });
 
 app.post('/register', (req, res) => {
@@ -257,6 +239,25 @@ app.post('/register', (req, res) => {
   }
 });
 
+app.get('/manage_user', (req, res) => {
+  if(req.session.user) {
+    db.query(`SELECT * from company where status = 0`,
+      (err, companies) => {
+      db.query("SELECT * from client where status = 0",
+      (err, clients) => {
+        if (companies.length != 0 || clients.length != 0) {
+          res.render('manageUser', { companies, clients });
+        } else {
+          let text = "No one to Accept or Reject";
+          res.render('empty', { text });
+        };
+      })
+    })
+  } else {
+    res.redirect('/');
+  }
+});
+
 app.post('/manage', (req, res) => {
   let manage = req.body.btn;
   for(key in manage) {
@@ -294,10 +295,6 @@ app.post('/manage', (req, res) => {
     }
   };
   res.redirect('/manage_user');
-})
-
-app.post('/manageUser', (req, res) => {
-  console.log(req.body);
 })
 
 const port = process.env.PORT || 5001;
