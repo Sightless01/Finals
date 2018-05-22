@@ -4,7 +4,7 @@ USE `database`;
 --
 -- Host: localhost    Database: database
 -- ------------------------------------------------------
--- Server version	5.7.19
+-- Server version	5.7.14
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -100,7 +100,7 @@ CREATE TABLE `company` (
 
 LOCK TABLES `company` WRITE;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
-INSERT INTO `company` VALUES (1,'champion','champion','champ@email.com',9123446,'st. noelle, baguio city','$2y$10$mlKJDhVql9TAVSHziq6nH.8tR2DE4YAUJuNJah9.al4EPehTQIpVO',0,0),(2,'adidas','adiiii','adi@yahoo.com',93247823,'st. ares, baguio city','$2y$10$n2VcTR0JU7GOu/N4B2atjuBEombYCth./ipQBB.gen3WQ2wMDKgJG',0,0),(3,'nautica','nautica','nautica@gmail.com',965578732,'st. fayps, baguio city','$2y$10$jKL07LQz1r0KLJY6w.aEm.qz.BZzgnnY3hMDuEeCyTgDoSh5HJHk6',1,0),(4,'hiit','hiithiit','hiit@gmail.com',95346823,'st. makati, manila','$2y$10$7B/cs8KMv7xzCoROcs9gfOO8DQQGzKIDbY4on5Cuf5cv8SmEBSPtC',0,0),(5,'montague burton','mon','monBur@email.com',9235378,'quezon city','$2y$10$HyQhFgzsc68AbfibI5AmO.I.kJAVThFGTQ/rvDIvkC905Q9CE9MP6',0,0);
+INSERT INTO `company` VALUES (1,'champion','champion','champ@email.com',9123446,'st. noelle, baguio city','$2y$10$SjnBCNd18qBGs8nLlPSqsuTms3/N1NTg58dOBGc3P7shN36rUcbYS',0,0),(2,'adidas','adiiii','adi@yahoo.com',93247823,'st. ares, baguio city','$2y$10$Am8M5lcAUttH203zl9ePqOxsl/yyXwMWiITW0bWKsqRYaXi7wFTEu',0,0),(3,'nautica','nautica','nautica@gmail.com',965578732,'st. fayps, baguio city','$2y$10$oNcpNfgwPDIY4Cs7ySvfieQ1TUmml7e5lVDKkeOikE1pelRvPLASK',1,0),(4,'hiit','hiithiit','hiit@gmail.com',95346823,'st. makati, manila','$2y$2y$10$weRc0tiAuDCquKhL8vBWVuyNJfxTIh5O8Q2rT8t.JgtBS17o7E2PS',0,0),(5,'montague burton','mon','monBur@email.com',9235378,'quezon city','$2y$10$6nZcpgdmiFF05ipXItqn7.rz2BzeToyTIk4ZWyyHzlJgoLIJVJZLK',0,0);
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,5 +201,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-
--- Dump completed on 2018-05-22 22:45:17
+-- Dump completed on 2018-05-23  1:30:14
