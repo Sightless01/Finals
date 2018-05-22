@@ -3,6 +3,7 @@ const db = require('./db');
 const express = require('express');
 const ehb = require('express-handlebars');
 const session = require('express-session');
+const bcrypt = require('bcrypt');
 
 const app = express();
 
@@ -29,7 +30,7 @@ app.post('/login', (req, res) => {
         console.log(result[0].password);
         console.log(result[0].username);
         console.log(result);
-        if(result[0].password == password) {
+        if(bcrypt.compareSync(password, result[0].password)) {
           req.session.user = result[0].username;
           res.redirect('manage_user');
         } else {
@@ -157,6 +158,7 @@ app.get('/registration', (req, res) => {
 });
 
 app.post('/register', (req, res) => {
+  const saltRounds = 10;
   let name = req.body.fname;
   let username = req.body.uname;
   let uType = req.body.utype;
@@ -195,8 +197,9 @@ app.post('/register', (req, res) => {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify(errors));
     } else {
+      let hashed = bcrypt.hashSync(password, saltRounds);
       db.query("INSERT INTO company (name, address, username, contact, email, password) VALUES (?, ?, ?, ?, ?, ?)",
-        [ name, address, username, cnum, email, password],
+        [ name, address, username, cnum, email, hashed],
         (err, results) => {
           console.log(err);
         })
@@ -229,8 +232,9 @@ app.post('/register', (req, res) => {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify(errors));
     } else {
+      let hashed = bcrypt.hashSync(password, saltRounds);
       db.query("INSERT INTO client (name, address, username, contact, email, password) VALUES (?, ?, ?, ?, ?, ?)",
-        [ name, address, username, cnum, email, password],
+        [ name, address, username, cnum, email, hashed],
         (err, results) => {
           console.log(err);
         })
