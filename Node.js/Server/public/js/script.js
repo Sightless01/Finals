@@ -96,7 +96,7 @@ function register() {
           alert(response);
         }
       },
-      success: function(data) {
+      success: data => {
         console.log(data);
         responseJSON = JSON.parse(data);
         alert("success!\n" + "Redirecting to: " + responseJSON.redirect);
