@@ -14,7 +14,7 @@ if ($con->connect_error) {
 
 echo "PRODUCTS","</br>";
 $sql = "SELECT * FROM database.products";
-echo "<table><tr><td>prod_id</td><td>name</td><td>description</td><td>price</td><td>frontview</td><td>sideview</td><td>backview</td><td>availability</td><td>comp_id</td></tr>";
+echo "<table><tr><td>prod_id</td><td>name</td><td>description</td><td>price</td><td>categories</td><td>event</td><td>frontview</td><td>sideview</td><td>backview</td><td>availability</td><td>comp_id</td></tr>";
 $result = $con->query($sql);
 
 if ($result->num_rows > 0) {
@@ -25,6 +25,8 @@ echo  '<tr><td>'.$row['prod_id'].'</td>
 <td>'.$row['name'].'</td>
 <td>'.$row['desctription'] .'</td>
 <td>'.$row['price'].'</td>
+<td>'.$row['categories'].'</td>
+<td>'.$row['event'].'</td>
 <td>';?><img src='<?php echo$row['frontview'];?>' height='200' width='200'> <?php echo '</td>
 <td>';?><img src='<?php echo$row['sideview'];?>' height='200' width='200'> <?php echo '</td>
 <td>';?><img src='<?php echo$row['backview'];?>' height='200' width='200'> <?php echo '</td>

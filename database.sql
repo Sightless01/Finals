@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 CREATE DATABASE  IF NOT EXISTS `database` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `database`;
->>>>>>> ricamelle
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: database
@@ -119,6 +116,8 @@ CREATE TABLE `products` (
   `name` varchar(200) DEFAULT NULL,
   `desctription` varchar(200) DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
+  `categories` varchar(45) DEFAULT NULL,
+  `event` varchar(45) DEFAULT NULL,
   `frontview` varchar(200) DEFAULT NULL,
   `sideview` varchar(200) DEFAULT NULL,
   `backview` varchar(200) DEFAULT NULL,
@@ -134,7 +133,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'SHIRT TEE','Cotton champion logo t-shirt by the iconic sportswear label',250,'/image/champion/shirtF1.jpg','/image/champion/shirtS1.jpg','/image/champion/shirtB1.jpg',0,'1'),(2,'SHIRT PRINTED TEE','Step out in signature Champion style Heritage Tee',250,'/image/champion/shirtF2.jpg','/image/champion/shirtS2.jpg','/image/champion/shirtB2.jpg',0,'1'),(3,'CHAMPION CROPPED COACH JACKET','100% polyester with cotton lining',699,'/image/champion/jacketF1.jpg','/image/champion/jacketS1.jpg','/image/champion/jacketB1.jpg',0,'1'),(4,'REVERSE WEAVE JOGGER','one pouch pocket at the back and a standout Champion logo patch at the left thigh.',400,'/image/champion/joggerF1.jpg','/image/champion/joggerS1.jpg','/image/champion/joggerB1.jpg',0,'1'),(5,'SLEEVE SCRIPT TEE','made of lightweight cotton with a crew neck, long cuffed sleeves, the script logo across the chest',499,'/image/champion/longsleeveF1.jpg','/image/champion/longsleeveS1.jpg','/image/champion/longsleeveB1.jpg',0,'1'),(6,'CHAMPION LOGO POOL SLIDE','made from durable material with a wide strap across the toes, lined in soft material ',299,'/image/champion/slipperF1.jpg','/image/champion/slipperS1.jpg','/image/champion/slipperB1.jpg',0,'1'),(7,'ADIDAS WOMENS CRAZY 8 ADV W','a knit textile/leather upper with a metallic effect, EVA midsole for lightweight cushioning',3200,'/image/adidas/shoesF1.jpg','/image/adidas/shoesS1.jpg','/image/adidas/shoesB1.jpg',0,'2'),(8,'CROP TANK TOP','sleeveless cropped cut, 3 stripes down each side, and a trefoil logo stitched on the chest.',499,'/image/adidas/sandoF1.jpg','/image/adidas/sandoS1.jpg','/image/adidas/sandoB1.jpg',0,'2'),(9,'3 STRIPES DRESS',' short sleeves with three stripes each and ribbed cuffs, a trefoil logo stitched on the chest,',899,'/image/adidas/dressF1.jpg','/image/adidas/dressS1.jpg','/image/adidas/dressB1.jpg',0,'2'),(10,'WASH LONG SLEEVE BUTTON DOWN','stretch cotton shirt, Sleek and simple ',350,'/image/nautica/poloF1.jpg','/image/nautica/poloS1.jpg','/image/nautica/poloB1.jpg',0,'3'),(11,'5-POCKET STRETCH JEANS','super-soft stretch denim feature the Gulf Stream medium wash',2000,'/image/nautica/pantsF1.jpg','/image/nautica/pantsS1.jpg','/image/nautica/pantsB1.jpg',0,'3'),(12,'ACTIVE FIT SIGNATURE SWEATPANT','crafted in a comfortable sueded fleece and have a stretch waistband for added flexibility',699,'/image/nautica/joggerF1.jpg','/image/nautica/joggerS1.jpg','/image/nautica/joggerB1.jpg',1,'3'),(13,'COLORBLOCK LOGO JACKET','lightweight, water resistant jacket.',1000,'/image/nautica/jacketF1.jpg','/image/nautica/jacketS1.jpg','/image/nautica/jacketB1.jpg',0,'3'),(14,'HIIT Grey Muscle Fit Stretch T-Shirt','Muscle fit crew neck t-shirt with side seam tape detail. ',499,'/image/hiit/shirtF1.jpg','/image/hiit/shirtS1.jpg','/image/hiit/shirtB1.jpg',0,'4'),(15,'HIIT Grey Muscle Fit Stretch T-Shirt','Lightweight stretch training shorts with mesh panelled side detail and secure zip pocket. ',499,'/image/hiit/shortF1.jpg','/image/hiit/shortS1.jpg','/image/hiit/shortB1.jpg',1,'4'),(16,'HIIT Black Contour Running Tights','Cropped running tights with added stretch for greater movement. Contour print detail and a zipped key pocket with florescent tape. ',350,'/image/hiit/thightF1.jpg','/image/hiit/thightS1.jpg','/image/hiit/thightB1.jpg',0,'4'),(17,'3 Piece Montague Burton Grey Cotton Slim Fit Suit',' suit jacket comes with a textured wide lapel, single breasted with one button fastening and double back vent.',5500,'/image/montagueBurton/tuxF1.jpg','/image/montagueBurton/tuxS1.jpg','/image/montagueBurton/tuxB1.jpg',0,'5'),(18,'2 Piece Montague Burton Bright Blue Semi Plain Slim Fit Suit','This suit jacket comes with a wide lapel, single breasted with one button fastening and double back vent. ',6500,'/image/montagueBurton/tuxeF1.jpg','/image/montagueBurton/tuxeS1.jpg','/image/montagueBurton/tuxeB1.jpg',0,'5');
+INSERT INTO `products` VALUES (1,'SHIRT TEE','Cotton champion logo t-shirt by the iconic sportswear label',250,'tops','daytime','/image/champion/shirtF1.jpg','/image/champion/shirtS1.jpg','/image/champion/shirtB1.jpg',0,'1'),(2,'SHIRT PRINTED TEE','Step out in signature Champion style Heritage Tee',250,'tops','daytime','/image/champion/shirtF2.jpg','/image/champion/shirtS2.jpg','/image/champion/shirtB2.jpg',0,'1'),(3,'CHAMPION CROPPED COACH JACKET','100% polyester with cotton lining',699,'jacket','vacation','/image/champion/jacketF1.jpg','/image/champion/jacketS1.jpg','/image/champion/jacketB1.jpg',0,'1'),(4,'REVERSE WEAVE JOGGER','one pouch pocket at the back and a standout Champion logo patch at the left thigh.',400,'jumpsuits','weekend','/image/champion/joggerF1.jpg','/image/champion/joggerS1.jpg','/image/champion/joggerB1.jpg',0,'1'),(5,'SLEEVE SCRIPT TEE','made of lightweight cotton with a crew neck, long cuffed sleeves, the script logo across the chest',499,'knits','weekend','/image/champion/longsleeveF1.jpg','/image/champion/longsleeveS1.jpg','/image/champion/longsleeveB1.jpg',0,'1'),(6,'CHAMPION LOGO POOL SLIDE','made from durable material with a wide strap across the toes, lined in soft material ',299,'slipper','vacation','/image/champion/slipperF1.jpg','/image/champion/slipperS1.jpg','/image/champion/slipperB1.jpg',0,'1'),(7,'ADIDAS WOMENS CRAZY 8 ADV W','a knit textile/leather upper with a metallic effect, EVA midsole for lightweight cushioning',3200,'shoes','daytime','/image/adidas/shoesF1.jpg','/image/adidas/shoesS1.jpg','/image/adidas/shoesB1.jpg',0,'2'),(8,'CROP TANK TOP','sleeveless cropped cut, 3 stripes down each side, and a trefoil logo stitched on the chest.',499,'cropped','party','/image/adidas/sandoF1.jpg','/image/adidas/sandoS1.jpg','/image/adidas/sandoB1.jpg',0,'2'),(9,'3 STRIPES DRESS',' short sleeves with three stripes each and ribbed cuffs, a trefoil logo stitched on the chest,',899,'dress','night out','/image/adidas/dressF1.jpg','/image/adidas/dressS1.jpg','/image/adidas/dressB1.jpg',0,'2'),(10,'WASH LONG SLEEVE BUTTON DOWN','stretch cotton shirt, Sleek and simple ',350,'longsleeve','work','/image/nautica/poloF1.jpg','/image/nautica/poloS1.jpg','/image/nautica/poloB1.jpg',0,'3'),(11,'5-POCKET STRETCH JEANS','super-soft stretch denim feature the Gulf Stream medium wash',2000,'pants','daytime','/image/nautica/pantsF1.jpg','/image/nautica/pantsS1.jpg','/image/nautica/pantsB1.jpg',0,'3'),(12,'ACTIVE FIT SIGNATURE SWEATPANT','crafted in a comfortable sueded fleece and have a stretch waistband for added flexibility',699,'activewear','sports','/image/nautica/joggerF1.jpg','/image/nautica/joggerS1.jpg','/image/nautica/joggerB1.jpg',1,'3'),(13,'COLORBLOCK LOGO JACKET','lightweight, water resistant jacket.',1000,'jacket','winter','/image/nautica/jacketF1.jpg','/image/nautica/jacketS1.jpg','/image/nautica/jacketB1.jpg',0,'3'),(14,'HIIT Grey Muscle Fit Stretch T-Shirt','Muscle fit crew neck t-shirt with side seam tape detail. ',499,'activewear','sports','/image/hiit/shirtF1.jpg','/image/hiit/shirtS1.jpg','/image/hiit/shirtB1.jpg',0,'4'),(15,'HIIT Grey Muscle Fit Stretch T-Shirt','Lightweight stretch training shorts with mesh panelled side detail and secure zip pocket. ',499,'acrivewear','sports','/image/hiit/shortF1.jpg','/image/hiit/shortS1.jpg','/image/hiit/shortB1.jpg',1,'4'),(16,'HIIT Black Contour Running Tights','Cropped running tights with added stretch for greater movement. Contour print detail and a zipped key pocket with florescent tape. ',350,'activewear','sports','/image/hiit/thightF1.jpg','/image/hiit/thightS1.jpg','/image/hiit/thightB1.jpg',0,'4'),(17,'3 Piece Montague Burton Grey Cotton Slim Fit Suit',' suit jacket comes with a textured wide lapel, single breasted with one button fastening and double back vent.',5500,'tuxedo','prom','/image/montagueBurton/tuxF1.jpg','/image/montagueBurton/tuxS1.jpg','/image/montagueBurton/tuxB1.jpg',0,'5'),(18,'2 Piece Montague Burton Bright Blue Semi Plain Slim Fit Suit','This suit jacket comes with a wide lapel, single breasted with one button fastening and double back vent. ',6500,'tuxedo','wedding','/image/montagueBurton/tuxeF1.jpg','/image/montagueBurton/tuxeS1.jpg','/image/montagueBurton/tuxeB1.jpg',0,'5');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,6 +151,7 @@ CREATE TABLE `transaction` (
   `date_returned` varchar(45) DEFAULT NULL,
   `comp_id` int(11) DEFAULT NULL,
   `client_id` int(11) DEFAULT NULL,
+  `prod_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`trans_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -162,8 +162,34 @@ CREATE TABLE `transaction` (
 
 LOCK TABLES `transaction` WRITE;
 /*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
-INSERT INTO `transaction` VALUES (1,'10-18-17','10-18-17','10-23-17',1,2),(2,'12-01-17','12-03-17','12-10-17',3,3),(3,'03-30-17','03-31-18','04-05-18',5,1),(4,'05-03-18','05-03-18','05-08-18',4,4);
+INSERT INTO `transaction` VALUES (1,'10-18-17','10-18-17','10-23-17',1,2,2),(2,'12-01-17','12-03-17','12-10-17',3,3,10),(3,'03-30-17','03-31-18','04-05-18',5,1,17),(4,'05-03-18','05-03-18','05-08-18',4,4,15);
 /*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'admin','admin');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -175,8 +201,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<< HEAD
--- Dump completed on 2018-05-17  5:56:05
-=======
--- Dump completed on 2018-05-18 16:00:09
->>>>>>> ricamelle
+-- Dump completed on 2018-05-21 15:28:26

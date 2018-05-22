@@ -1,20 +1,24 @@
 body, html {
   padding: 0;
   margin: 0;
+  min-height: 100%;
 }
 
+<<<<<<< HEAD
 div.row {
   width: 100%;
+=======
+html {
+  position: relative;
+>>>>>>> master
+}
+
+body {
+  margin-bottom: 8rem !important;
 }
 
 div.container {
-  margin: auto;
-  margin-top: 5%;
   border-radius: 5px;
-}
-
-div.col.col-md-10 p {
-  color: pink;
 }
 
 button.login {
@@ -43,15 +47,12 @@ div#margin {
 /*manageUser*/
 
 header.page-heading {
-	  background: #2f2f2f;
+	  background: #343a40;
     border-top: 6px solid #d4d4d4;
     border-bottom: 6px solid #d4d4d4;
     position: relative;
     text-align: center;
 }
-
-
-
 
 div.col-md-12 {
 	position: relative;
@@ -62,71 +63,31 @@ div.col-md-12 {
 	color: white;
 	font-family: none;
   margin: 0;
-
-
 }
 
-nav.topnav a{
-  color: white;
+div.col.align-self-center h2 {
+  text-align: center;
 }
 
-nav.breadcrumb1{
-	font-size: 15px;
-  margin-top: 10px;
-	margin-bottom: 15px;
-  margin-left: 40%;
-  margin-right: 30%;
+/*footer*/
+
+footer.footer {
+  position: absolute;
+  bottom: 0;
+  background: #343a40;
+  height: 8rem;
+  font-family: none;
+  clear: both;
+  width: 100%;
 }
 
-
-
-div {
-    display: block;
+footer.footer div.col.footer p {
+  color: orange;
 }
 
-a {
-	color: white;
-	font-size: 12px;
-	text-decoration: none;
-	display: inline-block;
-	text-align: center;
-	position: relative;
-}
-
-a:hover {
-	text-decoration: none;
-	color: white;
-	background-color: #307D7E;
-}
-
-.spacing {
-  margin-left: 15px;
-  padding: 10px;
-	color: white;
-}
-
-div.footerContainer {
-    background: #2f2f2f;
-    position: relative;
-    border-bottom: 4px solid #d4d4d4;
-    height: 8rem;
-	  font-family: none;
-}
-
-div.footerRow {
-    text-align: center;
-    color: white;
-}
-
-
-
-#font {
-    margin:auto;
-    color: darkorange;
-}
-
-div.bodyContent {
-    margin:auto;
+footer.footer div.col p {
+  text-align: center;
+  color: #fff;
 }
 
 /*website's body*/
@@ -136,7 +97,6 @@ div.container-form {
     margin-right: 10%;
     margin-bottom: 2%;
 }
-
 
 hr {
 	background-color: #307D7E;
@@ -157,10 +117,6 @@ a.body {
 
 /*block*/
 
-div.block{
-  margin-left: 25%;
-}
-
 div.container-form hr{
   margin-left: 0;
   margin-right: 0%;
@@ -168,29 +124,20 @@ div.container-form hr{
 
 
 /*unblock*/
-div.unblock{
-  margin-left: 25%;
-}
 
 div.idname{
-  margin-left: 45%;
+  text-align: center;
   margin-bottom: 5%;
   margin-top: 5%;
 }
 
-.unblockbtn{
-  float: right;
-  margin-right: 40%;
+div.row.col input.centered{
+  text-align: center;
+  vertical-align: middle;
 }
-
 
 div.col-md-8{
   color: black;
-}
-
-div.col{
-  color: black;
-  margin-bottom: 2%;
 }
 
 div.heading{
