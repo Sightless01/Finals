@@ -81,7 +81,7 @@ DROP TABLE IF EXISTS `company`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `company` (
-  `comp_id` int(11) NOT NULL,
+  `comp_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `username` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
@@ -91,7 +91,7 @@ CREATE TABLE `company` (
   `status` tinyint(4) DEFAULT NULL,
   `block` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`comp_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,7 +112,7 @@ DROP TABLE IF EXISTS `products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `products` (
-  `prod_id` tinyint(4) NOT NULL,
+  `prod_id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) DEFAULT NULL,
   `desctription` varchar(200) DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
@@ -201,4 +201,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-23  1:30:14
+-- Dump completed on 2018-05-23  2:05:01
