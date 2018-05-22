@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `admin_id` int(11) NOT NULL,
   `username` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
+  `password` varchar(555) DEFAULT NULL,
   PRIMARY KEY (`admin_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -38,7 +38,7 @@ CREATE TABLE `admin` (
 
 LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` VALUES (1,'bruce','bruce'),(2,'fayps','fayps'),(3,'jascha','jascha'),(4,'noelle','noelle');
+INSERT INTO `admin` VALUES (1,'bruce','$2y$10$qcFOgO4rc1DKhOscC6JaA.cCymAthyawbzdCDabx3YXMQUA0/3pfm'),(2,'fayps','$2y$10$jjdJ4DoJBZftwrUDe5ErNe8QQGXClMFZth4dZDZY/aaq3pYEzLhvG'),(3,'jascha','$2y$10$S3eQ9.jg0iqj.6yaiRc90uJuck7cautx4m4BN9ySp7lDFmqcki3L6'),(4,'noelle','$2y$10$7SxRpaf6yPN3WmS.TuyZFeJomjDv22jFn0MZlqYWcStFH5noeTFDe');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,7 +56,7 @@ CREATE TABLE `client` (
   `contact` bigint(20) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `username` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
   `block` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`client_id`)
@@ -69,7 +69,7 @@ CREATE TABLE `client` (
 
 LOCK TABLES `client` WRITE;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
-INSERT INTO `client` VALUES (1,'noelle','bakakeng, baguio city',9126583123,'oppa@gmail.com','oppanoelle','noelle',0,0),(2,'jascha','makati, manila',2546424236,'jasha@yahoo.com','jascha','jascha',0,0),(3,'fayps','camp 7, baguio city',9465283554,'twistafries@yahoo.co','twistafries','fayps',0,0),(4,'bruce','sison, pangasinan',9653872382,'brucee@gmail.com','brucelee','bruce',1,0);
+INSERT INTO `client` VALUES (1,'noelle','bakakeng, baguio city',9126583123,'oppa@gmail.com','oppanoelle','$10$7SxRpaf6yPN3WmS.TuyZFeJomjDv22jFn0MZlqYWcStFH5noeTFDe',0,0),(2,'jascha','makati, manila',2546424236,'jasha@yahoo.com','jascha','$10$S3eQ9.jg0iqj.6yaiRc90uJuck7cautx4m4BN9ySp7lDFmqcki3L6',0,0),(3,'fayps','camp 7, baguio city',9465283554,'twistafries@yahoo.co','twistafries','$10$jjdJ4DoJBZftwrUDe5ErNe8QQGXClMFZth4dZDZY/aaq3pYEzLhvG',0,0),(4,'bruce','sison, pangasinan',9653872382,'brucee@gmail.com','brucelee','$10$qcFOgO4rc1DKhOscC6JaA.cCymAthyawbzdCDabx3YXMQUA0/3pfm',1,0);
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +87,7 @@ CREATE TABLE `company` (
   `email` varchar(45) DEFAULT NULL,
   `contact` bigint(20) DEFAULT NULL,
   `address` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
   `block` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`comp_id`)
@@ -100,7 +100,7 @@ CREATE TABLE `company` (
 
 LOCK TABLES `company` WRITE;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
-INSERT INTO `company` VALUES (1,'champion','champion','champ@email.com',9123446,'st. noelle, baguio city','champyyy',0,0),(2,'adidas','adiiii','adi@yahoo.com',93247823,'st. ares, baguio city','adidas',0,0),(3,'nautica','nautica','nautica@gmail.com',965578732,'st. fayps, baguio city','adidas',1,0),(4,'hiit','hiithiit','hiit@gmail.com',95346823,'st. makati, manila','hiithiit',0,0),(5,'montague burton','mon','monBur@email.com',9235378,'quezon city','monBurton',0,0);
+INSERT INTO `company` VALUES (1,'champion','champion','champ@email.com',9123446,'st. noelle, baguio city','$2y$10$mlKJDhVql9TAVSHziq6nH.8tR2DE4YAUJuNJah9.al4EPehTQIpVO',0,0),(2,'adidas','adiiii','adi@yahoo.com',93247823,'st. ares, baguio city','$2y$10$n2VcTR0JU7GOu/N4B2atjuBEombYCth./ipQBB.gen3WQ2wMDKgJG',0,0),(3,'nautica','nautica','nautica@gmail.com',965578732,'st. fayps, baguio city','$2y$10$jKL07LQz1r0KLJY6w.aEm.qz.BZzgnnY3hMDuEeCyTgDoSh5HJHk6',1,0),(4,'hiit','hiithiit','hiit@gmail.com',95346823,'st. makati, manila','$2y$10$7B/cs8KMv7xzCoROcs9gfOO8DQQGzKIDbY4on5Cuf5cv8SmEBSPtC',0,0),(5,'montague burton','mon','monBur@email.com',9235378,'quezon city','$2y$10$HyQhFgzsc68AbfibI5AmO.I.kJAVThFGTQ/rvDIvkC905Q9CE9MP6',0,0);
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,4 +201,8 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+<<<<<<< HEAD
 -- Dump completed on 2018-05-21 15:28:26
+=======
+-- Dump completed on 2018-05-22 22:45:17
+>>>>>>> ricamelle
