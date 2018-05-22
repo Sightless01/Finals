@@ -18,6 +18,12 @@ app.get('/', (req, res) => {
   res.render('index', { layout: 'login-temp' });
 });
 
+app.get('/test', (req, res) => {
+  let salted = bcrypt.genSaltSync(10 ,'a');
+  let hash = bcrypt.hashSync('letitstand', salted);
+  res.render('test', { hash });
+})
+
 app.post('/login', (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
@@ -232,7 +238,8 @@ app.post('/register', (req, res) => {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify(errors));
     } else {
-      let hashed = bcrypt.hashSync(password, saltRounds);
+      const salt =  bcrypt.genSaltSync(saltRounds, 'a');
+      let hashed = bcrypt.hashSync(password, salt);
       db.query("INSERT INTO client (name, address, username, contact, email, password) VALUES (?, ?, ?, ?, ?, ?)",
         [ name, address, username, cnum, email, hashed],
         (err, results) => {
