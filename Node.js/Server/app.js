@@ -125,37 +125,6 @@ app.post('/unblock', (req, res) => {
   res.redirect('/unblock');
 })
 
-<<<<<<< HEAD
-app.get('/block', (req, res) => {
-  if(req.session.user) {
-    db.query("SELECT * from company where block = 0 AND status = 1",
-    (err, companies) => {
-      db.query("SELECT * from client where block = 0 AND status = 1",
-      (err, clients) => {
-        res.render('block', { companies, clients });
-      })
-    })
-  } else {
-    res.redirect('/');
-  }
-});
-
-app.get('/unblock', (req, res) => {
-  if(req.session.user) {
-    db.query("SELECT * from company where block = 1 AND status = 1",
-    (err, companies) => {
-      db.query("SELECT * from client where block = 1 AND status = 1",
-      (err, clients) => {
-        res.render('unblock', { companies, clients });
-      })
-    })
-  } else {
-    res.redirect('/');
-  }
-});
-
-=======
->>>>>>> master
 app.get('/transaction', (req, res) => {
   if(req.session.user) {
     db.query("SELECT name, COUNT(trans_id) as count from company join transaction on company.comp_id = transaction.comp_id WHERE status = 1 GROUP by name",

@@ -4,13 +4,8 @@ body, html {
   min-height: 100%;
 }
 
-<<<<<<< HEAD
-div.row {
-  width: 100%;
-=======
 html {
   position: relative;
->>>>>>> master
 }
 
 body {
