@@ -201,8 +201,5 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<< HEAD
--- Dump completed on 2018-05-21 15:28:26
-=======
+
 -- Dump completed on 2018-05-22 22:45:17
->>>>>>> ricamelle
