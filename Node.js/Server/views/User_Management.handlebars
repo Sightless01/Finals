@@ -1,0 +1,111 @@
+<div class="container">
+  <form method="POST" action="Manage_User">
+    {{#if bCompanies }}
+      <div class="row">
+        <div class="col align-self-center">
+          <h2>Proprietor</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-lg-10 col-md-10 col-sm-10">
+          <b>Name</b>
+        </div>
+        <div class="col col-lg-2 col-md-2 col-sm-2 centered">
+          <b>Block</b>
+        </div>
+      </div>
+      {{#each bCompanies }}
+          <div class="row">
+            <div class="col col-lg-10 col-md-10 col-sm-10">
+              {{ username }}
+            </div>
+            <div class="col col-lg-2 col-md-2 col-sm-2 centered">
+              <input type="checkbox" name="btn[a{{comp_id}}]" value="block">
+            </div>
+          </div>
+      {{/each }}
+      <hr>
+    {{/if}}
+    {{#if bClients}}
+    <div class="row">
+      <div class="col align-self-center">
+        <h2>Renter</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-lg-10 col-md-10 col-sm-10">
+        <b>Name</b>
+      </div>
+      <div class="col col-lg-2 col-md-2 col-sm-2 centered">
+        <b>Block</b>
+      </div>
+    </div>
+    {{#each bClients }}
+      <div class="row">
+        <div class="col col-lg-10 col-md-10 col-sm-10">
+          {{ username }}
+        </div>
+        <div class="col col-lg-2 col-md-2 col-sm-2 centered">
+          <input type="checkbox" name="btn[b{{client_id}}]" value="block">
+        </div>
+      </div>
+    {{/each }}
+    <hr>
+    {{/if}}
+    {{#if uCompanies }}
+      <div class="row">
+        <div class="col align-self-center">
+          <h2>Proprietor</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-lg-10 col-md-10 col-sm-10">
+          <b>Name</b>
+        </div>
+        <div class="col col-lg-2 col-md-2 col-sm-2 centered">
+          <b>Unblock</b>
+        </div>
+      </div>
+      {{#each uCompanies }}
+          <div class="row">
+            <div class="col col-lg-10 col-md-10 col-sm-10">
+              {{ username }}
+            </div>
+            <div class="col col-lg-2 col-md-2 col-sm-2 centered">
+              <input type="checkbox" name="btn[c{{comp_id}}]" value="unblock">
+            </div>
+          </div>
+      {{/each }}
+      <hr>
+    {{/if}}
+    {{#if uClients}}
+    <div class="row">
+      <div class="col align-self-center">
+        <h2>Renter</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-lg-10 col-md-10 col-sm-10">
+        <b>Name</b>
+      </div>
+      <div class="col col-lg-2 col-md-2 col-sm-2 centered">
+        <b>Unblock</b>
+      </div>
+    </div>
+    {{#each uClients }}
+      <div class="row">
+        <div class="col col-lg-10 col-md-10 col-sm-10">
+          {{ username }}
+        </div>
+        <div class="col col-lg-2 col-md-2 col-sm-2 centered">
+          <input type="checkbox" name="btn[d{{client_id}}]" value="unblock">
+        </div>
+      </div>
+    {{/each }}
+    <hr>
+    {{/if}}
+    <div class="idname">
+      <button>Manage</button>
+    </div>
+  </form>
+</div>

@@ -18,12 +18,6 @@ app.get('/', (req, res) => {
   res.render('index', { layout: 'login-temp' });
 });
 
-app.get('/test', (req, res) => {
-  let salted = bcrypt.genSaltSync(10 ,'a');
-  let hash = bcrypt.hashSync('letitstand', salted);
-  res.render('test', { hash });
-})
-
 app.post('/login', (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
@@ -38,7 +32,7 @@ app.post('/login', (req, res) => {
         console.log(result);
         if(bcrypt.compareSync(password, result[0].password)) {
           req.session.user = result[0].username;
-          res.redirect('manage_user');
+          res.redirect('/User_Management');
         } else {
           let error = "invalid password";
           res.render('index', { layout: 'login-temp' , error });
@@ -50,18 +44,24 @@ app.post('/login', (req, res) => {
     })
 })
 
-app.get('/block', (req, res) => {
+app.get('/User_Management', (req, res) => {
   if(req.session.user) {
-    db.query("SELECT * from company where block = 0 AND status = 1",
-    (err, companies) => {
-      db.query("SELECT * from client where block = 0 AND status = 1",
-      (err, clients) => {
-        if (companies.length != 0 || clients.length != 0) {
-          res.render('block', { companies, clients });
-        } else {
-          let text = "No one to Block";
-          res.render('empty', { text });
-        };
+    db.query("SELECT * FROM company WHERE block = 0 AND status = 1",
+    (err, bCompanies) => {
+      db.query("SELECT * FROM client WHERE block = 0 AND status = 1",
+      (err, bClients) => {
+        db.query("SELECT * FROM company WHERE block = 1 AND status = 1",
+        (err, uCompanies) => {
+          db.query("SELECT * FROM client WHERE block = 1 AND status = 1",
+          (err, uClients) => {
+            if(bCompanies.length != 0 || uCompanies.length != 0 || bClients.length != 0 || uClients.length != 0) {
+              res.render('User_Management', { bCompanies, bClients, uCompanies, uClients });
+            } else {
+              let text = "No Users can be manage right now";
+              res.render('empty', { text });
+            }
+          })
+        })
       })
     })
   } else {
@@ -69,68 +69,45 @@ app.get('/block', (req, res) => {
   }
 });
 
-app.post('/block', (req, res) => {
-  let block = req.body.btn;
-  for(key in block) {
-    let uType = key.charAt(0) == 'p' ? 'company' : 'client';
+app.post('/Manage_User', (req, res) => {
+  let manage = req.body.btn;
+  console.log(manage);
+  for(key in manage) {
+    let code = key.charAt(0);
     let id = key.replace(key.charAt(0), "");
-    if(uType == 'company') {
-      db.query("UPDATE company SET block = 1 WHERE comp_id = ?",
-        [ parseInt(id, 10) ],
-        (err, results) => {
-          console.log(err);
-        })
-    } else {
-      db.query("UPDATE client SET block = 1 WHERE client_id = ?",
-        [ parseInt(id, 10) ],
-        (err, results) => {
-          console.log(err);
-        })
+    switch(code) {
+      case 'a':
+        db.query("UPDATE company SET block = 1 WHERE comp_id = ?",
+          [ parseInt(id, 10) ],
+          (err, results) => {
+            console.log(err);
+          })
+        break;
+      case 'b':
+        db.query("UPDATE client SET block = 1 WHERE client_id = ?",
+          [ parseInt(id, 10) ],
+          (err, results) => {
+            console.log(err);
+          })
+        break;
+      case 'c':
+        db.query("UPDATE company SET block = 0 WHERE comp_id = ?",
+          [ parseInt(id, 10) ],
+          (err, results) => {
+            console.log(err);
+          })
+        break;
+        case 'd':
+          db.query("UPDATE client SET block = 0 WHERE client_id = ?",
+            [ parseInt(id, 10) ],
+            (err, results) => {
+              console.log(err);
+            })
+          break;
     }
   }
-  res.redirect('/block');
+  res.redirect('/User_Management');
 });
-
-app.get('/unblock', (req, res) => {
-  if(req.session.user) {
-    db.query("SELECT * from company where block = 1 AND status = 1",
-    (err, companies) => {
-      db.query("SELECT * from client where block = 1 AND status = 1",
-      (err, clients) => {
-        if (companies.length != 0 || clients.length != 0) {
-          res.render('unblock', { companies, clients });
-        } else {
-          let text = "No one to Unblock";
-          res.render('empty', { text });
-        };
-      })
-    })
-  } else {
-    res.redirect('/');
-  }
-});
-
-app.post('/unblock', (req, res) => {
-  let block = req.body.btn;
-  for(key in block) {
-    let uType = key.charAt(0) == 'p' ? 'company' : 'client';
-    let id = key.replace(key.charAt(0), "");
-    if(uType == 'company') {
-      db.query("UPDATE company SET block = 0 WHERE comp_id = ?",
-        [ parseInt(id, 10) ],
-        (err, results) => {
-          console.log(err);
-        })
-    } else {
-      db.query("UPDATE client SET block = 0 WHERE client_id = ?",
-        [ parseInt(id, 10) ],
-        (err, results) => {
-          console.log(err);
-        })
-    }
-  }
-  res.redirect('/unblock');
-})
 
 app.get('/transaction', (req, res) => {
   if(req.session.user) {
@@ -164,13 +141,14 @@ app.get('/registration', (req, res) => {
 });
 
 app.post('/register', (req, res) => {
+  console.log('test');
   const saltRounds = 10;
-  let name = req.body.fname;
+  let name = req.body.name;
   let username = req.body.uname;
   let uType = req.body.utype;
-  let email = req.body.eaddress;
-  let address = req.body.paddress;
-  let cnum = req.body.contactnum;
+  let email = req.body.email;
+  let address = req.body.address;
+  let cnum = req.body.contact;
   let password = req.body.password;
   let redirect = {
     "redirect" : req.body.redirect
@@ -184,80 +162,81 @@ app.post('/register', (req, res) => {
           errors.push({
             "error": "username already in use!"
           });
-        }
+        };
+        db.query("SELECT * from company where email = ?",
+          [ email ],
+          (err, results) => {
+            if(results.length != 0) {
+              errors.push({
+                "error": "email address is already in use!"
+              });
+            };
+            if(errors.length != 0) {
+              let msg = ("Error!\n");
+              errors.forEach(error => {
+                msg += (error.error + "\n");
+              });
+              res.status(400).json(errors);
+            } else {
+              let hashed = bcrypt.hashSync(password, saltRounds);
+              db.query("INSERT INTO company (name, address, username, contact, email, password) VALUES (?, ?, ?, ?, ?, ?)",
+                [ name, address, username, cnum, email, hashed],
+                (err, results) => {
+                  console.log(err);
+                });
+                res.send(JSON.stringify(redirect));
+            }
+        });
     });
-    db.query("SELECT * from company where email = ?",
-      [ email ],
-      (err, results) => {
-        if(results.length != 0) {
-          errors.push({
-            "error": "email address is already in use!"
-          });
-        }
-    })
-    if(errors.length != 0) {
-      let msg = ("Error!\n");
-      errors.forEach(error => {
-        msg += (error.error + "\n");
-      });
-      res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify(errors));
-    } else {
-      let hashed = bcrypt.hashSync(password, saltRounds);
-      db.query("INSERT INTO company (name, address, username, contact, email, password) VALUES (?, ?, ?, ?, ?, ?)",
-        [ name, address, username, cnum, email, hashed],
-        (err, results) => {
-          console.log(err);
-        })
-        res.send(JSON.stringify(redirect));
-    }
   } else {
     db.query("SELECT * from client where username = ?",
       [ username ],
       (err, results) => {
+        console.log(results);
         if(results.length != 0) {
+          console.log("not empty");
           errors.push({
             "error": "username already in use!"
           });
-        }
+        };
+        db.query("SELECT * from client where email = ?",
+          [ email ],
+          (err, results) => {
+            if(results.length != 0) {
+              errors.push({
+                "error": "email address is already in use!"
+              });
+            };
+            console.log(errors);
+            if(errors.length != 0) {
+              let msg = ("Error!\n");
+              errors.forEach(error => {
+                msg += (error.error + "\n");
+              });
+              res.status(400).json(errors);
+            } else {
+              const salt =  bcrypt.genSaltSync(saltRounds, 'a');
+              let hashed = bcrypt.hashSync(password, salt);
+              db.query("INSERT INTO client (name, address, username, contact, email, password) VALUES (?, ?, ?, ?, ?, ?)",
+                [ name, address, username, cnum, email, hashed],
+                (err, results) => {
+                  console.log(err);
+                });
+                res.send(JSON.stringify(redirect));
+            };
+        });
     });
-    db.query("SELECT * from client where email = ?",
-      [ email ],
-      (err, results) => {
-        if(results.length != 0) {
-          errors.push({
-            "error": "email address is already in use!"
-          });
-        }
-    })
-    if(errors.length != 0) {
-      let msg = ("Error!\n");
-      errors.forEach(error => {
-        msg += (error.error + "\n");
-      });
-      res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify(errors));
-    } else {
-      const salt =  bcrypt.genSaltSync(saltRounds, 'a');
-      let hashed = bcrypt.hashSync(password, salt);
-      db.query("INSERT INTO client (name, address, username, contact, email, password) VALUES (?, ?, ?, ?, ?, ?)",
-        [ name, address, username, cnum, email, hashed],
-        (err, results) => {
-          console.log(err);
-        })
-        res.send(JSON.stringify(redirect));
-    }
   }
 });
 
-app.get('/manage_user', (req, res) => {
+app.get('/Registration_Management', (req, res) => {
   if(req.session.user) {
     db.query(`SELECT * from company where status = 0`,
       (err, companies) => {
       db.query("SELECT * from client where status = 0",
       (err, clients) => {
         if (companies.length != 0 || clients.length != 0) {
-          res.render('manageUser', { companies, clients });
+          res.render('Registration_Management', { companies, clients });
         } else {
           let text = "No one to Accept or Reject";
           res.render('empty', { text });
@@ -269,7 +248,7 @@ app.get('/manage_user', (req, res) => {
   }
 });
 
-app.post('/manage', (req, res) => {
+app.post('/Manage_Registration', (req, res) => {
   let manage = req.body.btn;
   for(key in manage) {
     let response = manage[key];
@@ -305,10 +284,11 @@ app.post('/manage', (req, res) => {
       }
     }
   };
-  res.redirect('/manage_user');
+  res.redirect('/Registration_Management');
 })
 
 const port = process.env.PORT || 5001;
-app.listen(port, () => {
-  console.log('Server started @ http://localhost:' + port);
+const ip = '192.168.1.102';
+app.listen(port, ip, () => {
+  console.log('Server started @ http://webtechadmin.org:' + port);
 });

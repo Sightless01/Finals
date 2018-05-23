@@ -62,6 +62,7 @@ div.col-md-12 {
 
 div.col.align-self-center h2 {
   text-align: center;
+  margin-top: 10px;
 }
 
 /*footer*/
@@ -86,13 +87,6 @@ footer.footer div.col p {
 }
 
 /*website's body*/
-div.container-form {
-    margin-top: 5%;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-bottom: 2%;
-}
-
 hr {
 	background-color: #307D7E;
   margin-left: 25%;
@@ -109,7 +103,6 @@ a.body {
 	background-color: #307D7E;
 }
 
-
 /*block*/
 
 div.container-form hr{
@@ -122,7 +115,7 @@ div.container-form hr{
 
 div.idname{
   text-align: center;
-  margin-bottom: 5%;
+  margin-bottom: 9rem;
   margin-top: 5%;
 }
 
