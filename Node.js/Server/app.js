@@ -287,6 +287,18 @@ app.post('/Manage_Registration', (req, res) => {
   res.redirect('/Registration_Management');
 })
 
+app.post('/test', (req, res) => {
+  let start = req.body.start.split('-');
+  let end = req.body.end.split('-');
+  console.log(parseInt(start[1]), parseInt(start[0], 10) % 100, parseInt(end[1]), parseInt(end[0], 10) % 100);
+  db.query("SELECT * FROM transaction WHERE date_paid BETWEEN '0?-01-?' AND '0?-31-?'",
+  [ parseInt(start[1]), parseInt(start[0], 10) % 100, parseInt(end[1]), parseInt(end[0], 10) % 100 ],
+  (err, results) => {
+    console.log(err);
+    console.log(results);
+  })
+})
+
 const port = process.env.PORT || 5001;
 const ip = '192.168.1.102';
 app.listen(port, ip, () => {

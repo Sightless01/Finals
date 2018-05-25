@@ -1,28 +1,35 @@
 <div class="container">
-  <form method="POST" action="block">
+  <form method="POST" action="test">
+    <div class="form-row">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <label for="start">Starting Month</label>
+        <input type="month" class="form-control" placeholder="start" name="start">
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <label for="end">Ending Month</label>
+        <input type="month" class="form-control" placeholder="end" name="end">
+      </div>
+    </div>
     <div class="row">
       <div class="col col-4">Name</div>
       <div class="col col-4">Number of transaction</div>
       <div class="col col-4">Amount Due</div>
     </div>
-
-    <div class="row">
-		<div class="col col-4">
-			{{#each transactArr}}
-				<div class="col col-6">{{name}}</div>
-			{{/each}}
-		</div>
-		<div class="col col-4">
-			{{#each transactArr}}
-				<div class="col col-6">{{count}}</div>
-			{{/each}}
-		</div>
-		<div class="col col-4">
-			{{#each transactArr}}
-				<div class="col col-6">{{total}}</div>
-			{{/each}}
-		</div>
-	</div>
-
+    {{#each transactArr}}
+      <div class="row">
+    		<div class="col col-4">
+          {{name}}
+        </div>
+    		<div class="col col-4">
+          {{count}}
+        </div>
+    		<div class="col col-4">
+          {{total}}
+        </div>
+  		</div>
+		{{/each}}
+    <div class="idname">
+      <button>Submit</button>
+    </div>
   </form>
 </div>
