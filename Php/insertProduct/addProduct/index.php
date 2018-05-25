@@ -96,7 +96,11 @@ if($_POST['submit'])
 	$foldering = 'image/'.$files;
 	move_uploaded_file($temps, $foldering);
 	
-	if($pro!="" && $cn!="" && $de!="" && $filename!="" && $file!="" && $files!="" )
+	if (preg_match('/^image/p?jpeg$/i', $_FILES['upload']['type']) or 
+    preg_match('/^image/gif$/i', $_FILES['upload']['type']) or 
+    preg_match('/^image/(x-)?png$/i', $_FILES['upload']['type'])) 
+{ 
+  if($pro!="" && $cn!="" && $de!="" && $filename!="" && $file!="" && $files!="" )
 	{
 			
 		$query = "insert into products values ('$pro','$cn','$de','$folder','$folders','$foldering')";
@@ -110,7 +114,14 @@ if($_POST['submit'])
 	else
 	{
 		echo "<script type='text/javascript'>alert('all fields are required');</script>";
-	}
+	} 
+} 
+else 
+{ 
+  $error = 'Please submit a JPEG, GIF, or PNG image file.'; 
+  include $_SERVER['DOCUMENT_ROOT'] . '/includes/error.html.php'; 
+  exit(); 
+}
 
 }	
 	
