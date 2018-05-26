@@ -50,7 +50,7 @@ DROP TABLE IF EXISTS `client`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `client` (
-  `client_id` tinyint(4) NOT NULL,
+  `client_id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `address` varchar(45) DEFAULT NULL,
   `contact` bigint(20) DEFAULT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE `client` (
   `status` tinyint(4) DEFAULT '0',
   `block` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`client_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,7 +81,7 @@ DROP TABLE IF EXISTS `company`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `company` (
-  `comp_id` tinyint(4) NOT NULL,
+  `comp_id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `username` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
@@ -91,7 +91,7 @@ CREATE TABLE `company` (
   `status` tinyint(4) DEFAULT '0',
   `block` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`comp_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,7 +100,7 @@ CREATE TABLE `company` (
 
 LOCK TABLES `company` WRITE;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
-INSERT INTO `company` VALUES (1,'champion','champion','champ@email.com',9123446,'st. noelle, baguio city','$2b$10$ecxz8AZxREj2lY4dBwYun.sOIdFri296Wa4/thjxmP6TAajIEsqg2',0,0),(2,'adidas','adiiii','adi@yahoo.com',93247823,'st. ares, baguio city','$2b$10$ecxz8AZxREj2lY4dBwYun.qlb4XiZvtcAV2BCxJgTl1d2AMx5liTi',0,0),(3,'nautica','nautica','nautica@gmail.com',965578732,'st. fayps, baguio city','$2b$10$ecxz8AZxREj2lY4dBwYun.4Vg06a8R3Wlo1goKHF2YWxIG39hsXeK',1,0),(4,'hiit','hiithiit','hiit@gmail.com',95346823,'st. makati, manila','$2b$10$ecxz8AZxREj2lY4dBwYun.F0.HpheeYgZMIwiPCqnA16pjImXzU0W',0,0),(5,'montague burton','mon','monBur@email.com',9235378,'quezon city','$2b$10$ecxz8AZxREj2lY4dBwYun.VgSc7D8aIIBh1VQRWaz4dLaXfICLhhO',0,0);
+INSERT INTO `company` VALUES (1,'champion','champion','champ@email.com',9123446,'st. noelle, baguio city','$2b$10$ecxz8AZxREj2lY4dBwYun.sOIdFri296Wa4/thjxmP6TAajIEsqg2',1,0),(2,'adidas','adiiii','adi@yahoo.com',93247823,'st. ares, baguio city','$2b$10$ecxz8AZxREj2lY4dBwYun.qlb4XiZvtcAV2BCxJgTl1d2AMx5liTi',1,0),(3,'nautica','nautica','nautica@gmail.com',965578732,'st. fayps, baguio city','$2b$10$ecxz8AZxREj2lY4dBwYun.4Vg06a8R3Wlo1goKHF2YWxIG39hsXeK',1,0),(4,'hiit','hiithiit','hiit@gmail.com',95346823,'st. makati, manila','$2b$10$ecxz8AZxREj2lY4dBwYun.F0.HpheeYgZMIwiPCqnA16pjImXzU0W',1,0),(5,'montague burton','mon','monBur@email.com',9235378,'quezon city','$2b$10$ecxz8AZxREj2lY4dBwYun.VgSc7D8aIIBh1VQRWaz4dLaXfICLhhO',1,0),(6,'ikaw','lang','sapat@na.com',123,'sapusomo','$2b$10$jgx9eSICycHRrmTqO1VTJOW3LmHClW2hN016R40Y5G5f/Kx9rWOJu',0,0);
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +125,7 @@ CREATE TABLE `products` (
   `comp_id` tinyint(4) NOT NULL,
   PRIMARY KEY (`prod_id`),
   KEY `comp_id_idx` (`comp_id`),
-  CONSTRAINT `company_id` FOREIGN KEY (`comp_id`) REFERENCES `company` (`comp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `comp_id` FOREIGN KEY (`comp_id`) REFERENCES `company` (`comp_id`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -152,10 +152,10 @@ CREATE TABLE `transaction` (
   `date_returned` date DEFAULT NULL,
   `client_id` tinyint(4) NOT NULL,
   `prod_id` tinyint(4) NOT NULL,
-  KEY `client_id_idx` (`client_id`),
+  KEY `cilent_id_idx` (`client_id`),
   KEY `prod_id_idx` (`prod_id`),
-  CONSTRAINT `client_id` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `prod_id` FOREIGN KEY (`prod_id`) REFERENCES `products` (`prod_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `cilent_id` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `prod_id` FOREIGN KEY (`prod_id`) REFERENCES `products` (`prod_id`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -165,7 +165,7 @@ CREATE TABLE `transaction` (
 
 LOCK TABLES `transaction` WRITE;
 /*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
-INSERT INTO `transaction` VALUES (NULL,'2017-10-21',NULL,2,2),(NULL,'2016-01-01',NULL,3,10),(NULL,NULL,NULL,1,17),(NULL,NULL,NULL,4,15);
+INSERT INTO `transaction` VALUES (NULL,'2017-10-21',NULL,2,2),(NULL,'2016-01-01',NULL,3,10),(NULL,'2017-05-10',NULL,1,17),(NULL,'2018-04-13',NULL,4,15);
 /*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -178,4 +178,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-25 21:08:59
+-- Dump completed on 2018-05-27  7:04:15
