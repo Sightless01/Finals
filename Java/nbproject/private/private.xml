@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="3">
+        <file>
+            <url>src/java/tww/servlets/Header.java</url>
+            <bookmark id="3">
+                <name/>
+                <line>41</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/web/WEB-INF/menu.html</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/src/java/tww/servlets/Register.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/src/java/tww/servlets/RentMe.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/src/java/tww/servlets/Registration.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/src/java/tww/servlets/LoginDao.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/src/java/tww/servlets/Header.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/web/WEB-INF/index.html</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/src/java/tww/servlets/RegisterDao.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/src/java/tww/servlets/Transaction.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/src/java/tww/beans/Product.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/src/java/tww/servlets/Index.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/src/java/tww/servlets/Search.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/src/java/tww/beans/Cart.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/src/java/tww/servlets/Logout.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/web/WEB-INF/topicMenu.html</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/src/java/tww/servlets/ShowProducts.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/web/styles.css</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/src/java/tww/servlets/Home.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/web/WEB-INF/login.html</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/src/java/tww/servlets/Login.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/src/java/tww/servlets/BCrypt.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/WebApplication2/9346A-G5/src/java/tww/servlets/LoginPage.java</file>
+        </group>
+    </open-files>
+</project-private>
