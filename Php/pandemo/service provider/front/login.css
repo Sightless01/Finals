@@ -1,0 +1,35 @@
+.navbar {
+  overflow: hidden;
+  background-color: #0d0d0d;
+  font-family: Arial;
+  width: 100%;
+  float: right;
+  color: white;
+}
+
+/* Links inside the navbar */
+.navbar a{
+  float: right;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* FOOTER */
+
+.footer-site{
+	background-color: #0d0d0d;
+	box-sizing: border-box;
+	width: 100%;
+	text-align: left;
+	font: normal 16px sans-serif;
+	/* padding: 45px 50px; */
+    float: left;
+    color: #ffffff;
+}
+
+.footer-left{
+    text-color: white;
+}
