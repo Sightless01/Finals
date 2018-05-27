@@ -1,5 +1,6 @@
 Node.js/Server/node_modules/
 Node.js/Server/*.sqlite
+Database/node_modules/
 *.sqlite
 *.db
 

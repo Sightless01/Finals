@@ -294,11 +294,23 @@ app.post('/Manage_Registration', (req, res) => {
 app.post('/test', (req, res) => {
   let start = req.body.start.split('-');
   let end = req.body.end.split('-');
-  db.query("SELECT * FROM transaction WHERE date_paid BETWEEN '?-?-1' AND '?-?-31'",
+  db.query("SELECT company.name, COUNT(date_paid) as count " +
+    "from transaction join products ON transaction.prod_id = products.prod_id" +
+    " join company on products.comp_id = company.comp_id" +
+    " WHERE company.status = 1 AND date_paid BETWEEN '?-?-1' AND '?-?-31'" +
+    " GROUP by company.name",
   [ parseInt(start[0], 10), parseInt(start[1], 10), parseInt(end[0], 10), parseInt(end[1], 10) ],
   (err, results) => {
     console.log(err);
-    console.log(results);
+    let transactArr = [];
+    for(let i = 0; i < results.length; i++) {
+      transactArr.push({
+        "name": results[i].name,
+        "count": results[i].count,
+        "total": parseInt(results[i].count) * 10
+      });
+    }
+    res.render('transaction', { transactArr });
   })
 })
 
