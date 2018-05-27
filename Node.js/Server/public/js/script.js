@@ -76,4 +76,40 @@ $(document).ready( () => {
       });
     }
   })
+  $('#transacButton').on('click', e => {
+    e.preventDefault();
+    $('.transactions').empty();
+    let data = {};
+    data.start = $('input[name=start]').val();
+    data.end = $('input[name=end]').val();
+    $.ajax({
+      type: 'post',
+      datatype: 'json',
+      data: JSON.stringify(data),
+      contentType: 'application/json',
+      url: 'http://webtechadmin.org:5001/transact',
+      success: results => {
+        let responseJSON = JSON.parse(results);
+        console.log(results);
+        if(responseJSON.length != 0) {
+          responseJSON.forEach(result => {
+            $('.transactions').append(
+            `<div class="row">
+          		<div class="col col-4">
+                ${result.name}
+              </div>
+          		<div class="col col-4">
+                ${result.count}
+              </div>
+          		<div class="col col-4">
+                ${result.total}
+              </div>
+        		</div>` )
+          })
+        } else {
+          $('.transactions').append( "<h2>No results found</h2>" );
+        }
+      }
+    })
+  })
 })

@@ -176,10 +176,6 @@ app.post('/register', (req, res) => {
               });
             };
             if(errors.length != 0) {
-              let msg = ("Error!\n");
-              errors.forEach(error => {
-                msg += (error.error + "\n");
-              });
               res.status(400).json(errors);
             } else {
               let hashed = bcrypt.hashSync(password, saltRounds);
@@ -213,10 +209,6 @@ app.post('/register', (req, res) => {
             };
             console.log(errors);
             if(errors.length != 0) {
-              let msg = ("Error!\n");
-              errors.forEach(error => {
-                msg += (error.error + "\n");
-              });
               res.status(400).json(errors);
             } else {
               const salt =  bcrypt.genSaltSync(saltRounds, 'a');
@@ -291,7 +283,7 @@ app.post('/Manage_Registration', (req, res) => {
   res.redirect('/Registration_Management');
 })
 
-app.post('/test', (req, res) => {
+app.post('/transact', (req, res) => {
   let start = req.body.start.split('-');
   let end = req.body.end.split('-');
   db.query("SELECT company.name, COUNT(date_paid) as count " +
@@ -310,7 +302,7 @@ app.post('/test', (req, res) => {
         "total": parseInt(results[i].count) * 10
       });
     }
-    res.render('transaction', { transactArr });
+    res.send(JSON.stringify(transactArr));
   })
 })
 

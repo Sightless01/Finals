@@ -1,5 +1,5 @@
 <div class="container">
-  <form method="POST" action="test">
+  <form>
     <div class="form-row">
       <div class="col-lg-6 col-md-6 col-sm-12">
         <label for="start">Starting Month</label>
@@ -15,21 +15,23 @@
       <div class="col col-4">Number of transaction</div>
       <div class="col col-4">Amount Due</div>
     </div>
-    {{#each transactArr}}
-      <div class="row">
-    		<div class="col col-4">
-          {{name}}
-        </div>
-    		<div class="col col-4">
-          {{count}}
-        </div>
-    		<div class="col col-4">
-          {{total}}
-        </div>
-  		</div>
-		{{/each}}
+    <div class="container transactions">
+      {{#each transactArr}}
+        <div class="row">
+      		<div class="col col-4">
+            {{name}}
+          </div>
+      		<div class="col col-4">
+            {{count}}
+          </div>
+      		<div class="col col-4">
+            {{total}}
+          </div>
+    		</div>
+  		{{/each}}
+    </div>
     <div class="idname">
-      <button>Submit</button>
+      <button id="transacButton">Submit</button>
     </div>
   </form>
 </div>
