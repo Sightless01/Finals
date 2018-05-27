@@ -316,6 +316,6 @@ app.post('/test', (req, res) => {
 
 const port = process.env.PORT || 5001;
 const ip = '192.168.1.102';
-app.listen(port, () => {
+app.listen(port, ip, () => {
   console.log('Server started @ http://webtechadmin.org:' + port);
 });

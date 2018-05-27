@@ -11,5 +11,5 @@ const port = process.env.PORT || 5002;
 const ip = '192.168.1.102';
 
 app.listen(port, () => {
-  console.log('Server started @http://database.org:' + port);
+  console.log('Server started @http://database:' + port);
 })
