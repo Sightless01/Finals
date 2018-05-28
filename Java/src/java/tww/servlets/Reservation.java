@@ -32,7 +32,7 @@ public class Reservation extends HttpServlet {
 
         String username = (String) session.getAttribute("username");
         response.setContentType("text/html;charset=UTF-8");
-        System.out.println(" gbfdhb"+username);
+
         Connection c = null;
         PrintWriter out = response.getWriter();
         String reservationDisplay = "    <table id=\"reservation\" style=\"width:80%; margin:auto; margin-bottom:50px;\">"
@@ -72,19 +72,19 @@ public class Reservation extends HttpServlet {
                             + "                <td> " + dateEnd + "</td>"
                             + "                <td> &#8369;" + price + "</td>";
                     if (status==null) {
-                        status = "pending";
-                        reservationDisplay += " <td> &#8369;" + status + "</td>"
+                        status = "pending..";
+                        reservationDisplay += " <td> " + status + "</td>"
                                 + "                <td><a class=\"link-3\" href=\"cancelReq\">Cancel</a></td>"
                                 + "            </tr>"
                                 + "        </tbody>";
-                    } else if (status.equals('0')) {
+                    } else if (status.equals("0")) {
                         status = "Request was rejected";
-                        reservationDisplay += " <td> &#8369;" + status + "</td>"
+                        reservationDisplay += " <td> " + status + "</td>"
                                 + "            </tr>"
                                 + "        </tbody>";
                     } else {
                         status = "Request was accepted";
-                        reservationDisplay += " <td> &#8369;" + status + "</td>"
+                        reservationDisplay += " <td>" + status + "</td>"
                                 + "            </tr>"
                                 + "        </tbody>";
                     }
