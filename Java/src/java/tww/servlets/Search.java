@@ -62,7 +62,8 @@ public class Search extends HttpServlet {
                 String backview = rs.getString("backview");
                 String cat = rs.getString("categories");
                 String comp = rs.getString("company.name");
-                Product product = new Product(product_id, name, description, frontview, sideview, backview, price, comp, cat);
+                int count = rs.getInt("availability");
+                Product product = new Product(product_id, name, description, frontview, sideview, backview, price, comp, cat, count);
                 products.add(product);
             }
             rs.close();

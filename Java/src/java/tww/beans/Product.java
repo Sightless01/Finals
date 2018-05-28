@@ -12,7 +12,8 @@ public class Product {
    double price;
    String com;
    String cat;
-    public Product(int prod_id, String name, String description, String frontview,String sideview,String backview, double price, String com, String cat) {
+   int count;
+    public Product(int prod_id, String name, String description, String frontview,String sideview,String backview, double price, String com, String cat, int count) {
         this.prod_id = prod_id;
         this.name = name;
         this.description = description;
@@ -22,6 +23,7 @@ public class Product {
         this.price = price;
         this.com = com;
         this.cat = cat;
+        this.count = count;
     }
 
     public int getProdId() {
@@ -46,7 +48,9 @@ public class Product {
     public void setName(String category) {
         this.name = name;
     }
-
+     public int getCount() {
+        return count;
+    }
     public String getDescription() {
         return description;
     }

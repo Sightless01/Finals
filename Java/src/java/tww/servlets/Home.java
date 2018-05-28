@@ -54,7 +54,8 @@ public class Home extends HttpServlet {
                 String sideview = rs.getString("sideview");
                 String backview = rs.getString("backview");
                 String cat = rs.getString("categories");
-                Product product = new Product(product_id, name, description, frontview, sideview, backview, price, comp, cat);
+                int count = rs.getInt("availability");
+                Product product = new Product(product_id, name, description, frontview, sideview, backview, price, comp, cat, count);
                 products.add(product);
             }
             rs.close();
