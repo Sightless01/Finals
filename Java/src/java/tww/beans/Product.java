@@ -3,7 +3,7 @@ package tww.beans;
 import java.math.BigDecimal;
 
 public class Product {
-   String prod_id;
+   int prod_id;
    String name;
    String description;
    String frontview;
@@ -12,8 +12,7 @@ public class Product {
    double price;
    String com;
    String cat;
-   String event;
-    public Product(String prod_id, String name, String description, String frontview,String sideview,String backview, double price, String com, String event, String cat) {
+    public Product(int prod_id, String name, String description, String frontview,String sideview,String backview, double price, String com, String cat) {
         this.prod_id = prod_id;
         this.name = name;
         this.description = description;
@@ -23,29 +22,21 @@ public class Product {
         this.price = price;
         this.com = com;
         this.cat = cat;
-        this.event = event;
     }
 
-    public String getProdId() {
+    public int getProdId() {
         return prod_id;
     }
 
-    public void setProdId(String prod_id) {
+    public void setProdId(int prod_id) {
         this.prod_id = prod_id;
     }
     public String getCat() {
-        return prod_id;
+        return cat;
     }
 
     public void setCat(String cat) {
         this.cat = cat;
-    }
-    public String getEvent() {
-        return prod_id;
-    }
-
-    public void setEvent(String prod_id) {
-        this.prod_id = prod_id;
     }
 
     public String getName() {
@@ -76,6 +67,9 @@ public class Product {
 
     
     public String getBackview() {
+        if(backview==null){
+            return "not";
+        }
         return backview;
     }
 

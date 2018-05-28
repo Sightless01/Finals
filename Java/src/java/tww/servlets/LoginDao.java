@@ -4,20 +4,31 @@ import java.sql.*;
 
 public class LoginDao {
 
-    public static boolean checkUser(String name, String pass) {
-        boolean st = false;
+    public static String checkUser(String name, String pass) {
+        String st = "";
         Connection c = null;
         Statement stmt = null;
+        int status = 2;
+        int clientid = 0;
+        String dbPass="";
         try {
             Class.forName("com.mysql.jdbc.Driver");
             c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
             PreparedStatement ps = c.prepareStatement("select * from Client where username=?");
             ps.setString(1, name);
             ResultSet rs = ps.executeQuery();
-            rs.next();
-            if (BCrypt.checkpw(pass, rs.getString("password"))) {
-                st = true;
+            while (rs.next()) {
+                 status = rs.getInt("status");
+                 dbPass = rs.getString("password");
             }
+            if (status==0 ){
+                st = "You were block by the admin! Contact them now!";
+            } else if (status==2){
+                st = "Incorrect password or username!";
+            }
+            else if (BCrypt.checkpw(pass, dbPass ) && status==1) {
+                st = "allow";
+            } 
             rs.close();
             ps.close();
         } catch (Exception e) {

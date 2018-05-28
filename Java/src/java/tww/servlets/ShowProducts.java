@@ -34,27 +34,26 @@ public class ShowProducts extends HttpServlet {
         Connection c = null;
         ArrayList<Product> products = new ArrayList<>();
         PrintWriter out = response.getWriter();
-        String username =null;
+        String username = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
             c.setAutoCommit(false);
-            PreparedStatement ps = c.prepareStatement("select * from Products join company on products.comp_id = company.comp_id where availability = 1");
+            PreparedStatement ps = c.prepareStatement("select * from Products join company on products.comp_id = company.comp_id where availability != 0");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 double price = rs.getInt("price");
-               
-                String product_id = rs.getString("prod_id");
+
+                int product_id = rs.getInt("prod_id");
                 String name = rs.getString("products.name");
                 String description = rs.getString("description");
                 String frontview = rs.getString("frontview");
                 String sideview = rs.getString("sideview");
                 String backview = rs.getString("backview");
                 String cat = rs.getString("categories");
-                String event = rs.getString("event");
-                 String comp = rs.getString("company.name");
-                Product product = new Product(product_id, name, description, frontview, sideview, backview, price, comp, event, cat);
+                String comp = rs.getString("company.name");
+                Product product = new Product(product_id, name, description, frontview, sideview, backview, price, comp, cat);
                 products.add(product);
             }
             rs.close();
@@ -81,41 +80,15 @@ public class ShowProducts extends HttpServlet {
         } else {
             request.getRequestDispatcher("/WEB-INF/topicMenu.html").include(request, response);
         }
-        out.println("    <h1>Product List</h1>");
-        out.println(" <form method='POST' action='search' style:'display:inline;'>");
-        out.println("        <p>Filter:</p>");
-        out.println("        <p>Price below: </p>");
-        out.println("        <input type='number' name='price' value='1000000' placeholder='Enter Price' >");
-        out.println("        <p>Category</p>");
-        out.println("<select name='cat'>");
-        out.println("<option value='tops'>Tops</option>>");
-        out.println("<option value='jacket'>Jacket</option>>");
-        out.println("<option value='slipper'>Slipper</option>>");
-        out.println("<option value='shoes'>Shoes</option>>");
-        out.println("<option value='dress'>Dress</option>>");
-        out.println("<option value='longsleeve'>Longsleeve</option>>");
-        out.println("<option value='tuxedo'>Tuxedo</option>>");
-        out.println("</select>");
-        out.println("        <p>Retailer</p>");
-        out.println("<select name='ret'>");
-        out.println("<option value='champion'>Champion</option>>");
-        out.println("<option value='adidas'>Adidas</option>>");
-        out.println("<option value='hiit'>Hiit</option>>");
-        out.println("<option value='nautica'>Nautica</option>>");
-        out.println("<option value='montague burton'>Montague Burton</option>>");
-        out.println("</select>");
-        out.println("       <div class='clearfix'>");
-        out.println("           <button type='submit' class='searchbttn' >Search</button>");
-        out.println("       </div>");
-        out.println("       </form>");
-
+        request.getRequestDispatcher("/WEB-INF/filter.html").include(request, response);
         if (products.size() == 0) {
             out.println("    <h2>No products available.</h2>");
         }
-        if(session!=null){
-            username = session.getAttribute("username").toString();
+        if (session != null) {
+            username = request.getParameter("username");
         }
         for (Product product : products) {
+            int prod = product.getProdId();
             String name = product.getName();
             String description = product.getDescription();
             String frontview = product.getFrontview();
@@ -123,24 +96,58 @@ public class ShowProducts extends HttpServlet {
             String sideview = product.getSideview();
             double price = product.getPrice();
             String comp_id = product.getcom();
+            out.println("  <div class='cont'>");
+            out.println("  <form method='POST' action='rentMe'>");
             out.println("  <div class='row'>");
             out.println("  <div class='column'>");
             out.println("  <div class='card'>");
-            out.println("   <img src='"+ frontview.substring(1)+"' id='imahe' style='width:60% ;height:70%'>");
+            out.println("   <img src='" + frontview.substring(1) + "' id='imahe' style='width:200px;height:425px'>");
+            if (!backview.equals("not")) {
+                out.println("   <img src='" + backview.substring(1) + "' id='imahe' style='width:200px;height:425px'>");
+            }
+            if (!sideview.equals("not")) {
+                out.println("   <img src='" + sideview.substring(1) + "' id='imahe' style='width:200px;height:425px'>");
+            }
+
             out.println("    <div class='containero'>");
-            out.println("    <h2>"+name+"</h2>");
-            out.println("      <p class='title'>"+price+"</p>");
-            out.println("    <p>"+description+"</p>");
-            out.println("    <p> "+comp_id+"</p>");
+            out.println("    <h2>" + name + "</h2>");
+            out.println("      <p class='title'> Price: &#8369;" + price + "</p>");
+            out.println("    <p>" + description + "</p>");
+            out.println("    <p> Proprietor: " + comp_id + "</p>");
+            out.println(" Request Date:");
+            out.println(" <input class='datafield' type='date' name='startdate' required>");
+            out.println(" Rent Period:");
+            out.println(" <input type='number' name='rentPeriod' min='1' max='30' required>");
+            out.println("   <p><button value='" + prod + "' name='rent' class='button'>Rent</button></p>");
+            out.println("  </div>");
+            out.println("  </div>");
+            out.println("  </div>");
+            out.println("  </form>");
+            out.println("  </div>");
+            out.println(" <script>");
 
-            out.println("   <p><button class='button'>Rent</button></p>");
-            out.println("  </div>");
-            out.println("  </div>");
-            out.println("  </div>");
+            out.println(" var today = new Date();");
+            out.println(" var dd = today.getDate();");
+            out.println(" var mm = today.getMonth()+1; //January is 0!");
+            out.println(" var yyyy = today.getFullYear();");
 
+            out.println("  if(dd<10) {");
+            out.println("    dd = '0'+dd");
+            out.println(" } ");
+
+            out.println(" if(mm<10) {");
+            out.println("     mm = '0'+mm");
+            out.println(" } ");
+
+            out.println(" today = yyyy + '-' + mm + '-' + dd  ;");
+            out.println(" var y = document.getElementsByClassName('datafield');");
+            out.println(" for (var i = 0; i < y.length; i++) {");
+            out.println(" y[i].setAttribute('min', today);");
+            out.println(" }");
+            out.println(" </script>");
+          
         }
 
-    
     }
 
     @Override

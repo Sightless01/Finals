@@ -8,121 +8,6 @@ body{
 	text-align: center;
 }
 
-img{
-	display: block;
-	width: 100%;
-	height: auto;
-}
-
-h1, h2, h3{
-	margin: 0;
-	padding: 1em 0;
-}
-
-p{
-	margin:0;
-	padding: 1em 0;
-	
-}
-/*header showcase*/
-
-#showcase{
-	min-height: 450px;
-	color: #fff;
-	text-align: center;
-}
-
-#showcase .bg-image{
-	position: absolute;
-	background: #333 url(img/6.jpg);
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	width: 100%;
-	height: 450px;
-	z-index: -1;
-	opacity: 0.7;
-	
-}
-
-#showcase h1{
-	padding-top: 100px;
-	padding-bottom:0;
-	
-}
-
-#showcase .content-wrap, #section-a .content-wrap{
-	padding: 0 1.5em;
-	
-}
-
-/*SECTIONA*/
-#section-a{
-	background:#eaeaea;
-	color: #333;
-	padding: 10px 10px 10px 10px;
-	
-}
-
-/*SECTIONB*/
-#section-b{
-	padding:2em 1em 1em;
-}
-#section-b ul{
-	list-style:none;
-	margin:0;
-	padding:0;
-}
-#section-b li{
-	margin-bottom: 1em;
-	background: #fff;
-	color: #333;
-}
-
-.card-content{
-	padding: 1.5 em;
-}
-
-/*nav*/
-
-
-* {
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-body {
-  background: #F0F0F0;
-  font-size: 15px;
-  color: #666;
-  font-family: 'Roboto', sans-serif;
-}
-.content {
-  height: 200px;
-}
-a { text-decoration: none; }
-
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-
-.cover-bg {
-  background: rgba(0,0,0,0.5);
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
  @media only screen and (max-width:1199px) {
 
 .container { width: 96%; }
@@ -162,55 +47,7 @@ footer{
   text-align: center;
 }
 
-/*slider*/
-.slider {
-  position: absolute;
-	background: #333 url(img/6.jpg);
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	width: 100%;
-	height: 450px;
-	z-index: -1;
-	opacity: 0.7;
-}
-.slide1,.slide2,.slide3,.slide4,.slide5 {
-  position: absolute;
-  width: 100%;
-  background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	height: 450px;
-	z-index: -1;
-	opacity: 0.7;
-	
-}
-.slide1 {
-  background: url(img/1.jpg)no-repeat center;
-      background-size: cover;
-    animation:fade 20s infinite;
--webkit-animation:fade 20s infinite;
 
-} 
-.slide2 {
-  background: url(img/2.jpg)no-repeat center;
-      background-size: cover;
-    animation:fade2 20s infinite;
--webkit-animation:fade2 20s infinite;
-}
-.slide3 {
-    background: url(img/4.jpeg)no-repeat center;
-      background-size: cover;
-    animation:fade3 20s infinite;
--webkit-animation:fade3 20s infinite;
-}
-
-.slide4 {
-    background: url(img/7.jpg)no-repeat center;
-      background-size: cover;
-    animation:fade4 20s infinite;
--webkit-animation:fade4 20s infinite;
-}
 @keyframes fade
 {
   0%   {opacity:1}
@@ -447,10 +284,9 @@ transform-origin: 50% 50% 0;
 
 /* Create two equal columns that floats next to each other */
 .column {
-    float: left;
     width: 50%;
 	padding: 30px;
-    height: 300px; /* Should be removed. Only for demonstration */
+    height: 45%; /* Should be removed. Only for demonstration */
 	display: block;
 	margin: 0 auto;
 }
@@ -679,13 +515,20 @@ div#slider figure {
 
 
 .column {
-  float: left;
-  width: 50%;
-  height: 1000px;
-  max-height: 1000px;
-  max-width: 650px ;
+  width: 80%;
+  height: 50%;
+  max-width: 100% ;
   margin-bottom: 16px;
-  padding: 0 8px;
+  padding: 10px 10px;
+  background-color: #d6d6d6;
+}
+.cont {
+  width: auto;
+  height: 50%;
+  max-width: 100% ;
+  margin:auto;
+  padding: 10px 10px;
+  background-color: black;
 }
 
 @media screen and (max-width: 650px ) {
@@ -701,7 +544,12 @@ div#slider figure {
 }
 #imahe{
     width:50%;
-    height:60%;
+    height:50%;
+}
+.row {
+    margin:auto;
+    width:100%;
+    height:50%;
 }
 .containero {
   padding: 0 16px;
@@ -723,7 +571,7 @@ div#slider figure {
   display: inline-block;
   padding: 8px;
   color: white;
-  background-color: #000;
+  background-color: #336699;
   text-align: center;
   cursor: pointer;
   width: 100%;
