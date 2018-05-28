@@ -7,19 +7,19 @@
 				</div>
 			</div>
 			<div class="row">
-				  <div class="col col-lg-8 col-md-8 col-sm-8"><b>Name</b></div>
-				  <div class="col col-lg-2 col-md-2 col-sm-2"><b>Accept</b></div>
-				  <div class="col col-lg-2 col-md-2 col-sm-2"><b>Reject</b></div>
+				  <div class="col-6 col-lg-8 col-md-8 col-sm-8"><b>Name</b></div>
+				  <div class="col-3 col-lg-2 col-md-2 col-sm-2"><b>Accept</b></div>
+				  <div class="col-3 col-lg-2 col-md-2 col-sm-2"><b>Reject</b></div>
 			</div>
 			{{#each companies }}
 				<div class="row">
-					<div class="col col-lg-8 col-md-8 col-sm-8">
+					<div class="col-6 col-lg-8 col-md-8 col-sm-8">
 						{{ username }}
 					</div>
-					<div class="col col-lg-2 col-md-2 col-sm-2">
+					<div class="col-3 col-lg-2 col-md-2 col-sm-2">
 						<input type="radio" name="btn[p{{comp_id}}]" value="accept">
 					</div>
-					<div class="col col-lg-2 col-md-2 col-sm-2">
+					<div class="col-3 col-lg-2 col-md-2 col-sm-2">
 						<input type="radio" name="btn[p{{comp_id}}]" value="reject">
 					</div>
 				</div>
@@ -32,19 +32,19 @@
 				</div>
 			</div>
 			<div class="row">
-				  <div class="col col-lg-8 col-md-8 col-sm-8"><b>Name</b></div>
-				  <div class="col col-lg-2 col-md-2 col-sm-2"><b>Accept</b></div>
-				  <div class="col col-lg-2 col-md-2 col-sm-2"><b>Reject</b></div>
+				  <div class="col-6 col-lg-8 col-md-8 col-sm-8"><b>Name</b></div>
+				  <div class="col-3 col-lg-2 col-md-2 col-sm-2"><b>Accept</b></div>
+				  <div class="col-3 col-lg-2 col-md-2 col-sm-2"><b>Reject</b></div>
 			</div>
 			{{#each clients}}
 				<div class="row">
-					<div class="col col-lg-8 col-md-8 col-sm-8">
+					<div class="col-6 col-lg-8 col-md-8 col-sm-8">
 						{{ username }}
 					</div>
-					<div class="col col-lg-2 col-md-2 col-sm-2">
+					<div class="col-3 col-lg-2 col-md-2 col-sm-2">
 						<input type="radio" name="btn[r{{client_id}}]" value="accept">
 					</div>
-					<div class="col col-lg-2 col-md-2 col-sm-2">
+					<div class="col-3 col-lg-2 col-md-2 col-sm-2">
 						<input type="radio" name="btn[r{{client_id}}]" value="reject">
 					</div>
 				</div>

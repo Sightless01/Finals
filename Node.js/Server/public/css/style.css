@@ -16,6 +16,10 @@ div.container {
   border-radius: 5px;
 }
 
+div.row, div.form-row {
+  padding-top: 10px;
+}
+
 button.login {
   background-color: #004d4d;
   width: 100%;
@@ -130,6 +134,10 @@ div.col-md-8{
 
 div.heading{
   margin-left: 40%;
+}
+
+div.container.transactions h2 {
+  text-align: center;
 }
 
 
