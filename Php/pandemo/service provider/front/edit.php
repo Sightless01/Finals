@@ -58,21 +58,43 @@ if(isset($_POST['btn-update'])){
 <!--Create Edit form -->
 <!doctype html>
 <html>
+<head>
+  <title>BrendoRent Company Services Login</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="front/login.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 <body>
-<form method="post">
-<h1>Product Editing</h1>
-<label>Name:</label><input type="text" name="name" placeholder="Name" value="<?php echo $row['name']; ?>"readonly><br/><br/>
-<label>description:</label><textarea name="description" placeholder="<?php echo $row['description']; ?>"></textarea><br/><br/>
-<label>price:</label><input type="text" name="price" placeholder="price" value="<?php echo $row['price']; ?>"><br/><br/>
-<img src="<?php echo $row['frontview'];?> " height='200' width='200'><br/>
-<input type="file" name="frontview"/><br/>
-<img src="<?php echo $row['sideview'];?> " height='200' width='200'><br/>
-<input type="file" name="sideview"/><br/>
-<img src="<?php echo $row['backview'];?> " height='200' width='200'><br/>
-<input type="file" name="backview"/><br/>
-<button type="submit" name="btn-update" id="btn-update" onClick="update()"><strong>Update</strong></button>
-	<button type="button" value="button">Cancel</button></a>
-</form>
+<div class="container">
+	<form method="post">
+	<h1>Product Editing</h1>
+	<div class="form-group">
+		<label for="pname">Name: </label>
+		<input type="text" name="name" placeholder="Name" value="<?php echo $row['name']; ?>"readonly><br/>
+	</div>
+	<div class="form-group">
+		<label>Description:</label><br/>
+		<textarea rows="4" cols="50" name="description" placeholder="<?php echo $row['description']; ?>"></textarea><br/>
+	</div>
+	<div class="form-group">	
+		<label>Price:</label>
+		<input type="text" name="price" placeholder="price" value="<?php echo $row['price']; ?>"><br/>
+	</div>
+	<div class="form-group">
+		<img src="<?php echo $row['frontview'];?> " height='200' width='200'><br/>
+		<input type="file" name="frontview"/><br/>
+		<img src="<?php echo $row['sideview'];?> " height='200' width='200'><br/>
+		<input type="file" name="sideview"/><br/>
+		<img src="<?php echo $row['backview'];?> " height='200' width='200'><br/>
+		<input type="file" name="backview"/><br/>
+	</div>
+	<button type="submit" name="btn-update" id="btn-update" onClick="update()"><strong>Update</strong></button>
+		<button type="button" value="button">Cancel</button></a>
+	</form>
+</div>
 <!-- Alert for Updating -->
 <script>
 function update(){
