@@ -38,43 +38,19 @@
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	} 
-	$sql = "SELECT products.comp_id, products.name, desctription, categories, frontview, sideview, backview, products.availability
+	$sql = "SELECT products.comp_id, products.name, description, categories, frontview, sideview, backview, products.availability
 		FROM products 
 		JOIN company
 		on products.comp_id = company.comp_id
 		where company.name = '$user'" ;
 		
-	$sqltr = "select transaction.client_id, transaction.prod_id, transaction.comp_id, client.name from transaction join company
-			on company.comp_id = transaction.comp_id
-			join client on client.client_id = transaction.client_id
-			where company.name = '$user'; ";
-	
-	/*
-		$cid = $result['comp_id'];
-		$ps = $conn->prepare("INSERT INTO products (name, desctription, price, categories, frontview, sideview, backview, comp_id) VALUES (?,?,?,?,?,?,?,?)");
-		$ps->bind_param("ssissssss", $pname, $desc, $price, $ctg, $folderfront, $folderside, $folderback,$cid); */
-	
-
 	$result = $conn->query($sql);
-	$tresult = $conn->query($sqltr);
-	$trow = $tresult->fetch_assoc();
 
 	echo "PRODUCTS";
 	echo "<div><table class='table table-responsive-md'>";
 	echo "<td>Product Name:</td><td>Description</td><td>Front</td><td>Side</td><td>Back</td><td>Status</td><td>Reserved to</td>";
 		while($row = $result->fetch_assoc()){
-			if($ps = $conn->prepare("SELECT transaction.client_id, transaction.prod_id, transaction.comp_id, client.name FROM 
-						transaction JOIN company ON company.comp_id = transaction.comp_id
-						JOIN client on client.client_id = transaction.client_id
-						where company.username = ? and transaction.prod_id = ?")){
-							$ps->bind_param("ss", $user, $row['prod_id']);
-							$ps->execute();
-							$ps->bind_result($col1, $col2, $col3, $col4);
-							$ps->fetch();
-							echo $row['prod_id'];
-							echo $col1, $col2, $col3, $col4;
-						}
-			echo '<tr><td>'.$row['name'] .'</td><td>'.$row['desctription'] .'</td>
+			echo '<tr><td>'.$row['name'] .'</td><td>'.$row['description'] .'</td>
 				<td>';?><img src='<?php echo$row['frontview'];?>' height='200' width='200'> <?php echo '</td>
 				<td>';?><img src='<?php echo$row['sideview'];?>' height='200' width='200'> <?php echo '</td>
 				<td>';?><img src='<?php echo$row['backview'];?>' height='200' width='200'> <?php echo '</td>
@@ -83,7 +59,6 @@
 						echo 'Product is still available! </td>'; 
 					} else {
 						echo 'Product is currently reserved. </td>';
-						echo '<td>' . $trow['name']. '</td>';
 					}
 				echo '</tr>'; 
 		}
