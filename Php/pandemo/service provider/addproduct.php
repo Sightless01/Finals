@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mehoney Company Services Login</title>
+  <title>BrendoRent Company Services Login</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -113,7 +113,7 @@
 		
 	?>
 		<footer class="footer-site">
-			<p>MeHoney Service Provider Module</p>
+			<p>BrendoRent Service Provider Module</p>
 		</footer>
 	</div>
 </body>

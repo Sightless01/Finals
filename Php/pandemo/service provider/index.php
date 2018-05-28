@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mehoney Company Services</title>
+  <title>BrendoRent Company Services</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -20,6 +20,7 @@
 						echo '<a href="logout.php">Logout</a></li>';
 						echo '<a href="addproduct.php">Add Product</a></li>';
 						echo '<a href="front/front.php">Check Products</a></li>';
+						echo '<a href="front/transaction.php">Transactions</a>';
 						$user = $_SESSION['siteuser'];
 						echo '<a>Welcome, ' .$user .'!</a>';
 					} else {
@@ -29,7 +30,7 @@
 				?>	
 			</div>
 				<p>
-					<h1>Welcome to the Mehoney Company Services Site!</h1>
+					<h1>Welcome to the BrendoRent Company Services Site!</h1>
 					<h3>Need a spot to put up your products?</h3>
 					<h3>Want a convenient place to view current orders?</h3>
 					<h3>You've come to the right place!</h3>
@@ -42,7 +43,7 @@
 					?>
 				</p>
 				<footer class="footer-site">
-						<p>MeHoney Service Provider Module</p>
+						<p>BrendoRent Service Provider Module</p>
 				</footer>
 		</div>	
 	</body>
