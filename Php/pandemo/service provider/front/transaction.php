@@ -1,40 +1,64 @@
+<?php
+	session_start()
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Transactions</title>
+		<title>BrendoRent Transaction History</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="front.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 
 <body>
+<div class="navbar">    
+	<?php
+		if (isset($_SESSION["siteuser"])) {
+			echo '<a href="../logout.php">Logout</a>';
+			echo '<a href="../addproduct.php">Add Product</a>';
+			$user = $_SESSION["siteuser"];
+		} else {
+			echo '<a href="http://webtechadmin.org:5001/registration?redirect=http://webtechsp.org:2018">Register</a>';
+		}
+	?>	
+  <a href="../index.php">Home</a></li>
+</div>
 <h2>Transaction History</h2>
 <?php
 	$host = "localhost";
-	$user = "root";
+	$username = "root";
 	$pass = "";
 	$db = "database";
 
-	$con = new mysqli($host, $user, $pass, $db);
+	$con = new mysqli($host, $username, $pass, $db);
 	if ($con->connect_error) {
 		die("Connection failed: " . $con->connect_error);
 	}
 	
-	$sql = "SELECT * FROM transaction;";
+	$sql = "SELECT * 
+			FROM transaction 
+			JOIN products
+			ON transaction.prod_id = products.prod_id
+			JOIN company
+			ON products.comp_id = company.comp_id
+			WHERE company.name = '$user';";
+			
 			echo "<table border='1'><tr>
 			<td>client_id</td>
 			<td>prod_id</td>
-			<td>date_booked</td>
 			<td>date_paid</td>
 			<td>date_returned</td>
 			</tr>";
 			
 	$result=mysqli_query($con,$sql);
 	
-	while($row=mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+	while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
 		echo '<tr>';
 		echo '<td>'.$row ['client_id'] . '</td>
 		<td>'.$row['prod_id'] .'</td>
-		<td>'.$row['date_booked'] .'</td>
 		<td>'.$row['date_paid'] .'</td>
 		<td>'.$row['date_returned'] .'</td>
 		</tr>';

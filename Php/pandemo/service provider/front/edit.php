@@ -4,7 +4,7 @@
 $host = "localhost";
 $user = "root";
 $pass="";
-$db = "products";
+$db = "database";
 
 
 $conn = new mysqli($host, $user, $pass, $db);
@@ -60,9 +60,9 @@ if(isset($_POST['btn-update'])){
 <html>
 <body>
 <form method="post">
-<h1>Edit Employee Information</h1>
+<h1>Product Editing</h1>
 <label>Name:</label><input type="text" name="name" placeholder="Name" value="<?php echo $row['name']; ?>"readonly><br/><br/>
-<label>description:</label><input type="text" name="description" placeholder="description" value="<?php echo $row['description']; ?>"><br/><br/>
+<label>description:</label><textarea name="description" placeholder="<?php echo $row['description']; ?>"></textarea><br/><br/>
 <label>price:</label><input type="text" name="price" placeholder="price" value="<?php echo $row['price']; ?>"><br/><br/>
 <img src="<?php echo $row['frontview'];?> " height='200' width='200'><br/>
 <input type="file" name="frontview"/><br/>

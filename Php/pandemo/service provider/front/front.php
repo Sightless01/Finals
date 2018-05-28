@@ -18,6 +18,7 @@
 		if (isset($_SESSION["siteuser"])) {
 			echo '<a href="../logout.php">Logout</a></li>';
 			echo '<a href="../addproduct.php">Add Product</a></li>';
+			echo '<a href="transaction.php">Transactions</a>';
 			$user = $_SESSION['siteuser'];
 		} else {
 			echo '<a href="http://webtechadmin.org:5001/registration?redirect=http://webtechsp.org:2018">Register</a>';
@@ -38,7 +39,7 @@
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	} 
-	$sql = "SELECT products.comp_id, products.name, description, categories, frontview, sideview, backview, products.availability
+	$sql = "SELECT prod_id, products.comp_id, products.name, description, price, categories, frontview, sideview, backview, products.availability
 		FROM products 
 		JOIN company
 		on products.comp_id = company.comp_id
@@ -48,19 +49,17 @@
 
 	echo "PRODUCTS";
 	echo "<div><table class='table table-responsive-md'>";
-	echo "<td>Product Name:</td><td>Description</td><td>Front</td><td>Side</td><td>Back</td><td>Status</td><td>Reserved to</td>";
+	echo "<td>Product Name:</td><td>Description</td><td>Front</td><td>Side</td><td>Back</td><td>Status</td>";
 		while($row = $result->fetch_assoc()){
-			echo '<tr><td>'.$row['name'] .'</td><td>'.$row['description'] .'</td>
-				<td>';?><img src='<?php echo$row['frontview'];?>' height='200' width='200'> <?php echo '</td>
-				<td>';?><img src='<?php echo$row['sideview'];?>' height='200' width='200'> <?php echo '</td>
-				<td>';?><img src='<?php echo$row['backview'];?>' height='200' width='200'> <?php echo '</td>
-				<td>';?> <?php 
-					if($row['availability'] == 1) { 
-						echo 'Product is still available! </td>'; 
-					} else {
-						echo 'Product is currently reserved. </td>';
-					}
-				echo '</tr>'; 
+			echo '<tr>';
+			echo '<td>'.$row['name'] .'</td>
+			<td>'.$row['description'] .'</td>
+			<td>'.$row['price'] .'</td>
+			<td>';?><img src='<?php echo$row['frontview'];?>' height='200' width='200'> <?php echo '</td>
+			<td>';?><img src='<?php echo$row['sideview'];?>' height='200' width='200'> <?php echo '</td>
+			<td>';?><img src='<?php echo$row['backview'];?>' height='200' width='200'> <?php echo '</td>
+			<td>';?><a href="edit.php?edit_id=<?php echo $row['prod_id']; ?>" alt="edit" >Edit</a><?php echo '</td>
+			</tr>';
 		}
 	echo "</table></div>";
 ?>
