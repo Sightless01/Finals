@@ -38,7 +38,7 @@
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	} 
-	$sql = "SELECT products.comp_id, products.name, desctription, categories, event, frontview, sideview, backview, products.availability
+	$sql = "SELECT products.comp_id, products.name, desctription, categories, frontview, sideview, backview, products.availability
 		FROM products 
 		JOIN company
 		on products.comp_id = company.comp_id
@@ -51,8 +51,8 @@
 	
 	/*
 		$cid = $result['comp_id'];
-		$ps = $conn->prepare("INSERT INTO products (name, desctription, price, categories, event, frontview, sideview, backview, comp_id) VALUES (?,?,?,?,?,?,?,?,?)");
-		$ps->bind_param("ssissssss", $pname, $desc, $price, $ctg, $event, $folderfront, $folderside, $folderback,$cid); */
+		$ps = $conn->prepare("INSERT INTO products (name, desctription, price, categories, frontview, sideview, backview, comp_id) VALUES (?,?,?,?,?,?,?,?)");
+		$ps->bind_param("ssissssss", $pname, $desc, $price, $ctg, $folderfront, $folderside, $folderback,$cid); */
 	
 
 	$result = $conn->query($sql);
