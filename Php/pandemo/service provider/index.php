@@ -18,8 +18,9 @@
 				<?php
 					if (isset($_SESSION["siteuser"])) {
 						echo '<a href="logout.php">Logout</a></li>';
-						echo '<a href="addproduct.php">Add Product</a></li>';
-						echo '<a href="front/front.php">Check Products</a></li>';
+						echo '<a href="front/requests.php">Pending Requests</a>';
+						echo '<a href="addproduct.php">Add Product</a>';
+						echo '<a href="front/front.php">Check Products</a><';
 						echo '<a href="front/transaction.php">Transactions</a>';
 						$user = $_SESSION['siteuser'];
 						echo '<a>Welcome, ' .$user .'!</a>';

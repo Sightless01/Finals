@@ -8,7 +8,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link rel="stylesheet" href="front.css">
+		<link rel="stylesheet" href="login.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
@@ -46,7 +46,7 @@
 			ON products.comp_id = company.comp_id
 			WHERE company.name = '$user';";
 			
-			echo "<table border='1'><tr>
+			echo "<table class='table table-responsive-md'><tr>
 			<td>client_id</td>
 			<td>prod_id</td>
 			<td>date_paid</td>
@@ -59,8 +59,23 @@
 		echo '<tr>';
 		echo '<td>'.$row ['client_id'] . '</td>
 		<td>'.$row['prod_id'] .'</td>
-		<td>'.$row['date_paid'] .'</td>
-		<td>'.$row['date_returned'] .'</td>
+		<td>';if(is_null($row['date_paid'])){
+				echo 'Manually Edit: ';
+				$column = 'date_paid';
+				include 'editTx.php';
+			} else {
+				echo $row['date_paid'];
+			}
+		echo '</td>
+		<td>';
+			if(is_null($row['date_returned'])){
+				echo 'Input: ';
+				$column = 'date_returned';
+				include 'editTx.php';
+			} else {
+				echo $row['date_returned'];
+			}
+		echo '</td>
 		</tr>';
 	}
 	$con->close();

@@ -23,8 +23,10 @@
 				echo '<a href="http://webtechadmin.org:5001/registration?redirect=http://webtechsp.org:2018">Register</a>';
 			}
 		?>	
-	  <a href="index.php">Home</a></li>
-	 <a><?php echo 'Adding Products for User: ' . $user ?></a>
+	<a href="index.php">Home</a></li>
+	<a href="front/requests.php">Pending Requests</a>
+	<a href="front/transaction.php">Transactions</a>
+	<a><?php echo 'Adding Products for User: ' . $user ?></a>
 	</div>
 		<form action="" method="POST" enctype="multipart/form-data">
 				<div class="form-group">
@@ -85,10 +87,7 @@
 							move_uploaded_file($tempback, '../image/'.$user.'/'.$fileback);
 						}
 
-						$servername = "localhost";
-						$username = "root";
-						$password = "";
-						$dbname = "database";
+						include 'dbase.php';
 						
 						$conn = new mysqli($servername, $username, $password, $dbname);
 						if ($conn->connect_error) {

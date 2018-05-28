@@ -16,9 +16,10 @@
 <div class="navbar">    
 	<?php
 		if (isset($_SESSION["siteuser"])) {
-			echo '<a href="../logout.php">Logout</a></li>';
-			echo '<a href="../addproduct.php">Add Product</a></li>';
+			echo '<a href="../logout.php">Logout</a>';
+			echo '<a href="requests.php">Pending Requests</a>';
 			echo '<a href="transaction.php">Transactions</a>';
+			echo '<a href="../addproduct.php">Add Product</a>';
 			$user = $_SESSION['siteuser'];
 		} else {
 			echo '<a href="http://webtechadmin.org:5001/registration?redirect=http://webtechsp.org:2018">Register</a>';
@@ -30,12 +31,9 @@
 
 <div id="home">
 <?php
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "database";
+	include '../dbase.php';
 
-	$conn = new mysqli($servername, $username, $password, $dbname);
+	$conn = new mysqli($host, $username, $pass, $db);
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	} 
@@ -49,7 +47,7 @@
 
 	echo "PRODUCTS";
 	echo "<div><table class='table table-responsive-md'>";
-	echo "<td>Product Name:</td><td>Description</td><td>Front</td><td>Side</td><td>Back</td><td>Status</td>";
+	echo "<td>Product Name:</td><td>Description</td><td>Price</td><td>Front</td><td>Side</td><td>Back</td><td>Status</td>";
 		while($row = $result->fetch_assoc()){
 			echo '<tr>';
 			echo '<td>'.$row['name'] .'</td>
@@ -58,6 +56,7 @@
 			<td>';?><img src='<?php echo$row['frontview'];?>' height='200' width='200'> <?php echo '</td>
 			<td>';?><img src='<?php echo$row['sideview'];?>' height='200' width='200'> <?php echo '</td>
 			<td>';?><img src='<?php echo$row['backview'];?>' height='200' width='200'> <?php echo '</td>
+			<td>'.$row['availability'].'</td>
 			<td>';?><a href="edit.php?edit_id=<?php echo $row['prod_id']; ?>" alt="edit" >Edit</a><?php echo '</td>
 			</tr>';
 		}
@@ -66,7 +65,7 @@
 
 </div>
 	<footer class="footer-site">
-			<p>MeHoney Service Provider Module</p>
+			<p>BrendoRent Service Provider Module</p>
 	</footer>
 </body>
 </html>

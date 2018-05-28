@@ -1,13 +1,9 @@
 <?php
 //Database Connection
 
-$host = "localhost";
-$user = "root";
-$pass="";
-$db = "database";
+include '../dbase.php';
 
-
-$conn = new mysqli($host, $user, $pass, $db);
+$conn = new mysqli($host, $username, $pass, $db);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -28,7 +24,7 @@ if(isset($_POST['btn-update'])){
  	$backview = $_POST['backview'];
  	if($name!=""){
  		 $update = "UPDATE products SET name='$name' WHERE prod_id=". $_GET['edit_id'];
-	 $up = mysqli_query($conn, $update);
+		$up = mysqli_query($conn, $update);
 
  	}if($description!=""){
  		 $update = "UPDATE products SET description='$description' WHERE prod_id=". $_GET['edit_id'];
@@ -91,8 +87,8 @@ if(isset($_POST['btn-update'])){
 		<img src="<?php echo $row['backview'];?> " height='200' width='200'><br/>
 		<input type="file" name="backview"/><br/>
 	</div>
-	<button type="submit" name="btn-update" id="btn-update" onClick="update()"><strong>Update</strong></button>
-		<button type="button" value="button">Cancel</button></a>
+		<button type="submit" name="btn-update" id="btn-update" onClick="update()"><strong>Update</strong></button>
+		<button type="button" value="button" onclick="location.href = 'front.php';">Cancel</button></a>
 	</form>
 </div>
 <!-- Alert for Updating -->
@@ -100,7 +96,7 @@ if(isset($_POST['btn-update'])){
 function update(){
  var x;
  if(confirm("Updated data Sucessfully") == true){
- x= "update";
+	x= "update";
  }
 }
 </script>
