@@ -19,8 +19,15 @@ public class Login extends HttpServlet {
         {  
             session = request.getSession(true);
             session.setAttribute("username", username);
+            session.setAttribute("status", "allow");
             response.sendRedirect("home");
                  
+        } else if(result.equals("blocked"))
+        {  
+            session = request.getSession(true);
+            session.setAttribute("username", username);
+            session.setAttribute("status", "blocked");
+            response.sendRedirect("home");    
         } else{
          String transactionDisplay = "    <script>"
                 + "        alert('"+result+"')"

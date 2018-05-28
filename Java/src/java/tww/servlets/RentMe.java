@@ -44,14 +44,13 @@ public class RentMe extends HttpServlet {
         int day = Integer.parseInt(days);
         Date date1 = Date.valueOf(dateStart);
         Date date2 = addDays(date1,day);
-        System.out.println(date1);
-        System.out.println(date2);
         String prod = request.getParameter("rent");
         int prod_id = Integer.parseInt(prod);
         HttpSession session = request.getSession();
         Connection c = null;
         String username = (String) session.getAttribute("username");
-        if (username != null) {
+        String status = (String) session.getAttribute("status");
+        if (username != null && !status.equals("blocked")) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
@@ -81,7 +80,12 @@ public class RentMe extends HttpServlet {
 
                 }
             }
-        } else {
+        } else if(status.equals("blocked")){
+            request.getRequestDispatcher("/WEB-INF/banner.html").include(request, response);
+
+            request.getRequestDispatcher("/WEB-INF/menu.html").include(request, response);
+            out.println("You were blocked by the admin. Please contact the admin first.");
+        }else {
             request.getRequestDispatcher("/WEB-INF/banner.html").include(request, response);
 
             request.getRequestDispatcher("/WEB-INF/menu.html").include(request, response);

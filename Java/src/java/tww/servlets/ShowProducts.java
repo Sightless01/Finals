@@ -38,7 +38,7 @@ public class ShowProducts extends HttpServlet {
         HttpSession session = request.getSession(false);
         Connection c = null;
         ArrayList<Product> products = new ArrayList<>();
-        List<String> list = new ArrayList<String>();
+        List<Integer> list = new ArrayList<Integer>();
 
         PrintWriter out = response.getWriter();
         String username = null;
@@ -54,7 +54,7 @@ public class ShowProducts extends HttpServlet {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                String product_id = rs.getString("prod_id");
+                int product_id = rs.getInt("prod_id");
                 list.add(product_id);
             }
             rs.close();
@@ -70,18 +70,11 @@ public class ShowProducts extends HttpServlet {
                 }
             }
         }
-        Set<String> unique = new HashSet<String>(list);
-        Set<String> availability = new HashSet<String>(list);
-        String available = "";
-        for (String key : unique) {
-            available = key + " " + Collections.frequency(list, key);
-            availability.add(available);
-        }
         try {
             Class.forName("com.mysql.jdbc.Driver");
             c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
             c.setAutoCommit(false);
-            PreparedStatement ps = c.prepareStatement("select * from Products join company on products.comp_id = company.comp_id where availability != 0");
+            PreparedStatement ps = c.prepareStatement("select * from Products join company on products.comp_id = company.comp_id where availability = 1");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -139,8 +132,7 @@ public class ShowProducts extends HttpServlet {
             String sideview = product.getSideview();
             double price = product.getPrice();
             String comp_id = product.getcom();
-            String temp = prod + " " + count;
-            if (!availability.contains(temp)) {
+            if (!list.contains(prod)) {
                 out.println("  <div class='cont'>");
                 out.println("  <form method='POST' action='rentMe'>");
                 out.println("  <div class='row'>");

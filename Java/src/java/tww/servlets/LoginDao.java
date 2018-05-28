@@ -9,6 +9,7 @@ public class LoginDao {
         Connection c = null;
         Statement stmt = null;
         int status = 2;
+        int block = 2;
         int clientid = 0;
         String dbPass="";
         try {
@@ -19,12 +20,15 @@ public class LoginDao {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                  status = rs.getInt("status");
+                 block = rs.getInt("block");
                  dbPass = rs.getString("password");
             }
             if (status==0 ){
-                st = "You were block by the admin! Contact them now!";
+                st = "You are not allowed to Sign in! Contact the administrator now!";
             } else if (status==2){
                 st = "Incorrect password or username!";
+            } else if (block==1){
+                st = "blocked";
             }
             else if (BCrypt.checkpw(pass, dbPass ) && status==1) {
                 st = "allow";
