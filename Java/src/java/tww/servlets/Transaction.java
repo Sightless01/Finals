@@ -31,8 +31,7 @@ public class Transaction extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        String username = session.getAttribute("username").toString();
-
+        String username = (String) session.getAttribute("username");
         response.setContentType("text/html;charset=UTF-8");
 
         Connection c = null;
@@ -41,7 +40,6 @@ public class Transaction extends HttpServlet {
                 + "        <thead>"
                 + "            <tr>"
                 + "                <th>Product</th>"
-                + "                <th>Date Booked</th>"
                 + "                <th>Date Paid</th>"
                 + "                <th>Date Returned</th>"
                 + "                <th>Price</th>"
@@ -50,22 +48,23 @@ public class Transaction extends HttpServlet {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
-            PreparedStatement ps = c.prepareStatement("select * from transaction join products on transaction.trans_id = products.prod_id join client on transaction.client_id = client.client_id");
+            PreparedStatement ps = c.prepareStatement("select * from transaction join products on transaction.prod_id  = products.prod_id join client on transaction.client_id = client.client_id");
             ResultSet rs = ps.executeQuery();
             if(rs.next()==false){
                 transactionDisplay = "<p> No transactions</p>";
             }
             while (rs.next()) {
-                if (rs.getString("client.name").equalsIgnoreCase(username)) {
+                if (rs.getString("client.username").equalsIgnoreCase(username)) {
                     String productName = rs.getString("products.name");
-                    String dateBooked = rs.getString("date_booked");
                     String datePaid = rs.getString("date_paid");
                     String dateReturned = rs.getString("date_returned");
                     int price = rs.getInt("price");
+                    if(dateReturned==null){
+                        dateReturned="Not yet returned";
+                     }
                     transactionDisplay += "        <tbody>"
                             + "            <tr>"
                             + "                <td>" + productName + "</td>"
-                            + "                <td> " + dateBooked + "</td>"
                             + "                <td> " + datePaid + "</td>"
                             + "                <td> " + dateReturned + "</td>"
                             + "                <td> &#8369;" + price + "</td>"

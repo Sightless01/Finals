@@ -8,9 +8,10 @@ package tww.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Lenovo
  */
-@WebServlet(name = "RentMe", urlPatterns = {"/RentMe"})
+@WebServlet(name = "rentMe", urlPatterns = {"/rentMe"})
 public class RentMe extends HttpServlet {
 
     /**
@@ -37,131 +38,56 @@ public class RentMe extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-                PrintWriter out = response.getWriter();
+        PrintWriter out = response.getWriter();
+        String dateStart = request.getParameter("startdate");
+        String days = request.getParameter("rentPeriod");
+        int day = Integer.parseInt(days);
+        Date date1 = Date.valueOf(dateStart);
+        Date date2 = addDays(date1,day);
+        System.out.println(date1);
+        System.out.println(date2);
         String prod = request.getParameter("rent");
+        int prod_id = Integer.parseInt(prod);
         HttpSession session = request.getSession();
-        String client_id = null;
-        String comp_id = null;
-        String trans_id = null;
         Connection c = null;
-        if(session!=null){
-            String username = session.getAttribute("username").toString();
+        String username = (String) session.getAttribute("username");
+        if (username != null) {
             try {
-            Class.forName("com.mysql.jdbc.Driver");
-             c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
-            
-            PreparedStatement ps = c.prepareStatement("select * from client where name=?");
-            ps.setString(1, username);
-            ResultSet rs = ps.executeQuery();
-             
-            while (rs.next()) {
-                client_id = rs.getString("client_id");
-            }
-            rs.close();
+                Class.forName("com.mysql.jdbc.Driver");
+                c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
+                PreparedStatement ps = c.prepareStatement("insert into request(client_id, prod_id,start_date ,end_date,request_date) values((SELECT client_id FROM client WHERE username=?),?,?,?,?)");
+                ps.setString(1, username);
+                ps.setInt(2, prod_id);
+                ps.setDate(3, date1);
+                ps.setDate(4, date2);
+                Calendar currenttime = Calendar.getInstance();               //creates the Calendar object of the current time
+                Date sqldate = new Date((currenttime.getTime()).getTime());  //creates the sql Date of the above created object
+                ps.setDate(5, (java.sql.Date) sqldate);
+                ps.executeUpdate();
+                request.getRequestDispatcher("/WEB-INF/banner.html").include(request, response);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (c != null) {
-                try {
-                    c.close(); // <-- This is important
-                } catch (Exception e) {
-                    e.printStackTrace();
+                request.getRequestDispatcher("/WEB-INF/topicMenu.html").include(request, response);
+                out.println("Request completed");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (c != null) {
+                    try {
+                        c.close(); // <-- This is important
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                 }
-
             }
-        } 
-            try {
-            Class.forName("com.mysql.jdbc.Driver");
-             c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
-            
-            PreparedStatement ps = c.prepareStatement("select * from client where name=?");
-            ps.setString(1, username);
-            ResultSet rs = ps.executeQuery();
-             
-            while (rs.next()) {
-                client_id = rs.getString("client_id");
-            }
-            rs.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (c != null) {
-                try {
-                    c.close(); // <-- This is important
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        } 
-                try {
-            Class.forName("com.mysql.jdbc.Driver");
-             c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
-            
-            PreparedStatement ps = c.prepareStatement("select * from transaction");
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                trans_id = rs.getString("trans_id");
-            }
-            rs.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (c != null) {
-                try {
-                    c.close(); // <-- This is important
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        } 
-              try {
-            Class.forName("com.mysql.jdbc.Driver");
-             c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
-            
-            PreparedStatement ps = c.prepareStatement("insert into transaction values(?,?,?,?,?,?,?)");
-            ps.setString(1, trans_id);
-            ps.setString(2, null);
-            ps.setString(3, null);
-            ps.setString(4, null);
-            ps.setString(5, comp_id);
-            ps.setString(6, client_id);
-            ps.setString(7, prod);
-            ResultSet rs = ps.executeQuery();
-           
-             out.println("Transaction added");
-                
-            rs.next();
-            rs.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (c != null) {
-                try {
-                    c.close(); // <-- This is important
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }
-        } else{
-            request.getRequestDispatcher("/WEB-INF/header").include(request, response);
-        
-        if (session == null) {
-            request.getRequestDispatcher("/WEB-INF/menu.html").include(request, response);
-            
         } else {
-             request.getRequestDispatcher("/WEB-INF/topicMenu.html").include(request, response);
+            request.getRequestDispatcher("/WEB-INF/banner.html").include(request, response);
+
+            request.getRequestDispatcher("/WEB-INF/menu.html").include(request, response);
+            out.println("You are not login into an account. Please login or register first.");
         }
-        out.println("You are not login into an account. Please login or register first.");
-        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -203,4 +129,10 @@ public class RentMe extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    public static Date addDays(Date date, int days) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.DATE, days);
+        return new Date(c.getTimeInMillis());
+    }
 }

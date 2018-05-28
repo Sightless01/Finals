@@ -14,14 +14,19 @@ public class Login extends HttpServlet {
         String username = request.getParameter("username");
         String pass = request.getParameter("pass");
     //    pass=CryptWithMD5.cryptWithMD5(pass);
-        if(LoginDao.checkUser(username, pass))
+        String result = LoginDao.checkUser(username, pass);
+        if(result.equals("allow"))
         {  
             session = request.getSession(true);
             session.setAttribute("username", username);
             response.sendRedirect("home");
                  
         } else{
-         response.sendRedirect("index");
+         String transactionDisplay = "    <script>"
+                + "        alert('"+result+"')"
+                + "        </script>";
+                out.println(transactionDisplay);
+                  request.getRequestDispatcher("/WEB-INF/login.html").include(request, response);
         }
     }  
 }

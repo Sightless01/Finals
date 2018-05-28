@@ -20,18 +20,7 @@ public class Header extends HttpServlet {
         HttpSession session = request.getSession(false);
         
         PrintWriter out = response.getWriter();
-        out.print("<!DOCTYPE html>");
-        out.print("<html lang='en-US'>");
-        out.print("<head>");
-        out.print("<meta charset='UTF-8'>");
-	out.print("<meta name='viewport' content='width=device-width, initial-scale=1.0'>");
-	out.print("<meta http-equiv='X-UA-Compatible' content='ie=edge'>");
-	out.print("<title>Webtech2018</title>");
-	out.print("<link rel='stylesheet' href='styles.css'>");
-	out.print("<link async href='http://fonts.googleapis.com/css?family=Anton' data-generated='http://enjoycss.com' rel='stylesheet' type='text/css'//>");
-	out.print("<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js'></script>");
-	out.print("<script src='js/jquery-3.3.1.min.js'></script>");
-        out.print("</head><body>");
+
         
         request.getRequestDispatcher("/WEB-INF/banner.html").include(request, response);
 
@@ -40,7 +29,7 @@ public class Header extends HttpServlet {
             
         } else {
             String user = (String) session.getAttribute("username");
-            out.printf("<p>Welcome <span>%s</span>.</p>", user);
+            out.printf("<p>Welcome to BrendoRENT <span>%s</span>.</p>", user);
         }
         
     }

@@ -47,15 +47,14 @@ public class Home extends HttpServlet {
             while (rs.next()) {
                 double price = rs.getInt("price");
                 String comp = rs.getString("company.name");
-                String product_id = rs.getString("prod_id");
+                int product_id = rs.getInt("prod_id");
                 String name = rs.getString("name");
                 String description = rs.getString("description");
                 String frontview = rs.getString("frontview");
                 String sideview = rs.getString("sideview");
                 String backview = rs.getString("backview");
                 String cat = rs.getString("categories");
-                String event = rs.getString("event");
-                Product product = new Product(product_id, name, description, frontview, sideview, backview, price, comp, event, cat);
+                Product product = new Product(product_id, name, description, frontview, sideview, backview, price, comp, cat);
                 products.add(product);
             }
             rs.close();
