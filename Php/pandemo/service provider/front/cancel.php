@@ -1,5 +1,5 @@
 <?php
-	if(isset($_POST['btn-confirm-'.$row["prod_id"].'-'.$row["client_id"]])){
+	if(isset($_POST['btn-cancel-'.$row["prod_id"].'-'.$row["client_id"]])){
 		$update = "UPDATE request SET status=3 WHERE client_id = ".$row['client_id']." AND prod_id = ".$row['prod_id'].";";
 		$up = mysqli_query($con, $update);
 		header("Refresh:0");

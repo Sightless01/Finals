@@ -19,7 +19,7 @@
 		if (isset($_SESSION["siteuser"])) {
 			echo '<a href="../logout.php">Logout</a>';
 			echo '<a href="../addproduct.php">Add Product</a>';
-			echo '<a href="front/transaction.php">Transactions</a>';
+			echo '<a href="transaction.php">Transactions</a>';
 			$user = $_SESSION["siteuser"];
 		} else {
 			echo '<a href="http://webtechadmin.org:5001/registration?redirect=http://webtechsp.org:2018">Register</a>';

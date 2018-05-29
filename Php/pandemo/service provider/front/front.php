@@ -56,7 +56,17 @@
 			<td>';?><img src='<?php echo$row['frontview'];?>' height='200' width='200'> <?php echo '</td>
 			<td>';?><img src='<?php echo$row['sideview'];?>' height='200' width='200'> <?php echo '</td>
 			<td>';?><img src='<?php echo$row['backview'];?>' height='200' width='200'> <?php echo '</td>
-			<td>'.$row['availability'].'</td>
+			<td>';
+				if($row['availability']==1){
+					echo 'Currently Available';
+					include 'unavail.php';
+				} else if ($row['availability']==2){
+					echo 'Removed by user';
+					include 'avail.php';
+				} else {
+					echo 'Reserved';
+				}
+			echo '</td>
 			<td>';?><a href="edit.php?edit_id=<?php echo $row['prod_id']; ?>" alt="edit" >Edit</a><?php echo '</td>
 			</tr>';
 		}
