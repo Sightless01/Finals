@@ -33,9 +33,7 @@ $(document).ready( () => {
     $('#password').val() != $('#repass').val() ? errors.push({ "error" : "Password does not match" }) : "";
     if(errors.length != 0) {
       let errorRep = "";
-      console.log(errors);
       errors.forEach(error => {
-        console.log(error);
         errorRep += (error.error + "\n");
       });
       alert(errorRep);
@@ -57,7 +55,6 @@ $(document).ready( () => {
         url: 'http://webtechadmin.org:5001/register',
         statusCode: {
           400: msg => {
-            alert('test');
             let response = "Error!\n";
             responseJSON = JSON.parse(msg.responseText);
             responseJSON.forEach(res => {
@@ -67,8 +64,6 @@ $(document).ready( () => {
           }
         },
         success: data => {
-          alert('test1');
-          console.log(data);
           responseJSON = JSON.parse(data);
           alert("success!\n" + "Redirecting to: " + responseJSON.redirect);
           window.location.href = responseJSON.redirect;
@@ -90,9 +85,8 @@ $(document).ready( () => {
       url: 'http://webtechadmin.org:5001/transact',
       success: results => {
         let responseJSON = JSON.parse(results);
-        console.log(results);
         if(responseJSON.length != 0) {
-          responseJSON.forEach(result => {
+          responseJSON.forEach( result => {
             $('.transactions').append(
             `<div class="row">
           		<div class="col col-4">

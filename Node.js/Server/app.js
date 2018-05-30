@@ -24,12 +24,7 @@ app.post('/login', (req, res) => {
   db.query('SELECT username, password FROM admin WHERE username = ?',
     [ username ],
     (err, result) => {
-      console.log(err);
-      console.log(result);
       if(result.length != 0) {
-        console.log(result[0].password);
-        console.log(result[0].username);
-        console.log(result);
         if(bcrypt.compareSync(password, result[0].password)) {
           req.session.user = result[0].username;
           res.redirect('/User_Management');
@@ -71,7 +66,6 @@ app.get('/User_Management', (req, res) => {
 
 app.post('/Manage_User', (req, res) => {
   let manage = req.body.btn;
-  console.log(manage);
   for(key in manage) {
     let code = key.charAt(0);
     let id = key.replace(key.charAt(0), "");
@@ -80,28 +74,24 @@ app.post('/Manage_User', (req, res) => {
         db.query("UPDATE company SET block = 1 WHERE comp_id = ?",
           [ parseInt(id, 10) ],
           (err, results) => {
-            console.log(err);
           })
         break;
       case 'b':
         db.query("UPDATE client SET block = 1 WHERE client_id = ?",
           [ parseInt(id, 10) ],
           (err, results) => {
-            console.log(err);
           })
         break;
       case 'c':
         db.query("UPDATE company SET block = 0 WHERE comp_id = ?",
           [ parseInt(id, 10) ],
           (err, results) => {
-            console.log(err);
           })
         break;
         case 'd':
           db.query("UPDATE client SET block = 0 WHERE client_id = ?",
             [ parseInt(id, 10) ],
             (err, results) => {
-              console.log(err);
             })
           break;
     }
@@ -116,9 +106,7 @@ app.get('/transaction', (req, res) => {
       " join company on products.comp_id = company.comp_id" +
       " WHERE company.status = 1 GROUP by company.name",
     (err, result) => {
-      console.log(err);
       let transactArr = [];
-      console.log(result);
       for(let i = 0; i < result.length; i++) {
         transactArr.push({
           "name": result[i].name,
@@ -126,7 +114,6 @@ app.get('/transaction', (req, res) => {
           "total": parseInt(result[i].count) * 10
         });
       }
-      console.log(transactArr);
       res.render('transaction', { transactArr });
     })
   } else {
@@ -145,7 +132,6 @@ app.get('/registration', (req, res) => {
 });
 
 app.post('/register', (req, res) => {
-  console.log('test');
   const saltRounds = 10;
   let name = req.body.name;
   let username = req.body.uname;
@@ -182,7 +168,6 @@ app.post('/register', (req, res) => {
               db.query("INSERT INTO company (name, address, username, contact, email, password) VALUES (?, ?, ?, ?, ?, ?)",
                 [ name, address, username, cnum, email, hashed],
                 (err, results) => {
-                  console.log(err);
                 });
                 res.send(JSON.stringify(redirect));
             }
@@ -192,9 +177,7 @@ app.post('/register', (req, res) => {
     db.query("SELECT * from client where username = ?",
       [ username ],
       (err, results) => {
-        console.log(results);
         if(results.length != 0) {
-          console.log("not empty");
           errors.push({
             "error": "username already in use!"
           });
@@ -207,7 +190,6 @@ app.post('/register', (req, res) => {
                 "error": "email address is already in use!"
               });
             };
-            console.log(errors);
             if(errors.length != 0) {
               res.status(400).json(errors);
             } else {
@@ -216,7 +198,6 @@ app.post('/register', (req, res) => {
               db.query("INSERT INTO client (name, address, username, contact, email, password) VALUES (?, ?, ?, ?, ?, ?)",
                 [ name, address, username, cnum, email, hashed],
                 (err, results) => {
-                  console.log(err);
                 });
                 res.send(JSON.stringify(redirect));
             };
@@ -255,13 +236,11 @@ app.post('/Manage_Registration', (req, res) => {
         db.query("UPDATE company SET status = 1 WHERE comp_id = ?",
         [ parseInt(id, 10) ],
         (err, results) => {
-          console.log(err);
         })
       } else {
         db.query("DELETE from company where comp_id = ?",
           [ parseInt(id, 10) ],
           (err, results) => {
-            console.log(err);
           })
       }
     } else {
@@ -269,13 +248,11 @@ app.post('/Manage_Registration', (req, res) => {
         db.query("UPDATE client SET status = 1 WHERE client_id = ?",
         [ parseInt(id, 10) ],
         (err, results) => {
-          console.log(err);
         })
       } else {
         db.query("DELETE from client where client_id = ?",
           [ parseInt(id, 10) ],
           (err, results) => {
-            console.log(err);
           })
       }
     }
@@ -284,16 +261,16 @@ app.post('/Manage_Registration', (req, res) => {
 })
 
 app.post('/transact', (req, res) => {
+  console.log(req.body);
   let start = req.body.start.split('-');
   let end = req.body.end.split('-');
-  db.query("SELECT company.name, COUNT(date_paid) as count " +
-    "from transaction join products ON transaction.prod_id = products.prod_id" +
+  db.query("SELECT company.name, COUNT(date_paid) as count" +
+    " from transaction join products ON transaction.prod_id = products.prod_id" +
     " join company on products.comp_id = company.comp_id" +
     " WHERE company.status = 1 AND date_paid BETWEEN '?-?-1' AND '?-?-31'" +
     " GROUP by company.name",
   [ parseInt(start[0], 10), parseInt(start[1], 10), parseInt(end[0], 10), parseInt(end[1], 10) ],
   (err, results) => {
-    console.log(err);
     let transactArr = [];
     for(let i = 0; i < results.length; i++) {
       transactArr.push({
@@ -307,7 +284,7 @@ app.post('/transact', (req, res) => {
 })
 
 const port = process.env.PORT || 5001;
-const ip = '192.168.1.12';
+const ip = '192.168.1.117';
 app.listen(port, ip, () => {
   console.log('Server started @ http://webtechadmin.org:' + port);
 });
