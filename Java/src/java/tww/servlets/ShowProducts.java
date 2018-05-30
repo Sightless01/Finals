@@ -46,7 +46,7 @@ public class ShowProducts extends HttpServlet {
         Date sqldate = new Date((currenttime.getTime()).getTime());
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
+            c = DriverManager.getConnection("jdbc:mysql://192.168.43.64:3306/database", "root", "");
             c.setAutoCommit(false);
             PreparedStatement ps = c.prepareStatement("select * from request where status=1 and start_date <= ? and end_date >= ?");
             ps.setDate(1, (java.sql.Date) sqldate);
@@ -72,7 +72,7 @@ public class ShowProducts extends HttpServlet {
         }
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
+            c = DriverManager.getConnection("jdbc:mysql://192.168.43.64:3306/database", "root", "");
             c.setAutoCommit(false);
             PreparedStatement ps = c.prepareStatement("select * from Products join company on products.comp_id = company.comp_id where availability = 1");
             ResultSet rs = ps.executeQuery();
@@ -138,12 +138,12 @@ public class ShowProducts extends HttpServlet {
                 out.println("  <div class='row'>");
                 out.println("  <div class='column'>");
                 out.println("  <div class='card'>");
-                out.println("   <img src='" + frontview.substring(1) + "' id='imahe' style='width:200px;height:425px'>");
+                out.println("   <img src='" + frontview + "' id='imahe' style='width:200px;height:425px'>");
                 if (!backview.equals("not")) {
-                    out.println("   <img src='" + backview.substring(1) + "' id='imahe' style='width:200px;height:425px'>");
+                    out.println("   <img src='" + backview + "' id='imahe' style='width:200px;height:425px'>");
                 }
                 if (!sideview.equals("not")) {
-                    out.println("   <img src='" + sideview.substring(1) + "' id='imahe' style='width:200px;height:425px'>");
+                    out.println("   <img src='" + sideview + "' id='imahe' style='width:200px;height:425px'>");
                 }
 
                 out.println("    <div class='containero'>");
@@ -155,7 +155,7 @@ public class ShowProducts extends HttpServlet {
                 out.println(" <input class='datafield' type='date' name='startdate' required>");
                 out.println(" Rent Period:");
                 out.println(" <input type='number' name='rentPeriod' min='1' max='30' required>");
-                out.println("   <p><button value='" + prod + "' name='rent' class='button'>Rent</button></p>");
+                out.println("   <p><button onclick=\"myFunction()\" value='" + prod + "' name='rent' class='button'>Rent</button></p>");
                 out.println("  </div>");
                 out.println("  </div>");
                 out.println("  </div>");
@@ -180,6 +180,12 @@ public class ShowProducts extends HttpServlet {
                 out.println(" var y = document.getElementsByClassName('datafield');");
                 out.println(" for (var i = 0; i < y.length; i++) {");
                 out.println(" y[i].setAttribute('min', today);");
+                out.println(" }");
+                out.println(" </script>");
+                out.println(" <script>");
+
+                out.println(" function myFunction() {");
+                out.println(" confirm(\"Rent this item?\");");
                 out.println(" }");
                 out.println(" </script>");
             }

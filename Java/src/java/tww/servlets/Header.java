@@ -30,7 +30,13 @@ public class Header extends HttpServlet {
         } else {
             String user = (String) session.getAttribute("username");
             String status = (String) session.getAttribute("status");
-            out.printf("<p>Welcome to BrendoRENT <span>%s</span>.", user);
+            
+            if(status==null){
+                status = "not null";
+                out.print("<p>You are not logged in.</p>");
+            } else{
+                out.printf("<p>Welcome to BrendoRENT <span>%s</span>.", user);
+            }
             if(status.equals("blocked")){
               out.printf("Warning! You are blocked by the admin, contact the admin now!");  
             }

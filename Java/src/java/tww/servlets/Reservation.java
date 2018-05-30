@@ -31,32 +31,34 @@ public class Reservation extends HttpServlet {
         HttpSession session = request.getSession();
 
         String username = (String) session.getAttribute("username");
+        String stats = (String) session.getAttribute("stats");
         response.setContentType("text/html;charset=UTF-8");
 
         Connection c = null;
         PrintWriter out = response.getWriter();
-        String reservationDisplay = "    <table id=\"reservation\" style=\"width:80%; margin:auto; margin-bottom:50px;\">"
+        String reservationDisplay = "    <form action=\"CancelReq\" method=\"POST\">"
+                + "    <table id=\"reservation\" style=\"width:80%; margin:auto; margin-bottom:50px;\">"
                 + "        <thead>"
                 + "            <tr>"
+                + "                <th></th>"
                 + "                <th>Product</th>"
                 + "                <th>Date Requested</th>"
                 + "                <th>Rent Start Period</th>"
                 + "                <th>Rent End Period</th>"
                 + "                <th>Price</th>"
                 + "                <th>Status</th>"
-                + "                <th></th>"
                 + "            </tr>"
                 + "        </thead>";
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
+            c = DriverManager.getConnection("jdbc:mysql://192.168.43.64:3306/database", "root", "");
             PreparedStatement ps = c.prepareStatement("select * from request join products on request.prod_id  = products.prod_id join client on request.client_id = client.client_id");
             ResultSet rs = ps.executeQuery();
             if (rs.next() == false) {
                 reservationDisplay = "<p> No reservations</p>";
             }
+            rs.previous();
             while (rs.next()) {
-                System.out.println(" gbfdhb");
                 if (rs.getString("client.username").equalsIgnoreCase(username)) {
                     String productName = rs.getString("products.name");
                     Date dateReq = rs.getDate("request_date");
@@ -64,8 +66,10 @@ public class Reservation extends HttpServlet {
                     Date dateEnd = rs.getDate("end_date");
                     int price = rs.getInt("price");
                     String status = rs.getString("status");
+                    String prod = rs.getString("prod_id");
                     reservationDisplay += "        <tbody>"
                             + "            <tr>"
+                            + "                <td><button onclick=\"myFunction()\" value='" + prod + "' name='prod' class='button'>Cancel</button></td>"
                             + "                <td>" + productName + "</td>"
                             + "                <td> " + dateReq + "</td>"
                             + "                <td> " + dateStart + "</td>"
@@ -74,12 +78,21 @@ public class Reservation extends HttpServlet {
                     if (status==null) {
                         status = "pending..";
                         reservationDisplay += " <td> " + status + "</td>"
-                                + "                <td><a class=\"link-3\" href=\"cancelReq\">Cancel</a></td>"
                                 + "            </tr>"
                                 + "        </tbody>";
                     } else if (status.equals("0")) {
                         status = "Request was rejected";
                         reservationDisplay += " <td> " + status + "</td>"
+                                + "            </tr>"
+                                + "        </tbody>";
+                    } else if(status.equals("2")) {
+                        status = "Cancelled Request";
+                        reservationDisplay += " <td>" + status + "</td>"
+                                + "            </tr>"
+                                + "        </tbody>";
+                    } else if(status.equals("3")) {
+                        status = "Cancelled Accepted Request";
+                        reservationDisplay += " <td>" + status + "</td>"
                                 + "            </tr>"
                                 + "        </tbody>";
                     } else {
@@ -91,7 +104,8 @@ public class Reservation extends HttpServlet {
 
                 }
             }
-            reservationDisplay += "        </table>";
+            reservationDisplay += "        </table>"    
+                    + "    </form>";
             rs.close();
 
         } catch (Exception e) {
@@ -116,9 +130,20 @@ public class Reservation extends HttpServlet {
         } else {
             request.getRequestDispatcher("/WEB-INF/topicMenu.html").include(request, response);
         }
+        
         out.println("    <br><h1>Requests</h1>");
-
+        
         out.println(reservationDisplay);
+        out.println(" <script>");
+
+                out.println(" function myFunction() {");
+                out.println(" confirm(\"Cancel Request?\");");
+                out.println(" var stats=\""+stats+"\";");
+                
+                out.println(" if(stats != null)");
+                out.println(" alert(\""+stats+" \");");
+                out.println(" }");
+        out.println(" </script>");
     }
 
     @Override

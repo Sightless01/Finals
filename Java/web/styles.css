@@ -191,10 +191,16 @@ nav {
   background-color:transparent;
 }
 
-@media(max-width:568px){
+@media(max-width: 800px){
+    .login-box {
+        width: 95%;
+    }
+  /*.login-box {
+    width: 95%;
+  }
   .pimg1, .pimg2, .pimg3{
     background-attachment:scroll;
-  }
+  }*/
 }
 
 /*CONTENT TITLE*/
