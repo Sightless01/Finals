@@ -46,7 +46,7 @@ public class ShowProducts extends HttpServlet {
         Date sqldate = new Date((currenttime.getTime()).getTime());
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://192.168.43.64:3306/database", "root", "");
+            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
             c.setAutoCommit(false);
             PreparedStatement ps = c.prepareStatement("select * from request where status=1 and start_date <= ? and end_date >= ?");
             ps.setDate(1, (java.sql.Date) sqldate);
@@ -72,7 +72,7 @@ public class ShowProducts extends HttpServlet {
         }
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://192.168.43.64:3306/database", "root", "");
+            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
             c.setAutoCommit(false);
             PreparedStatement ps = c.prepareStatement("select * from Products join company on products.comp_id = company.comp_id where availability = 1");
             ResultSet rs = ps.executeQuery();
@@ -115,7 +115,7 @@ public class ShowProducts extends HttpServlet {
         } else {
             request.getRequestDispatcher("/WEB-INF/topicMenu.html").include(request, response);
         }
-        request.getRequestDispatcher("/WEB-INF/filter.html").include(request, response);
+        request.getRequestDispatcher("Filter").include(request, response);
         if (products.size() == 0) {
             out.println("    <h2>No products available.</h2>");
         }
@@ -134,7 +134,7 @@ public class ShowProducts extends HttpServlet {
             String comp_id = product.getcom();
             if (!list.contains(prod)) {
                 out.println("  <div class='cont'>");
-                out.println("  <form method='POST' action='rentMe'>");
+                out.println("  <form method='POST' action='rentMe' id=\"rentform\">");
                 out.println("  <div class='row'>");
                 out.println("  <div class='column'>");
                 out.println("  <div class='card'>");

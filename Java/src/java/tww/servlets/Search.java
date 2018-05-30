@@ -57,7 +57,7 @@ public class Search extends HttpServlet {
         if(categ.equals("any")){
             categ="";
         }else{
-            categ=" and products.categories="+categ;
+            categ=" and products.categories=\""+categ+"\"";
         }
         Connection c = null;
         ArrayList<Product> products = new ArrayList<>();
@@ -73,7 +73,7 @@ public class Search extends HttpServlet {
                     + ret +categ+presyo);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://192.168.43.64:3306/database", "root", "");
+            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
             c.setAutoCommit(false);
             String sql ="select * from request where status=1 "+date;
             PreparedStatement ps = c.prepareStatement(sql);
@@ -102,7 +102,7 @@ public class Search extends HttpServlet {
                     + ret +categ+presyo);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://192.168.43.64:3306/database", "root", "");
+            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
             c.setAutoCommit(false);
             PreparedStatement ps = c.prepareStatement("select products.price, products.prod_id, products.name, "
                     + "products.description, products.sideview, products.frontview, products.backview, products.categories,company.name, products.availability"
@@ -149,9 +149,6 @@ public class Search extends HttpServlet {
         out.print("<meta http-equiv='X-UA-Compatible' content='ie=edge'>");
         out.print("<title>Webtech2018</title>");
         out.print("<link rel='stylesheet' href='styles.css'>");
-        out.print("<link async href='http://fonts.googleapis.com/css?family=Anton' data-generated='http://enjoycss.com' rel='stylesheet' type='text/css'//>");
-        out.print("<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js'></script>");
-        out.print("<script src='js/jquery-3.3.1.min.js'></script>");
         out.print("</head><body>");
 
         request.getRequestDispatcher("/WEB-INF/banner.html").include(request, response);
@@ -171,7 +168,7 @@ public class Search extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/topicMenu.html").include(request, response);
         }
         out.println("    <h1>Product List</h1>");
-        request.getRequestDispatcher("/WEB-INF/filter.html").include(request, response);
+        request.getRequestDispatcher("Filter").include(request, response);
 
         if (products.size() == 0) {
             out.println("    <h2>No products available.</h2>");
@@ -186,7 +183,7 @@ public class Search extends HttpServlet {
             double price = product.getPrice();
             String comp_id = product.getcom();
             out.println("  <div class='cont'>");
-            out.println("  <form method='POST' action='rentMe'>");
+            out.println("  <form method='POST' action='rentMe' id=\"rentform\">");
             out.println("  <div class='row'>");
             out.println("  <div class='column'>");
             out.println("  <div class='card'>");

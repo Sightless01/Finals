@@ -1,46 +1,6 @@
 
-<form method='POST' action='search'>
+<form method='POST' action='search' id="searchform">
    Price (below):
   <input type='number' name='price' min="0" step="10"  placeholder='Enter Price' >
-  Date:
+  Date to be rented:
   <input id="datefield" type="date" name="date">
-     Category
-        <select name='cat'>
-        <option value='any'>Any</option>
-        <option value='tops'>Tops</option>
-        <option value='jacket'>Jacket</option>
-        <option value='slipper'>Slipper</option>
-        <option value='shoes'>Shoes</option>
-        <option value='dress'>Dress</option>
-        <option value='longsleeve'>Longsleeve</option>
-        <option value='tuxedo'>Tuxedo</option>
-        </select>
-     Proprietor
-        <select name='ret'>
-        <option value='any'>Any</option>
-        <option value='champion'>Champion</option>
-        <option value='adidas'>Adidas</option>
-        <option value='hiit'>Hiit</option>
-        <option value='nautica'>Nautica</option>
-        <option value='montague burton'>Montague Burton</option>
-        </select>
-<button type='submit' class='searchbttn' >Search</button>
-</form>
-<script>
-    
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
-    var yyyy = today.getFullYear();
-
-    if(dd<10) {
-        dd = '0'+dd
-    } 
-
-    if(mm<10) {
-        mm = '0'+mm
-    } 
-
-    today = yyyy + '-' + mm + '-' + dd  ;
-    document.getElementById('datefield').setAttribute("min", today);
-</script>
