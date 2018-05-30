@@ -4,35 +4,48 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>BrendoRent Transaction History</title>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link rel="stylesheet" href="login.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<meta name="viewport" content="width-device-width, initial-scale=1, shrink-to-fit-no">
+		<link rel="stylesheet" href="../css/bootstrap-grid.min.css">
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="front.css">
+		<Script type="text/javascript" src="#"></Script>
+		<title>BrendoRENT Services</title>      
 	</head>
-
+	<header class="page-heading">
+		<div class="contain">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>BrendoRENT Services</h2>
+				</div>
+			</div>
+		</div>
+	</header>	
 <body>
-<div class="navbar">    
-	<?php
-		if (isset($_SESSION["siteuser"])) {
-			echo '<a href="../logout.php">Logout</a>';
-			echo '<a href="../addproduct.php">Add Product</a>';
-			$user = $_SESSION["siteuser"];
-		} else {
-			echo '<a href="http://webtechadmin.org:5001/registration?redirect=http://webtechsp.org:2018">Register</a>';
-		}
-	?>	
-  <a href="../index.php">Home</a></li>
-</div>
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+		<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="navbar-nav mr-auto"> 
+				<?php
+					if (isset($_SESSION["siteuser"])) {
+						$user = $_SESSION["siteuser"];
+						echo '<a href="../index.php">Home</a>';
+						echo '<a href="front.php">Products</a>';
+						echo '<a href="../addproduct.php">Add Product</a>';
+						echo '<a href="requests.php">Pending Requests</a>';
+						echo '<a href="../logout.php">Logout</a>';
+					} else {
+						echo '<a href="http://webtechadmin.org:5001/registration?redirect=http://webtechsp.org:2018">Register</a>';
+					}
+				?>	
+			</ul>
+		</div>
+	</nav>
 <h2>Transaction History</h2>
 <?php
-	$host = "localhost";
-	$username = "root";
-	$pass = "";
-	$db = "database";
-
+	include '../dbase.php';
 	$con = new mysqli($host, $username, $pass, $db);
 	if ($con->connect_error) {
 		die("Connection failed: " . $con->connect_error);

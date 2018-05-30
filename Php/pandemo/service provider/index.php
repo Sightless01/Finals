@@ -3,49 +3,90 @@
 ?>	
 <!DOCTYPE html>
 <html>
-<head>
-  <title>BrendoRent Company Services</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="front/front.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width-device-width, initial-scale=1, shrink-to-fit-no">
+		<link rel="stylesheet" href="css/bootstrap-grid.min.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="front/front.css">
+		<script type="text/javascript" src="#"></script>
+		<title>BrendoRENT</title>
+	</head>
 	<body>
-		<div container>
-			<div class="navbar">    
-				<?php
-					if (isset($_SESSION["siteuser"])) {
-						echo '<a href="logout.php">Logout</a></li>';
-						echo '<a href="front/requests.php">Pending Requests</a>';
-						echo '<a href="addproduct.php">Add Product</a>';
-						echo '<a href="front/front.php">Check Products</a><';
-						echo '<a href="front/transaction.php">Transactions</a>';
-						$user = $_SESSION['siteuser'];
-						echo '<a>Welcome, ' .$user .'!</a>';
-					} else {
-						echo '<a href="login.php">Log In</a>';
-						echo '<a href="http://webtechadmin.org:5001/registration?redirect=http://webtechsp.org:2018">Register</a>';
-					}
-				?>	
+		<header class="page-heading">
+			<div class="contain">
+				<div class="row">
+					<div class="col-md-12">
+						<h2>BrendoRENT Services</h2>
+					</div>
+				</div>
 			</div>
-				<p>
-					<h1>Welcome to the BrendoRent Company Services Site!</h1>
-					<h3>Need a spot to put up your products?</h3>
-					<h3>Want a convenient place to view current orders?</h3>
-					<h3>You've come to the right place!</h3>
+		</header>
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+			<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+		  	</button>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="navbar-nav mr-auto">
 					<?php
 						if (isset($_SESSION["siteuser"])) {
-							echo '<a href="front/front.php"><h2>Check all my products</h2></a>';
+							echo '<a href="logout.php">Logout</a>';
+							echo '<a href="addproduct.php">Add Product</a>';
+							echo '<a href="front/front.php">Check Products</a>';
+							$user = $_SESSION['siteuser'];
+							echo '<a>Welcome, ' .$user .'!</a>';
 						} else {
-							echo '<a href="http://webtechadmin.org:5001/registration?redirect=http://webtechsp.org:2018"><h2>Register Now!</h2></a>';
+							echo '<a href="login.php">Log In</a>';
+							echo '<a href="http://webtechadmin.org:5001/registration?redirect=http://webtechsp.org:2018">Register</a>';
 						}
-					?>
-				</p>
-				<footer class="footer-site">
-						<p>BrendoRent Service Provider Module</p>
-				</footer>
-		</div>	
-	</body>
+					?>	
+				</ul>
+			</div>
+    	</nav>
+	
+		
+		
+		<div class="content">
+			<div class="image">
+				<img class=" mb-5 d-block" src="css/logo.png" alt="" width="300px" height="300px">
+			</div>
+			<div class="container">
+        		<h4 class="text-uppercase">Welcome to the BrendoRENT Services Site!</h4>
+        		<hr class="star-light">
+        		<h4 class="font-weight-light ">Need a spot to put up your products?</h4>
+				<h4 class="font-weight-light">Want a convenient place to view current orders?</h4>
+				<h4 class="font-weight-light">You've come to the right place!</h4>
+      		</div>
+			<?php
+				if (isset($_SESSION["siteuser"])) {
+					echo '<a href="front/front.php"><h2>Check all my products</h2></a>';
+				} else {
+					echo '<a href="http://webtechadmin.org:5001/registration?redirect=http://webtechsp.org:2018"><h2>Register Now!</h2></a>';
+				}
+			?>
+		
+			<br>
+			<br>
+			<br>
+			<br>
+		<footer class="footer">
+			<div class="contain">
+				<hr>
+				<div class="row">
+					<div class="col footer">
+						<p>Web Systems and Technologies</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<p>&copy; Group 2. 2018</p>
+					</div>
+				</div>
+			</div>
+		</footer></div>
+		
+		<script src="javaScript.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+			</body>
+
 </html>

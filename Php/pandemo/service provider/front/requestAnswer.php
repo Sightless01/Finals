@@ -14,15 +14,7 @@
 	};
 ?>
 
-
-<!DOCTYPE html>
-<html>
-	<body>
-		<div class = "container">
-			<form method="post">
-				<button type="submit" name="btn-confirm<?php echo '-'.$row['prod_id'].'-'.$row['client_id']?>" id="btn-confirm<?php echo '-'.$row['prod_id'].'-'.$row['client_id']?>">Accept</button>
-				<button type="submit" name="btn-reject<?php echo '-'.$row['prod_id'].'-'.$row['client_id']?>" id="btn-reject<?php echo '-'.$row['prod_id'].'-'.$row['client_id']?>">Reject</button>
-			</form>
-		</div>
-	</body>
-</html>
+<form method="post">
+	<button type="submit" name="btn-confirm<?php echo '-'.$row['prod_id'].'-'.$row['client_id']?>" id="btn-confirm<?php echo '-'.$row['prod_id'].'-'.$row['client_id']?>">Accept</button>
+	<button type="submit" name="btn-reject<?php echo '-'.$row['prod_id'].'-'.$row['client_id']?>" id="btn-reject<?php echo '-'.$row['prod_id'].'-'.$row['client_id']?>">Reject</button>
+</form>

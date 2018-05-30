@@ -1,6 +1,7 @@
 <?php
-//Database Connection
 
+session_start();
+$user = $_SESSION['siteuser'];
 include '../dbase.php';
 
 $conn = new mysqli($host, $username, $pass, $db);
@@ -14,40 +15,50 @@ if(isset($_GET['edit_id'])){
  $result = mysqli_query($conn, $sql);
  $row = mysqli_fetch_array($result);
 }
+
 //Update Information
 if(isset($_POST['btn-update'])){
  	$name = $_POST['name'];
  	$description = $_POST['description'];
 	$price = $_POST['price'];
- 	$frontview = $_POST['frontview'];
- 	$sideview = $_POST['sideview'];
- 	$backview = $_POST['backview'];
+	
  	if($name!=""){
- 		 $update = "UPDATE products SET name='$name' WHERE prod_id=". $_GET['edit_id'];
+ 		$update = "UPDATE products SET name='$name' WHERE prod_id=". $_GET['edit_id'];
 		$up = mysqli_query($conn, $update);
-
  	}if($description!=""){
- 		 $update = "UPDATE products SET description='$description' WHERE prod_id=". $_GET['edit_id'];
- 		 $up = mysqli_query($conn, $update);
+ 		$update = "UPDATE products SET description='$description' WHERE prod_id=". $_GET['edit_id'];
+ 		$up = mysqli_query($conn, $update);
  	}if($price!=""){
- 		 $update = "UPDATE products SET price='$price' WHERE prod_id=". $_GET['edit_id'];
- 		 $up = mysqli_query($conn, $update);
- 	}if($frontview!=""){
- 		 $update = "UPDATE products SET frontview='image/$frontview' WHERE prod_id=". $_GET['edit_id'];
- 		 $up = mysqli_query($conn, $update);
- 	}if($sideview!=""){
- 		 $update = "UPDATE products SET sideview='image/$sideview' WHERE prod_id=". $_GET['edit_id'];
- 		 $up = mysqli_query($conn, $update);
- 	}if($backview!=""){
- 		 $update = "UPDATE products SET backview='image/$backview' WHERE prod_id=". $_GET['edit_id'];
- 		 $up = mysqli_query($conn, $update);
+ 		$update = "UPDATE products SET price='$price' WHERE prod_id=". $_GET['edit_id'];
+ 		$up = mysqli_query($conn, $update);
+ 	}if(isset($_FILES['frontview']['name']) and ($_FILES['frontview']['name']!='')){
+		$filefront = $_FILES["frontview"]["name"];
+		$tempfront = $_FILES["frontview"]["tmp_name"];
+		$folderfront = 'http://database:2018/image/'.$user.'/'.$filefront;
+		move_uploaded_file($tempfront, '../image/'.$user.'/'.$filefront);
+		$update = "UPDATE products SET frontview='$folderfront' WHERE prod_id=". $_GET['edit_id'];
+ 		$up = mysqli_query($conn, $update);	
+ 	}if(isset($_FILES['sideview']['name']) and ($_FILES['sideview']['name']!='')){
+		$fileside = $_FILES["sideview"]["name"];
+		$tempside = $_FILES["sideview"]["tmp_name"];
+		$folderside = 'http://database:2018/image/'.$user.'/'.$fileside;
+		move_uploaded_file($tempside, '../image/'.$user.'/'.$fileside);
+ 		$update = "UPDATE products SET sideview='$folderside' WHERE prod_id=". $_GET['edit_id'];
+ 		$up = mysqli_query($conn, $update);
+ 	}if(isset($_FILES['backview']['name'])and ($_FILES['backview']['name']!='')){
+		$fileback = $_FILES["backview"]["name"];
+		$tempback = $_FILES["backview"]["tmp_name"];
+		$folderback = 'http://database:2018/image/'.$user.'/'.$fileback;
+		move_uploaded_file($tempback, '../image/'.$user.'/'.$fileback);
+ 		$update = "UPDATE products SET backview='$folderback' WHERE prod_id=". $_GET['edit_id'];
+ 		$up = mysqli_query($conn, $update);
  	}
  if(!isset($sql)){
- die ("Error $sql" .mysqli_connect_error());
+	die ("Error $sql" .mysqli_connect_error());
  }
  else
  {
- header("location: display.php");
+	header("location: front.php");
  }
 }
 ?>
@@ -65,7 +76,7 @@ if(isset($_POST['btn-update'])){
 </head>
 <body>
 <div class="container">
-	<form method="post">
+	<form method="post"  enctype="multipart/form-data">
 	<h1>Product Editing</h1>
 	<div class="form-group">
 		<label for="pname">Name: </label>
@@ -87,8 +98,8 @@ if(isset($_POST['btn-update'])){
 		<img src="<?php echo $row['backview'];?> " height='200' width='200'><br/>
 		<input type="file" name="backview"/><br/>
 	</div>
-		<button type="submit" name="btn-update" id="btn-update" onClick="update()"><strong>Update</strong></button>
-		<button type="button" value="button" onclick="location.href = 'front.php';">Cancel</button></a>
+		<input type="submit" value="update "name="btn-update" id="btn-update" onClick="update()">
+		<input type="button" value="Cancel" onclick="location.href = 'front.php';">
 	</form>
 </div>
 <!-- Alert for Updating -->

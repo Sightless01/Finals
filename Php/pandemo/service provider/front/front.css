@@ -1,31 +1,27 @@
-/* search box */
-.sera{
-    width: 250px;
-    height: 45px;
-    margin-bottom: 15px;
-    margin-top: 10px;
-    float: right;
-    margin-right: -130px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
+
+body, html {
+  padding: 0;
+  margin: 0;
+  min-height: 100%;
 }
 
-/* When the input field gets focus, change its width to 100% */
-input[type=text]:focus {
-    width: 65%;
+html {
+  position: relative;
 }
 
-/* Navbar container */
+body {
+  margin-bottom: 8rem !important;
+}
+
 .navbar {
   overflow: hidden;
-  background-color: #0d0d0d;
+  background-color: #2f2f2f;
   font-family: Arial;
   width: 100%;
   float: right;
   color: white;
 }
 
-/* Links inside the navbar */
 .navbar a{
   float: right;
   font-size: 16px;
@@ -35,19 +31,181 @@ input[type=text]:focus {
   text-decoration: none;
 }
 
-/* FOOTER */
-
-.footer-site{
-	background-color: #0d0d0d;
-	box-sizing: border-box;
-	width: 100%;
-	text-align: left;
-	font: normal 16px sans-serif;
-	padding: 45px 50px;
-    float: left;
-    color: #ffffff;
+footer.footer {
+  position:relative;
+  background: #343a40;
+  height: 8rem;
+  font-family: none;
+  clear: both;
+  width: 100%;
 }
 
-.footer-left{
-    text-color: white;
+footer.footer div.col.footer p {
+  color: orange;
 }
+
+#colors {
+	color: darkorange;
+}
+
+footer.footer div.col p {
+  text-align: center;
+  color: #fff;
+}
+
+header.page-heading {
+	background: #2f2f2f;
+    border-top: 3px solid #d4d4d4;
+    border-bottom: 3px solid #d4d4d4;
+    position: relative;
+    text-align: center;
+}
+
+div.col-md-12 {
+	position: relative;
+  	min-height: 1px;
+	padding-top: 5px;
+  	padding-left: 15px;
+  	padding-right: 15px;
+	color: white;
+	font-family: none;
+}
+
+div.nav{
+	font-size: 15px;
+  	margin-top: 10px;
+	margin-bottom: 10px;
+	color: #999999;
+  	text-decoration: none;
+	display: inline-block;
+  	padding: 10px;
+	background: #307D7E;
+	max-height: 50px;
+	min-width: 100px;
+	text-align: center;
+	
+}
+
+div.navContainer {
+	margin-left: 43%;
+	margin-right: 43%;
+}
+
+div {
+    display: block;
+}
+
+a {
+	color: white;
+	font-size: 12px;
+	text-decoration: none;
+	display: inline-block;
+	text-align: center;
+	position: relative;
+}
+
+hr {
+	background-color: darkorange;
+  	margin-left: 30%;
+  	margin-right: 30%;
+}
+
+/* LOGIN */
+div.container-login {
+	background-color: #2f2f2f;
+	margin-left: 30%;
+	margin-right: 30%;
+	margin-top: 5%;
+	border-radius: 10px;	
+}
+
+form {
+	padding: 20px;
+	color: aliceblue;
+	
+}
+
+button.login {
+    background-color: #004d4d;
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+	color: 3px solid #d4d4d4;
+	font-family: none;
+	text-decoration: none;
+}
+
+#margin {
+	margin-top: 40px;
+}
+
+div.head {
+	text-align: center;
+	text-decoration: none;
+	font-family: none;
+}
+
+div.addProduct {
+	font-size: 15px;
+	color: 3px solid #d4d4d4;
+}
+
+div.container-product {
+	background-color: #2f2f2f;
+	margin-top: 7%;
+	margin-bottom: 2%;
+	margin-left: 20%;
+	margin-right: 20%;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+div.add {
+	margin: auto;
+	margin-top: 5%;
+	margin-bottom: 5%;
+	text-align: center;
+	border-radius: 5px;
+}
+
+div.container-footer {
+	margin-bottom: 2%;
+}
+
+div.content {
+	background-color: darkslategrey;
+	height: 750px;
+	text-align: center;
+	color: white;
+}
+
+hr.star-light {
+  border-color: #fff;
+}
+
+hr.star-light:after {
+  color: #fff;
+  background-color: #18BC9C;
+}
+
+div.container {
+
+}
+
+div.image {
+	margin: auto;
+	margin-left: 37%;
+	margin-right: 20%;
+	margin-top: 5%;
+}
+
+#edit{
+	color: black;
+}
+/*@media screen and (max-width: 680px) {
+  nav.topnav a:not(:nth-child(6)){
+    display:none;
+  }
+
+}*/
+
