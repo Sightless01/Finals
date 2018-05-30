@@ -21,6 +21,7 @@ div.row, div.form-row {
 }
 
 div.custom-form {
+  margin-top: 5%;
   padding-bottom: 3%;
 }
 
@@ -37,13 +38,13 @@ div#margin {
 
 div.login {
   background-color: #343a40;
-  margin-top: 3em;
+  padding-bottom: 9em;
+  margin-top: 1em;
 }
 
 @media (min-width: 768px) {
   div.login {
     width: 60%;
-    margin-top: 3em;
   }
 }
 
