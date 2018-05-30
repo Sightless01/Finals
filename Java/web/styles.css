@@ -1,11 +1,11 @@
 body{
-	margin: 0;
-	font-family: Anton,Arial, Helvetica, sans-seif;
-	background: #333;
-	color: #fff;
-	font-size: 1.1em;
-	line-height: 1.5;
-	text-align: center;
+  margin: 0;
+  font-family: Anton,Arial, Helvetica, sans-seif;
+  background: #333;
+  color: #fff;
+  font-size: 1.1em;
+  line-height: 1.5;
+  text-align: center;
 }
 
  @media only screen and (max-width:1199px) {
@@ -31,8 +31,8 @@ body{
 }
 
 #boxes .box img{
-	width:50px;
-	margin: auto;
+  width:50px;
+  margin: auto;
     width: 60%;
     padding: 1px;
   
@@ -84,7 +84,7 @@ footer{
   text-decoration: none;
   padding: 0 10px;
   margin: 0 10px;
-  	font: normal 30px/normal "Anton", Helvetica, sans-serif;
+    font: normal 30px/normal "Anton", Helvetica, sans-serif;
 }
 .link-3:hover {
   background-color: #ffffff;
@@ -238,57 +238,57 @@ transform-origin: 50% 50% 0;
 }
 
 .content-sub{
-	color: rgba(0,0,0,.6);
-	text-shadow: rgba(0,0,0,.2) 2px 6px 5px,rgba(255,255,255,.4) 0 -4px 30px;
-	font: normal 35px/normal "Anton", Helvetica, sans-serif;
-	position:right;
+  color: rgba(0,0,0,.6);
+  text-shadow: rgba(0,0,0,.2) 2px 6px 5px,rgba(255,255,255,.4) 0 -4px 30px;
+  font: normal 35px/normal "Anton", Helvetica, sans-serif;
+  position:right;
 }
 
 /*Table*/
 
 .divTable{
-	display: table;
-	width: 100%;
+  display: table;
+  width: 100%;
 }
 .divTableRow {
-	display: table-row;
+  display: table-row;
 }
 .divTableHeading {
-	background-color: #EEE;
-	display: table-header-group;
+  background-color: #EEE;
+  display: table-header-group;
 }
 .divTableCell, .divTableHead {
-	border: 1px solid #999999;
-	display: table-cell;
-	padding: 3px 10px;
+  border: 1px solid #999999;
+  display: table-cell;
+  padding: 3px 10px;
 }
 .divTableHeading {
-	background-color: #EEE;
-	display: table-header-group;
-	font-weight: bold;
+  background-color: #EEE;
+  display: table-header-group;
+  font-weight: bold;
 }
 .divTableFoot {
-	background-color: #EEE;
-	display: table-footer-group;
-	font-weight: bold;
+  background-color: #EEE;
+  display: table-footer-group;
+  font-weight: bold;
 }
 .divTableBody {
-	display: table-row-group;
+  display: table-row-group;
 }
 
 
 .intro{
-	position:relative;
+  position:relative;
 }
 
 
 /* Create two equal columns that floats next to each other */
 .column {
     width: 50%;
-	padding: 30px;
+  padding: 30px;
     height: 45%; /* Should be removed. Only for demonstration */
-	display: block;
-	margin: 0 auto;
+  display: block;
+  margin: 0 auto;
 }
 
 
@@ -308,39 +308,39 @@ transform-origin: 50% 50% 0;
 }
 
 #servlet img{
-	width: 250px;
-	height: 250px;
-	margin: auto;
+  width: 250px;
+  height: 250px;
+  margin: auto;
     padding: 1px;
 }
 
 #php img{
-	width: 250px;
-	height: 250px;
-	margin: auto;
+  width: 250px;
+  height: 250px;
+  margin: auto;
     padding: 1px;
 }
 
 #node img{
-	width: 250px;
-	height: 250px;
-	margin: auto;
+  width: 250px;
+  height: 250px;
+  margin: auto;
     padding: 1px;
 }
 
 #owasp img{
-	width: 250px;
-	height: 250px;
-	margin: auto;
+  width: 250px;
+  height: 250px;
+  margin: auto;
     padding: 1px;
 }
 
 #sec1a {
-	text-align: center;
-	font-size:1em;
+  text-align: center;
+  font-size:1em;
 }
 table{
-	width: 100%;
+  width: 100%;
         border-collapse: collapse;
 }
 table, th, td {
@@ -538,6 +538,10 @@ div#slider figure {
     height: 100%;
     display: block;
   }
+
+  #rentform {
+    margin-right: 20px;
+  }
 }
 
 @media(max-width: 740px) {
@@ -554,6 +558,12 @@ div#slider figure {
         border-bottom: 1px solid black;
     }
     
+    .login-box {
+        width: 320px;
+    }
+}
+
+@media(max-width: 845px) {    
     #searchform {
         margin-top: 10px;
         margin-bottom: 10px;
@@ -572,10 +582,6 @@ div#slider figure {
     #imahe {
         display: block;
         margin: auto;
-    }
-    
-    .login-box {
-        width: 320px;
     }
 }
 
