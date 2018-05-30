@@ -47,12 +47,13 @@ public class Transaction extends HttpServlet {
                 + "        </thead>";
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
+            c = DriverManager.getConnection("jdbc:mysql://192.168.43.64:3306/database", "root", "");
             PreparedStatement ps = c.prepareStatement("select * from transaction join products on transaction.prod_id  = products.prod_id join client on transaction.client_id = client.client_id");
             ResultSet rs = ps.executeQuery();
             if(rs.next()==false){
                 transactionDisplay = "<p> No transactions</p>";
             }
+            rs.previous();
             while (rs.next()) {
                 if (rs.getString("client.username").equalsIgnoreCase(username)) {
                     String productName = rs.getString("products.name");

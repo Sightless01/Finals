@@ -14,7 +14,7 @@ public class LoginDao {
         String dbPass="";
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
+            c = DriverManager.getConnection("jdbc:mysql://192.168.43.64:3306/database", "root", "");
             PreparedStatement ps = c.prepareStatement("select * from Client where username=?");
             ps.setString(1, name);
             ResultSet rs = ps.executeQuery();

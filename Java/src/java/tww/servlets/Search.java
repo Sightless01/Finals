@@ -38,8 +38,27 @@ public class Search extends HttpServlet {
         String categ = request.getParameter("cat");
         String ret = request.getParameter("ret");
         String date = request.getParameter("date");
-        Date date1 = Date.valueOf(date);
-        int tagprice = Integer.parseInt(presyo);
+        
+        if(presyo.equals("")){
+            presyo="";
+        } else{
+            presyo="and products.price <="+presyo;
+        }
+        if(date.equals("")){
+            date="";
+        } else{
+            date =" and start_date <= "+date+" and end_date >= "+date;
+        }
+        if(ret.equals("any")){
+            ret="";
+        }else{
+            ret=" and company.name =\""+ret+"\"";
+        }
+        if(categ.equals("any")){
+            categ="";
+        }else{
+            categ=" and products.categories="+categ;
+        }
         Connection c = null;
         ArrayList<Product> products = new ArrayList<>();
         List<Integer> list = new ArrayList<Integer>();
@@ -48,13 +67,16 @@ public class Search extends HttpServlet {
         String username = null;
         Calendar currenttime = Calendar.getInstance();               //creates the Calendar object of the current time
         Date sqldate = new Date((currenttime.getTime()).getTime());
+        System.out.println("select products.price, products.prod_id, products.name, "
+                    + "products.description, products.sideview, products.frontview, products.backview, products.categories,company.name, products.availability"
+                    + " from Products join company on products.comp_id = company.comp_id where availability = 1 "
+                    + ret +categ+presyo);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
+            c = DriverManager.getConnection("jdbc:mysql://192.168.43.64:3306/database", "root", "");
             c.setAutoCommit(false);
-            PreparedStatement ps = c.prepareStatement("select * from request where status=1 and start_date <= ? and end_date >= ?");
-            ps.setDate(1, date1);
-            ps.setDate(2, date1);
+            String sql ="select * from request where status=1 "+date;
+            PreparedStatement ps = c.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -74,21 +96,22 @@ public class Search extends HttpServlet {
                 }
             }
         }
+        System.out.println("select products.price, products.prod_id, products.name, "
+                    + "products.description, products.sideview, products.frontview, products.backview, products.categories,company.name, products.availability"
+                    + " from Products join company on products.comp_id = company.comp_id where availability = 1 "
+                    + ret +categ+presyo);
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
+            c = DriverManager.getConnection("jdbc:mysql://192.168.43.64:3306/database", "root", "");
             c.setAutoCommit(false);
             PreparedStatement ps = c.prepareStatement("select products.price, products.prod_id, products.name, "
                     + "products.description, products.sideview, products.frontview, products.backview, products.categories,company.name, products.availability"
                     + " from Products join company on products.comp_id = company.comp_id where availability = 1 "
-                    + "and products.categories=? and products.price <=?");
-            ps.setString(1, categ);
-            ps.setInt(2, tagprice);
+                    + ret +categ+presyo);
 
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                if (rs.getString("company.name").equalsIgnoreCase(ret)) {
                     double price = rs.getInt("price");
                     int product_id = rs.getInt("prod_id");
                     String name = rs.getString("products.name");
@@ -101,7 +124,6 @@ public class Search extends HttpServlet {
                     int count = rs.getInt("availability");
                     Product product = new Product(product_id, name, description, frontview, sideview, backview, price, comp, cat, count);
                     products.add(product);
-                }
             }
             rs.close();
 
@@ -185,7 +207,7 @@ public class Search extends HttpServlet {
             out.println(" <input class='datafield' type='date' name='startdate' required>");
             out.println(" Rent Period:");
             out.println(" <input type='number' name='rentPeriod' min='1' max='30' required>");
-            out.println("   <p><button value='" + prod + "' name='rent' class='button'>Rent</button></p>");
+            out.println("   <p><button onclick=\"myFunction()\" value='" + prod + "' name='rent' class='button'>Rent</button></p>");
             out.println("  </div>");
             out.println("  </div>");
             out.println("  </div>");
@@ -210,6 +232,11 @@ public class Search extends HttpServlet {
             out.println(" var y = document.getElementsByClassName('datafield');");
             out.println(" for (var i = 0; i < y.length; i++) {");
             out.println(" y[i].setAttribute('min', today);");
+            out.println(" }");
+            out.println(" </script>");
+            out.println(" <script>");
+            out.println(" function myFunction() {");
+            out.println(" confirm(\"Rent this item?\");");
             out.println(" }");
             out.println(" </script>");
 
