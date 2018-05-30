@@ -7,12 +7,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
-	<body>
-		<div class = "container">
-			<form method="post">
-				<button type="submit" name="btn-unavail<?php echo '-'.$row['prod_id'].'-'.$row['comp_id']?>" id="btn-confirm<?php echo '-'.$row['prod_id'].'-'.$row['comp_id']?>">Remove Availability</button>
-			</form>
-		</div>
-	</body>
-</html>
+
+<form method="post">
+	<button type="submit" name="btn-unavail<?php echo '-'.$row['prod_id'].'-'.$row['comp_id']?>" id="btn-confirm<?php echo '-'.$row['prod_id'].'-'.$row['comp_id']?>">Remove Availability</button>
+</form>
