@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  margin-bottom: 8rem !important;
+  margin-bottom: 9rem !important;
 }
 
 div.container {
@@ -20,13 +20,42 @@ div.row, div.form-row {
   padding-top: 10px;
 }
 
+div.custom-form {
+  padding-bottom: 3%;
+}
 
 div.form-group {
-  margin-top: 5%;
+  margin-top: 3%;
+  padding-top: 3%;
 }
 
 div#margin {
   margin-top: 20px;
+}
+
+/*login*/
+
+div.login {
+  background-color: #343a40;
+  margin-top: 3em;
+}
+
+@media (min-width: 768px) {
+  div.login {
+    width: 60%;
+    margin-top: 3em;
+  }
+}
+
+label.label-color {
+  color: #fff;
+}
+
+/*registration*/
+
+div.registration {
+  background-color: #343a40;
+  color: #fff;
 }
 
 /*manageUser*/
@@ -100,8 +129,6 @@ div.container-form hr{
   margin-right: 0%;
 }
 
-
-
 div.idname{
   text-align: center;
   margin-bottom: 9rem;
@@ -123,12 +150,4 @@ div.heading{
 
 div.container.transactions h2 {
   text-align: center;
-}
-
-
-@media screen and (max-width: 680px) {
-  nav.topnav a:not(:nth-child(6)){
-    display:none;
-  }
-
 }
