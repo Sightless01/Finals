@@ -20,24 +20,10 @@ div.row, div.form-row {
   padding-top: 10px;
 }
 
-button.login {
-  background-color: #004d4d;
-  width: 100%;
-  margin-top: 2%;
-  margin-bottom: 5%;
-}
-
-button.register {
-  background-color: #004d4d;
-  width: 100%;
-  margin-top: 2%;
-  margin-bottom: 5%;
-}
 
 div.form-group {
   margin-top: 5%;
 }
-
 
 div#margin {
   margin-top: 20px;
@@ -115,7 +101,6 @@ div.container-form hr{
 }
 
 
-/*unblock*/
 
 div.idname{
   text-align: center;
