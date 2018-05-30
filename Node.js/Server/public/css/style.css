@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  margin-bottom: 8rem !important;
+  margin-bottom: 9rem !important;
 }
 
 div.container {
@@ -20,27 +20,43 @@ div.row, div.form-row {
   padding-top: 10px;
 }
 
-button.login {
-  background-color: #004d4d;
-  width: 100%;
-  margin-top: 2%;
-  margin-bottom: 5%;
-}
-
-button.register {
-  background-color: #004d4d;
-  width: 100%;
-  margin-top: 2%;
-  margin-bottom: 5%;
+div.custom-form {
+  margin-top: 5%;
+  padding-bottom: 3%;
 }
 
 div.form-group {
-  margin-top: 5%;
+  margin-top: 3%;
+  padding-top: 3%;
 }
-
 
 div#margin {
   margin-top: 20px;
+}
+
+/*login*/
+
+div.login {
+  background-color: #343a40;
+  padding-bottom: 9em;
+  margin-top: 1em;
+}
+
+@media (min-width: 768px) {
+  div.login {
+    width: 60%;
+  }
+}
+
+label.label-color {
+  color: #fff;
+}
+
+/*registration*/
+
+div.registration {
+  background-color: #343a40;
+  color: #fff;
 }
 
 /*manageUser*/
@@ -114,9 +130,6 @@ div.container-form hr{
   margin-right: 0%;
 }
 
-
-/*unblock*/
-
 div.idname{
   text-align: center;
   margin-bottom: 9rem;
@@ -138,12 +151,4 @@ div.heading{
 
 div.container.transactions h2 {
   text-align: center;
-}
-
-
-@media screen and (max-width: 680px) {
-  nav.topnav a:not(:nth-child(6)){
-    display:none;
-  }
-
 }

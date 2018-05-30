@@ -31,7 +31,6 @@ public class Reservation extends HttpServlet {
         HttpSession session = request.getSession();
 
         String username = (String) session.getAttribute("username");
-        String stats = (String) session.getAttribute("stats");
         response.setContentType("text/html;charset=UTF-8");
 
         Connection c = null;
@@ -51,7 +50,7 @@ public class Reservation extends HttpServlet {
                 + "        </thead>";
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://192.168.43.64:3306/database", "root", "");
+            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
             PreparedStatement ps = c.prepareStatement("select * from request join products on request.prod_id  = products.prod_id join client on request.client_id = client.client_id");
             ResultSet rs = ps.executeQuery();
             if (rs.next() == false) {
@@ -132,15 +131,17 @@ public class Reservation extends HttpServlet {
         }
         
         out.println("    <br><h1>Requests</h1>");
-        
+     
         out.println(reservationDisplay);
         out.println(" <script>");
 
                 out.println(" function myFunction() {");
                 out.println(" confirm(\"Cancel Request?\");");
+                String stats = (String) session.getAttribute("stats");
+                stats = (String) session.getAttribute("stats");
                 out.println(" var stats=\""+stats+"\";");
-                
-                out.println(" if(stats != null)");
+                System.out.println(stats);
+                out.println(" if(stats != 'null' && stats !=\"stats\")");
                 out.println(" alert(\""+stats+" \");");
                 out.println(" }");
         out.println(" </script>");

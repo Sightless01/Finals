@@ -57,7 +57,7 @@ public class RentMe extends HttpServlet {
         if (username != null && !status.equals("blocked")) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                c = DriverManager.getConnection("jdbc:mysql://192.168.43.64:3306/database", "root", "");
+                c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
                 PreparedStatement ps = c.prepareStatement("insert into request(client_id, prod_id,start_date ,end_date,request_date) values((SELECT client_id FROM client WHERE username=?),?,?,?,?)");
                 ps.setString(1, username);
                 ps.setInt(2, prod_id);

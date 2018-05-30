@@ -72,7 +72,7 @@ public class CancelReq extends HttpServlet {
         }
          try {
             Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://192.168.43.64:3306/database", "root", "");
+            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
             PreparedStatement ps = c.prepareStatement("select * from request where client_id=? and prod_id=? and (start_date >= ? or status is null);");
             ps.setString(1, client_id);
             ps.setString(2, prod);
@@ -80,6 +80,8 @@ public class CancelReq extends HttpServlet {
             ResultSet rs = ps.executeQuery();
             if(rs.next()==false){
                 session.setAttribute("stats", "Can't Cancel request.");
+            } else {
+                session.setAttribute("stats", "stats");
             }
             ps.close();
             ps.close();

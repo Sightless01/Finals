@@ -39,7 +39,7 @@ public class Home extends HttpServlet {
         ArrayList<Product> products = new ArrayList<>();
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://192.168.43.64:3306/database", "root", "");
+            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
             c.setAutoCommit(false);
             PreparedStatement ps = c.prepareStatement("select * from Products join company on products.comp_id = company.comp_id where availability = 1");
             ResultSet rs = ps.executeQuery();

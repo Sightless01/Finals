@@ -191,16 +191,10 @@ nav {
   background-color:transparent;
 }
 
-@media(max-width: 800px){
-    .login-box {
-        width: 95%;
-    }
-  /*.login-box {
-    width: 95%;
-  }
+@media(max-width:568px){
   .pimg1, .pimg2, .pimg3{
     background-attachment:scroll;
-  }*/
+  }
 }
 
 /*CONTENT TITLE*/
@@ -309,6 +303,7 @@ transform-origin: 50% 50% 0;
 @media screen and (max-width: 600px) {
     .column {
         width: 100%;
+        margin-right: 0;
     }
 }
 
@@ -543,6 +538,57 @@ div#slider figure {
     height: 100%;
     display: block;
   }
+
+  #rentform {
+    margin-right: 20px;
+  }
+}
+
+@media(max-width: 740px) {
+    #navbar {
+        padding: 5px;
+    }
+    
+    #navbar a {
+    }
+    
+    #navbar :nth-last-child(n+2) {
+        display: block;
+        padding: 5px;
+        border-bottom: 1px solid black;
+    }
+    
+    .login-box {
+        width: 320px;
+    }
+}
+
+@media(max-width: 845px) {    
+    #searchform {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
+    #searchform input {
+        display: block;
+        margin: 5px auto;
+    }
+    
+    #searchform select {
+        display: block;
+        margin: 5px auto;
+    }
+    
+    #imahe {
+        display: block;
+        margin: auto;
+    }
+}
+
+@media(max-width: 320px) {
+    .login-box {
+        width: 100%;
+    }
 }
 
 .card {

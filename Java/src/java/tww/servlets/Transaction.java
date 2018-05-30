@@ -36,7 +36,8 @@ public class Transaction extends HttpServlet {
 
         Connection c = null;
         PrintWriter out = response.getWriter();
-        String transactionDisplay = "    <table id=\"transaction\" style=\"width:80%; margin:auto; margin-bottom:50px;\">"
+        String transactionDisplay = "    <form method='POST' action='Payment'>"
+                + "<table id=\"transaction\" style=\"width:80%; margin:auto; margin-bottom:50px;\">"
                 + "        <thead>"
                 + "            <tr>"
                 + "                <th>Product</th>"
@@ -47,7 +48,7 @@ public class Transaction extends HttpServlet {
                 + "        </thead>";
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://192.168.43.64:3306/database", "root", "");
+            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/database", "root", "");
             PreparedStatement ps = c.prepareStatement("select * from transaction join products on transaction.prod_id  = products.prod_id join client on transaction.client_id = client.client_id");
             ResultSet rs = ps.executeQuery();
             if(rs.next()==false){
@@ -56,12 +57,20 @@ public class Transaction extends HttpServlet {
             rs.previous();
             while (rs.next()) {
                 if (rs.getString("client.username").equalsIgnoreCase(username)) {
+                    String prod = rs.getString("products.prod_id");
                     String productName = rs.getString("products.name");
                     String datePaid = rs.getString("date_paid");
                     String dateReturned = rs.getString("date_returned");
                     int price = rs.getInt("price");
                     if(dateReturned==null){
                         dateReturned="Not yet returned";
+                     }
+                    if(datePaid==null){
+                        datePaid="Not yet paid"
+                                + "<br>"
+                                + "<button class=\"link-3\" value='" + prod + "' name='pay'>Pay online<a>"
+                                + "<br>"
+                                + "<button class=\"link-3\" value='walkin' name'pay'>Pay inCash</button>";
                      }
                     transactionDisplay += "        <tbody>"
                             + "            <tr>"
@@ -73,7 +82,7 @@ public class Transaction extends HttpServlet {
                             + "        </tbody>";
                 }
             }
-            transactionDisplay += "        </table>";
+            transactionDisplay += "        </table> </form>";
             rs.close();
 
         } catch (Exception e) {
