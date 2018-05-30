@@ -7,12 +7,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
-	<body>
-		<div class = "container">
-			<form method="post">
-				<button type="submit" name="btn-avail<?php echo '-'.$row['prod_id'].'-'.$row['comp_id']?>" id="btn-confirm<?php echo '-'.$row['prod_id'].'-'.$row['comp_id']?>">Make Available</button>
-			</form>
-		</div>
-	</body>
-</html>
+
+<form method="post">
+	<button type="submit" name="btn-avail<?php echo '-'.$row['prod_id'].'-'.$row['comp_id']?>" id="btn-confirm<?php echo '-'.$row['prod_id'].'-'.$row['comp_id']?>">Make Available</button>
+</form>
